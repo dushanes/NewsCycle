@@ -11,16 +11,11 @@ class Login : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-    }
 
-    val editTextUername: EditText = findViewById(R.id.username)
-    val editTextPassword: EditText = findViewById(R.id.password)
-    val buttonLogin: Button = findViewById(R.id.button_login)
 
-    fun onClick(view: View){
-        if (view == buttonLogin){
-
-        }
+        val editTextUername: EditText = findViewById(R.id.email)
+        val editTextPassword: EditText = findViewById(R.id.password)
+        val buttonLogin: Button = findViewById(R.id.button_login)
     }
 
 

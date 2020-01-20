@@ -1,26 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/home">
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tab_layout"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:background="@color/colorPrimary"
-        >
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+        android:layout_height="200dp">
+        <Button
+            android:id="@+id/menu"
+            android:layout_width="45dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/menu"
+            android:padding="8dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="8dp"/>
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/appName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:text="@string/app_name"
+            android:gravity="center_horizontal"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="24dp"
+            android:textSize="24sp"/>
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    </com.google.android.material.tabs.TabLayout>
+        <Button
+            android:id="@+id/profile"
+            android:layout_width="45dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/profile"
+            android:padding="8dp"
+            app:layout_constraintHorizontal_bias="0.92"
+            app:layout_constraintLeft_toRightOf="@id/appName"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="Name"
+            app:layout_constraintTop_toBottomOf="@id/profile"
+            app:layout_constraintStart_toStartOf="@id/profile"
+            app:layout_constraintEnd_toEndOf="@id/profile"/>
+
+        <Button
+            android:id="@+id/myFeed"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="87dp"
+            android:background="@drawable/my_feed"
+            app:layout_constraintHorizontal_bias="0.229"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/appName" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="My Feed"
+            android:textSize="12sp"
+            android:textColor="#FFFFFF"
+            app:layout_constraintTop_toBottomOf="@id/myFeed"
+            app:layout_constraintEnd_toEndOf="@id/myFeed"
+            app:layout_constraintStart_toStartOf="@id/myFeed"/>
+
+        <Button
+            android:id="@+id/popular"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="87dp"
+            android:background="@drawable/popular"
+            android:gravity="center_horizontal"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/appName" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/popular"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            android:gravity="center_horizontal"
+            app:layout_constraintStart_toStartOf="@id/popular"
+            app:layout_constraintEnd_toEndOf="@id/popular"
+            app:layout_constraintTop_toBottomOf="@id/popular" />
+
+        <Button
+            android:id="@+id/categories"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="87dp"
+            android:background="@drawable/category"
+            app:layout_constraintHorizontal_bias="0.793"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/appName" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/categories"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@id/categories"
+            app:layout_constraintEnd_toEndOf="@id/categories"
+            app:layout_constraintTop_toBottomOf="@id/categories" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

@@ -11,8 +11,8 @@
         android:layout_height="200dp">
         <Button
             android:id="@+id/menu"
-            android:layout_width="45dp"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:background="@drawable/menu"
             android:padding="8dp"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -31,12 +31,12 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="24dp"
-            android:textSize="24sp"/>
+            android:textSize="28sp"/>
 
         <Button
             android:id="@+id/profile"
-            android:layout_width="45dp"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/profile"
@@ -57,9 +57,9 @@
 
         <Button
             android:id="@+id/myFeed"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginTop="87dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="80dp"
             android:background="@drawable/my_feed"
             app:layout_constraintHorizontal_bias="0.229"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -77,9 +77,9 @@
 
         <Button
             android:id="@+id/popular"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginTop="87dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="80dp"
             android:background="@drawable/popular"
             android:gravity="center_horizontal"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -99,9 +99,9 @@
 
         <Button
             android:id="@+id/categories"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginTop="87dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="80dp"
             android:background="@drawable/category"
             app:layout_constraintHorizontal_bias="0.793"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -118,4 +118,9 @@
             app:layout_constraintEnd_toEndOf="@id/categories"
             app:layout_constraintTop_toBottomOf="@id/categories" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView_Home"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>

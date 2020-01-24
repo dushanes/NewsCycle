@@ -1,8 +1,9 @@
 package com.newscycle
 
-import java.net.URL
+import android.net.Uri
+import java.net.URI
 import java.util.*
 
-class Article (val title: String, val content: String, val date: Date, val imageSRC: URL){
+class Article (val title: String, val content: String, val date: Date, val imageSRC: Uri){
 
 }

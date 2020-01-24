@@ -1,16 +1,13 @@
 package com.newscycle
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import java.net.URL
-import java.util.*
 
-class MainRecyclerViewAdapter(private val data: Array<Article>, val context : Context) : RecyclerView.Adapter<MainRecyclerViewAdapter.viewHolder>() {
+class MainRecyclerViewAdapter(private val data: Array<Article>) : RecyclerView.Adapter<MainRecyclerViewAdapter.viewHolder>() {
 
     class viewHolder (val view: View) : RecyclerView.ViewHolder(view){
         var viewImage: ImageView
@@ -43,6 +40,11 @@ class MainRecyclerViewAdapter(private val data: Array<Article>, val context : Co
     }
 
     override fun onBindViewHolder(holder: viewHolder, position: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val cur = data[position]
+        holder.viewSource.setText("source")
+        holder.viewDate.setText(cur.date.toString())
+        holder.viewDescription.setText(cur.content)
+        holder.viewTitle.setText(cur.title)
+        holder.viewImage.setImageURI(cur.imageSRC)//To change body of created functions use File | Settings | File Templates.
     }
 }

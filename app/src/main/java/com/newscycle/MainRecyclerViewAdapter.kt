@@ -17,7 +17,7 @@ class MainRecyclerViewAdapter(private val data: Array<Article>) : RecyclerView.A
         var viewSource: TextView
 
         init{
-            viewImage = view.findViewById(R.id.image)
+            viewImage = view.findViewById(R.id.card_image)
             viewTitle = view.findViewById(R.id.title)
             viewDescription = view.findViewById(R.id.description)
             viewDate = view.findViewById(R.id.time)

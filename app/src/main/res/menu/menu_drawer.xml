@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:id="@+id/menu_header"
+        android:checkableBehavior="none">
+        <item
+            android:id="@+id/action_feed"
+            android:title="MY FEED"
+            android:icon="@drawable/my_feed"/>
+        <item
+            android:id="@+id/action_message"
+            android:title="MESSAGES"
+            android:icon="@drawable/message"/>
+        <item
+            android:id="@+id/action_notification"
+            android:title="NOTIFICATIONS"
+            android:icon="@drawable/notification"/>
+    </group>
+
+    <group android:id="@+id/menu_footer">
+        <item
+            android:id="@+id/action_settings"
+            android:title="SETTINGS"
+            android:icon="@drawable/settings"/>
+    </group>
+
+</menu>

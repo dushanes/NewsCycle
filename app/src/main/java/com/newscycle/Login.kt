@@ -6,13 +6,20 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_login.*
 
 class Login : AppCompatActivity() {
+    private lateinit var mAuth: FirebaseAuth
+    private lateinit var firebaseUser: FirebaseUser
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        mAuth = FirebaseAuth.getInstance()
+        firebaseUser = mAuth.currentUser!!
 
         setupViews()
     }
@@ -26,6 +33,10 @@ class Login : AppCompatActivity() {
             val intent = Intent(this, Home::class.java)
             startActivity(intent)
         })
+    }
+
+    fun updateUI(firebaseUser: FirebaseUser){
+        TODO("Implement UI updates if user is already logged in")
     }
 
     fun onClick(view: View): View.OnClickListener?{

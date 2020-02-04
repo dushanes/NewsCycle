@@ -1,16 +1,18 @@
 package com.newscycle
 
+import android.content.res.Configuration
 import android.net.Uri
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.view.Gravity
+import android.view.MenuItem
 import android.view.View
-import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_home.*
@@ -23,11 +25,11 @@ class Home: AppCompatActivity(), View.OnClickListener {
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var drawer: DrawerLayout
+    private lateinit var toolbar: Toolbar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-
         drawer_button.setOnClickListener(this)
 
         setupRecyclerView()
@@ -37,17 +39,20 @@ class Home: AppCompatActivity(), View.OnClickListener {
     private fun inflateDrawer(){
         val v = layoutInflater.inflate(R.layout.home_sidebar, root_home, true)
         drawer = v.findViewById(R.id.home_drawer)
+        toolbar = v.findViewById(R.id.toolbar)
 
-        toggle = ActionBarDrawerToggle(this, home_drawer, R.string.drawer_open, R.string.drawer_close)
+        toggle = ActionBarDrawerToggle(this, home_drawer, toolbar, R.string.drawer_open, R.string.drawer_close)
         home_drawer.addDrawerListener(toggle)
+        setSupportActionBar(toolbar)
+        v.fitsSystemWindows = true
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM)
-        supportActionBar?.setHomeAsUpIndicator(R.drawable.menu)
+        supportActionBar?.setDisplayShowCustomEnabled(true)
+        supportActionBar?.setDefaultDisplayHomeAsUpEnabled(true)
     }
 
     private fun setupRecyclerView(){
-        val data = Array(5) {Article("Title", "content", Date(0), Uri.parse("https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png"))}
+        val data = Array(5) {ArticleViewModel("Title", "content", Date(0), Uri.parse("https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png"))}
         linearLayoutManager = LinearLayoutManager(this)
         recyclerViewAdapter = MainRecyclerViewAdapter(data)
         recyclerView_Home.adapter = recyclerViewAdapter
@@ -74,5 +79,20 @@ class Home: AppCompatActivity(), View.OnClickListener {
         }else{
             super.onBackPressed()
         }
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        toggle.onConfigurationChanged(newConfig)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.getItemId()) {
+            android.R.id.home -> {
+                onBackPressed()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

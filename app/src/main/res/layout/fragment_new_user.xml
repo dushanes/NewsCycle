@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <EditText
-        android:id="@+id/email"
+        android:id="@+id/regi_email"
         android:layout_width="300dp"
         android:layout_height="60dp"
         android:background="@drawable/input_rounded_short"
@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/regi_password"
         android:layout_width="300dp"
         android:layout_height="60dp"
         android:layout_marginTop="28dp"
@@ -30,10 +30,10 @@
         android:textColor="@color/black"
         android:textColorHint="#575454"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/email" />
+        app:layout_constraintTop_toBottomOf="@id/regi_email" />
 
     <EditText
-        android:id="@+id/password_confirm"
+        android:id="@+id/regi_password_confirm"
         android:layout_width="300dp"
         android:layout_height="60dp"
         android:layout_marginTop="28dp"
@@ -44,10 +44,10 @@
         android:textColor="@color/black"
         android:textColorHint="#575454"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/password" />
+        app:layout_constraintTop_toBottomOf="@id/regi_password" />
 
     <Button
-        android:id="@+id/button_OK"
+        android:id="@+id/button_confirm"
         android:layout_width="95dp"
         android:layout_height="50dp"
         android:layout_marginTop="28dp"
@@ -60,7 +60,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password_confirm" />
+        app:layout_constraintTop_toBottomOf="@+id/regi_password_confirm" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

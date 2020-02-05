@@ -1,29 +1,28 @@
 package com.newscycle
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.fragment_login.*
+import kotlinx.android.synthetic.main.fragment_new_user.*
+
 
 class Login : AppCompatActivity(), View.OnClickListener{
     private lateinit var mAuth: FirebaseAuth
-    private lateinit var firebaseUser: FirebaseUser
-    private lateinit var editTextUsername: EditText
-    private lateinit var editTextPassword: EditText
-    private lateinit var root: LinearLayout
-    private lateinit var buttonLogin: Button
-    private lateinit var buttonRegi: Button
+    private val TAG: String = "Login:"
+    private lateinit var context: Context
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         mAuth = FirebaseAuth.getInstance()
+        context = this
 
         supportFragmentManager.beginTransaction().add(R.id.content_fragment_container,LoginFragment(), "login").commitNow()
     }
@@ -34,29 +33,91 @@ class Login : AppCompatActivity(), View.OnClickListener{
     }
 
     private fun setupViews() {
-        editTextUsername = findViewById(R.id.email)
-        editTextPassword = findViewById(R.id.password)
-        buttonLogin = findViewById(R.id.button_login)
-        buttonRegi = findViewById(R.id.button_register)
-        buttonLogin.setOnClickListener(this)
-        buttonRegi.setOnClickListener(this)
+        button_login.setOnClickListener(this)
+        button_register.setOnClickListener(this)
     }
 
-    override fun onClick(view: View?) {
+    override fun onClick(view: View) {
         if (view == button_login){
-            val intent = Intent(this, Home::class.java)
-            startActivity(intent)
+            fireSignIn(
+                email.text.toString(),
+                password.text.toString()
+            )
         }else if(view == button_register){
             val registerFragment = RegisterFragment()
             val tx = supportFragmentManager.beginTransaction()
                 .add(R.id.content_fragment_container, registerFragment)
                 .addToBackStack(null)
                 .commit()
+            supportFragmentManager.executePendingTransactions()
+            button_confirm.setOnClickListener(this)
+        }else if(view == button_confirm){
+            val email = regi_email.text.toString()
+            val pass = regi_password.text.toString()
+            val passConfirm = regi_password_confirm.text.toString()
+
+            if(pass != passConfirm){
+                Toast.makeText(context,"Passwords do not match, Try again.",Toast.LENGTH_SHORT)
+                    .show()
+            }else{
+                fireRegis(email, pass)
+            }
         }
     }
 
-    fun updateUI(firebaseUser: FirebaseUser){
-        TODO("Implement UI updates if user is already logged in")
+    fun updateUI(firebaseUser: FirebaseUser?){
+        portal(firebaseUser)
+    }
+
+    fun portal(firebaseUser: FirebaseUser?){
+        if(firebaseUser != null){
+            val intent: Intent = Intent(this, Home::class.java)
+            startActivity(intent)
+        }
+        return
+    }
+
+    fun fireRegis(email: String, pass: String){
+        mAuth = FirebaseAuth.getInstance()
+        mAuth.createUserWithEmailAndPassword(email, pass)
+            .addOnCompleteListener(
+                this
+            ) { task ->
+                if (task.isSuccessful) {
+                    Log.d(TAG, "createUserWithEmail:success")
+                    val user = mAuth.currentUser
+                    updateUI(user!!)
+                } else {
+                    Log.w(TAG, "createUserWithEmail:failure", task.exception)
+                    Toast.makeText(context, "Authentication failed.", Toast.LENGTH_SHORT).show()
+                    updateUI(null)
+                }
+            }
+    }
+
+    fun fireSignIn(email: String, pass: String){
+        if(email.isEmpty() || pass.isEmpty()){
+            Toast.makeText(context, "Please enter your email and password", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        mAuth.signInWithEmailAndPassword(email, pass)
+            .addOnCompleteListener(
+                this
+            ) { task ->
+                if (task.isSuccessful) {
+                    Log.d(TAG, "signInWithEmail:success")
+                    val user = mAuth.currentUser
+                    updateUI(user)
+                } else {
+                    Log.w(TAG, "signInWithEmail:failure", task.exception)
+                    Toast.makeText(
+                        context, "Authentication failed.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    updateUI(null)
+                }
+            }
     }
 
 

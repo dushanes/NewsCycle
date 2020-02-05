@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class MainRecyclerViewAdapter(private val data: Array<Article>) : RecyclerView.Adapter<MainRecyclerViewAdapter.viewHolder>() {
+class MainRecyclerViewAdapter(private val data: Array<ArticleViewModel>) : RecyclerView.Adapter<MainRecyclerViewAdapter.viewHolder>() {
 
     class viewHolder (val view: View) : RecyclerView.ViewHolder(view){
         var viewImage: ImageView
@@ -42,9 +42,9 @@ class MainRecyclerViewAdapter(private val data: Array<Article>) : RecyclerView.A
     override fun onBindViewHolder(holder: viewHolder, position: Int) {
         val cur = data[position]
         holder.viewSource.setText("source")
-        holder.viewDate.setText(cur.date.toString())
-        holder.viewDescription.setText(cur.content)
-        holder.viewTitle.setText(cur.title)
-        holder.viewImage.setImageURI(cur.imageSRC)//To change body of created functions use File | Settings | File Templates.
+        holder.viewDate.setText(cur.getDate())
+        holder.viewDescription.setText(cur.getContent())
+        holder.viewTitle.setText(cur.getTitle())
+        holder.viewImage.setImageURI(cur.getImageSRC())//To change body of created functions use File | Settings | File Templates.
     }
 }

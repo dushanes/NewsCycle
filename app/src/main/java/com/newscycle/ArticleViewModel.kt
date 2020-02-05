@@ -20,4 +20,9 @@ class ArticleViewModel(title: String): ViewModel(){
         this.date.postValue(date)
         this.imageSRC.postValue(imageSRC)
     }
+
+    fun getTitle():String{return title.toString()}
+    fun getContent():String{return content.toString()}
+    fun getDate(): String? {return date.value.toString()}
+    fun getImageSRC(): Uri? {return imageSRC.value}
 }

@@ -11,8 +11,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_home.*
@@ -32,7 +30,7 @@ class Home: AppCompatActivity(), View.OnClickListener {
         setContentView(R.layout.activity_home)
         drawer_button.setOnClickListener(this)
 
-        setupRecyclerView()
+        //setupRecyclerView() TODO(Uncomment after setting up REST API pipeline)
         inflateDrawer()
     }
 
@@ -44,11 +42,6 @@ class Home: AppCompatActivity(), View.OnClickListener {
         toggle = ActionBarDrawerToggle(this, home_drawer, toolbar, R.string.drawer_open, R.string.drawer_close)
         home_drawer.addDrawerListener(toggle)
         setSupportActionBar(toolbar)
-        v.fitsSystemWindows = true
-
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setDisplayShowCustomEnabled(true)
-        supportActionBar?.setDefaultDisplayHomeAsUpEnabled(true)
     }
 
     private fun setupRecyclerView(){

@@ -6,6 +6,6 @@ import retrofit2.http.*
 
 interface NewsApi {
     @GET("/v2/top-headlines")
-    public fun getTopHeadlines(@Header("api_key") api_key: String)
+    public fun getTopHeadlines(@Header("Authorization") api_key: String)
             :Single<Results>
 }

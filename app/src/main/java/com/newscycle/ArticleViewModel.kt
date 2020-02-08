@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import java.util.*
 
 class ArticleViewModel(title: String): ViewModel(){
+
     private lateinit var title: MutableLiveData<String>
     private lateinit var content: MutableLiveData<String>
     private lateinit var date: MutableLiveData<Date>

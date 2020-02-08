@@ -1,5 +1,6 @@
 package com.newscycle
 
+import android.app.Activity
 import android.content.res.Configuration
 import android.net.Uri
 import android.os.Bundle
@@ -7,63 +8,72 @@ import android.view.Gravity
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.navigation.NavigationView
+import io.reactivex.Single
+import io.reactivex.SingleObserver
+import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.home_sidebar.*
 import java.util.*
 
 
-class Home: AppCompatActivity(), View.OnClickListener {
+class Home: Activity(), View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
     private lateinit var recyclerViewAdapter: RecyclerView.Adapter<*>
     private lateinit var linearLayoutManager: LinearLayoutManager
+    private lateinit var nav: NavigationView
     private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var drawer: DrawerLayout
-    private lateinit var toolbar: Toolbar
+    private lateinit var results: Single<Results>
+    private lateinit var data: Array<Results>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-        drawer_button.setOnClickListener(this)
 
-        //setupRecyclerView() TODO(Uncomment after setting up REST API pipeline)
+        setupRecyclerView()                           //TODO(Uncomment after setting up REST API pipeline)
         inflateDrawer()
     }
 
     private fun inflateDrawer(){
-        val v = layoutInflater.inflate(R.layout.home_sidebar, root_home, true)
+        val v = layoutInflater.inflate(R.layout.home_sidebar, root_home, false)
         drawer = v.findViewById(R.id.home_drawer)
-        toolbar = v.findViewById(R.id.toolbar)
+        nav = v.findViewById(R.id.nav)
 
-        toggle = ActionBarDrawerToggle(this, home_drawer, toolbar, R.string.drawer_open, R.string.drawer_close)
-        home_drawer.addDrawerListener(toggle)
-        setSupportActionBar(toolbar)
+        toggle = ActionBarDrawerToggle(this, drawer, R.string.drawer_open, R.string.drawer_close)
+        toggle.isDrawerIndicatorEnabled = true
+        drawer.addDrawerListener(toggle)
+
+        toggle.syncState()
+        nav.setNavigationItemSelectedListener(this)
+        drawer_button.setOnClickListener(this)
     }
 
     private fun setupRecyclerView(){
-        val data = Array(5) {ArticleViewModel("Title", "content", Date(0), Uri.parse("https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png"))}
+        //val data = Array(5) {ArticleViewModel("Title", "content", Date(0), Uri.parse("https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png"))}
         linearLayoutManager = LinearLayoutManager(this)
-        recyclerViewAdapter = MainRecyclerViewAdapter(data)
+        recyclerViewAdapter = MainRecyclerViewAdapter()
         recyclerView_Home.adapter = recyclerViewAdapter
         recyclerView_Home.layoutManager = linearLayoutManager
     }
 
     override fun onClick(v: View){
         if(v == drawer_button){
-            if(drawer.isDrawerOpen(Gravity.LEFT))
-                drawer.closeDrawer(Gravity.LEFT)
-            else
-                drawer.openDrawer(Gravity.LEFT)
+            if(drawer.isDrawerOpen(GravityCompat.START)){
+                drawer.closeDrawer(GravityCompat.START)
+            }else {
+                drawer.openDrawer(GravityCompat.START)
+            }
         }
     }
 
-    override fun onPostCreate(savedInstanceState: Bundle?) {
-        super.onPostCreate(savedInstanceState)
-        toggle.syncState()
+//------------------------------Navigation functions-----------------------------------------------//
+    override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
+        //drawer.closeDrawer(GravityCompat.START)
+        return true
     }
 
     override fun onBackPressed() {
@@ -80,7 +90,7 @@ class Home: AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.getItemId()) {
+        when (item.itemId) {
             android.R.id.home -> {
                 onBackPressed()
                 return true

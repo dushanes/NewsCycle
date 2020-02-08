@@ -7,14 +7,17 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class MainRecyclerViewAdapter(private val data: Array<ArticleViewModel>) : RecyclerView.Adapter<MainRecyclerViewAdapter.viewHolder>() {
+class MainRecyclerViewAdapter() : RecyclerView.Adapter<MainRecyclerViewAdapter.ViewHolder>() {
 
-    class viewHolder (val view: View) : RecyclerView.ViewHolder(view){
-        var viewImage: ImageView
-        var viewTitle: TextView
-        var viewDescription: TextView
-        var viewDate: TextView
-        var viewSource: TextView
+    val apiUtil: ApiUtilities by lazy {ApiUtilities}
+    val articles: ArrayList<Article> = ArrayList<Article>()
+
+    class ViewHolder (val view: View) : RecyclerView.ViewHolder(view){
+        val viewImage: ImageView
+        val viewTitle: TextView
+        val viewDescription: TextView
+        val viewDate: TextView
+        val viewSource: TextView
 
         init{
             viewImage = view.findViewById(R.id.card_image)
@@ -22,29 +25,27 @@ class MainRecyclerViewAdapter(private val data: Array<ArticleViewModel>) : Recyc
             viewDescription = view.findViewById(R.id.description)
             viewDate = view.findViewById(R.id.time)
             viewSource = view.findViewById(R.id.source)
-
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): viewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v: View = LayoutInflater.from(parent.context).inflate(R.layout.article_card, parent, false)
-        return viewHolder(v)
+        return ViewHolder(v)
     }
 
     override fun getItemCount(): Int {
-        return data.size
+        return articles.size
     }
 
-    override fun getItemId(position: Int): Long {
-        return super.getItemId(position)
+    override fun onBindViewHolder(holder: ViewHolder, pos: Int) {
+        //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun onBindViewHolder(holder: viewHolder, position: Int) {
-        val cur = data[position]
-        holder.viewSource.setText("source")
-        holder.viewDate.setText(cur.getDate())
-        holder.viewDescription.setText(cur.getContent())
-        holder.viewTitle.setText(cur.getTitle())
-        holder.viewImage.setImageURI(cur.getImageSRC())//To change body of created functions use File | Settings | File Templates.
+    fun refreshArticles(){
+        apiUtil.getTopHeadlines(BuildConfig.NEWS_KEY).subscribe({t ->
+
+        }, {error ->
+            return@subscribe
+        })
     }
 }

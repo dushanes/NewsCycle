@@ -1,32 +1,27 @@
 package com.newscycle
 
+import android.net.Uri
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.newscycle.api.ApiUtilities
+import com.newscycle.api.Article
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
+import kotlinx.android.synthetic.main.article_card.view.*
 
-class MainRecyclerViewAdapter() : RecyclerView.Adapter<MainRecyclerViewAdapter.ViewHolder>() {
+class MainRecyclerViewAdapter : RecyclerView.Adapter<MainRecyclerViewAdapter.ViewHolder>() {
 
-    val apiUtil: ApiUtilities by lazy {ApiUtilities}
+    val apiUtil: ApiUtilities by lazy { ApiUtilities }
     val articles: ArrayList<Article> = ArrayList<Article>()
 
-    class ViewHolder (val view: View) : RecyclerView.ViewHolder(view){
-        val viewImage: ImageView
-        val viewTitle: TextView
-        val viewDescription: TextView
-        val viewDate: TextView
-        val viewSource: TextView
-
-        init{
-            viewImage = view.findViewById(R.id.card_image)
-            viewTitle = view.findViewById(R.id.title)
-            viewDescription = view.findViewById(R.id.description)
-            viewDate = view.findViewById(R.id.time)
-            viewSource = view.findViewById(R.id.source)
-        }
+    init {
+        refreshArticles()
     }
+
+    class ViewHolder (val view: View) : RecyclerView.ViewHolder(view)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v: View = LayoutInflater.from(parent.context).inflate(R.layout.article_card, parent, false)
@@ -38,14 +33,21 @@ class MainRecyclerViewAdapter() : RecyclerView.Adapter<MainRecyclerViewAdapter.V
     }
 
     override fun onBindViewHolder(holder: ViewHolder, pos: Int) {
-        //To change body of created functions use File | Settings | File Templates.
+        holder.view.title.text = articles[pos].title
+        holder.view.description.text = articles[pos].desc
+        holder.view.time.text = articles[pos].pubDate
+        holder.view.source.text = articles[pos].source.name
+        holder.view.card_image.setImageURI(Uri.parse(articles[pos].image))
     }
 
     fun refreshArticles(){
-        apiUtil.getTopHeadlines(BuildConfig.NEWS_KEY).subscribe({t ->
-
+        apiUtil.getTopHeadlines(BuildConfig.NEWS_KEY)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ t ->
+            articles.addAll(t.articles)
         }, {error ->
-            return@subscribe
+            Log.d("Api Error:", error.message)
         })
     }
 }

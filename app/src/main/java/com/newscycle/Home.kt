@@ -2,9 +2,7 @@ package com.newscycle
 
 import android.app.Activity
 import android.content.res.Configuration
-import android.net.Uri
 import android.os.Bundle
-import android.view.Gravity
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -13,12 +11,10 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.navigation.NavigationView
+import com.newscycle.api.Results
 import io.reactivex.Single
-import io.reactivex.SingleObserver
-import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.home_sidebar.*
-import java.util.*
 
 
 class Home: Activity(), View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {

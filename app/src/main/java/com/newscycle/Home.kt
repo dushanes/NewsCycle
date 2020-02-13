@@ -30,7 +30,7 @@ class Home: Activity(), View.OnClickListener, NavigationView.OnNavigationItemSel
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        setupRecyclerView()                           //TODO(Uncomment after setting up REST API pipeline)
+        setupRecyclerView()
         inflateDrawer()
     }
 
@@ -49,9 +49,8 @@ class Home: Activity(), View.OnClickListener, NavigationView.OnNavigationItemSel
     }
 
     private fun setupRecyclerView(){
-        //val data = Array(5) {ArticleViewModel("Title", "content", Date(0), Uri.parse("https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png"))}
         linearLayoutManager = LinearLayoutManager(this)
-        recyclerViewAdapter = MainRecyclerViewAdapter()
+        recyclerViewAdapter = MainRecyclerViewAdapter(this)
         recyclerView_Home.adapter = recyclerViewAdapter
         recyclerView_Home.layoutManager = linearLayoutManager
     }

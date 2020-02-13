@@ -1,21 +1,27 @@
 package com.newscycle
 
-import android.net.Uri
+import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.newscycle.api.ApiUtilities
 import com.newscycle.api.Article
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.article_card.view.*
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
-class MainRecyclerViewAdapter : RecyclerView.Adapter<MainRecyclerViewAdapter.ViewHolder>() {
+class MainRecyclerViewAdapter (val context: Context) : RecyclerView.Adapter<MainRecyclerViewAdapter.ViewHolder>() {
 
     val apiUtil: ApiUtilities by lazy { ApiUtilities }
     val articles: ArrayList<Article> = ArrayList<Article>()
+    val cropOptions: RequestOptions = RequestOptions.centerCropTransform()
 
     init {
         refreshArticles()
@@ -33,11 +39,23 @@ class MainRecyclerViewAdapter : RecyclerView.Adapter<MainRecyclerViewAdapter.Vie
     }
 
     override fun onBindViewHolder(holder: ViewHolder, pos: Int) {
-        holder.view.title.text = articles[pos].title
-        holder.view.description.text = articles[pos].desc
-        holder.view.time.text = articles[pos].pubDate
-        holder.view.source.text = articles[pos].source.name
-        holder.view.card_image.setImageURI(Uri.parse(articles[pos].image))
+        val cur = articles[pos]
+        val calendar = Calendar.getInstance()
+        calendar.time = cur.pubDate
+
+        holder.view.title.text = cur.title
+        holder.view.description.text = cur.desc
+        holder.view.time.text = getTime(cur.pubDate)
+        holder.view.source.text = cur.source.name
+
+        Glide.with(context)
+            .load(articles[pos].image)
+            .apply(cropOptions)
+            .into(holder.view.card_image)
+    }
+
+    private fun getTime(pubDate: Date): String? {
+        return SimpleDateFormat("h:mm a, MMM d", Locale.ENGLISH).format(pubDate)
     }
 
     fun refreshArticles(){
@@ -46,8 +64,11 @@ class MainRecyclerViewAdapter : RecyclerView.Adapter<MainRecyclerViewAdapter.Vie
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ t ->
             articles.addAll(t.articles)
+            notifyDataSetChanged()
         }, {error ->
             Log.d("Api Error:", error.message)
         })
     }
+
+
 }

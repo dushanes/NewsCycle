@@ -14,13 +14,15 @@ import java.util.*
 
 object ApiUtilities: NewsApi {
     val newsApi: NewsApi by lazy {
-        val moshi: Moshi = Moshi.Builder().build()
+        val moshi: Moshi = Moshi.Builder().add(Date::class.java, Rfc3339DateJsonAdapter().nullSafe()).build()
         val listArticle: Type = Types.newParameterizedType(List::class.java, Article::class.java)
+
         val adapter :JsonAdapter<List<Article>> = moshi.adapter(listArticle)
+        val dateAdapter : JsonAdapter<Date> = moshi.adapter(Date::class.java)
 
         moshi.newBuilder()
-            .add(Date::class.java, Rfc3339DateJsonAdapter())
             .add(listArticle, adapter)
+            .add(Date::class.java, dateAdapter)
             .build()
 
         val retrofit = Retrofit.Builder()

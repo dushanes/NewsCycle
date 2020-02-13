@@ -48,11 +48,11 @@
 
     <Button
         android:id="@+id/button_confirm"
-        android:layout_width="95dp"
+        android:layout_width="120dp"
         android:layout_height="50dp"
         android:layout_marginTop="28dp"
         android:background="@drawable/input_rounded_short"
-        android:fontFamily="@font/oswald_regular"
+        android:fontFamily="@font/open_sans_semi_bold"
         android:focusable="true"
         android:text="@string/confirm_text"
         android:textColor="#5FCCCA"

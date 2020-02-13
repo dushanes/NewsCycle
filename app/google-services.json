@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "263367765383",
+    "firebase_url": "https://news-cycle.firebaseio.com",
+    "project_id": "news-cycle",
+    "storage_bucket": "news-cycle.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:263367765383:android:5e6ea5963c26607aca3722",
+        "android_client_info": {
+          "package_name": "com.newscycle"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "263367765383-f352l0bllqv9pll0dsn6faadggn10rd9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.newscycle",
+            "certificate_hash": "af70aa824eea963b23e8a33d3027305adec18217"
+          }
+        },
+        {
+          "client_id": "263367765383-0clt8s2ssa437g3vdqh1me0klp1ik7v4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1k_tOuEST8kMBH1LuL3EAjuwDijRBfO8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "263367765383-0clt8s2ssa437g3vdqh1me0klp1ik7v4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

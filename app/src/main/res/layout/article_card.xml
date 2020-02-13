@@ -3,8 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cardView"
-    android:layout_width="360dp"
-    android:layout_height="150dp"
+    android:layout_width="390dp"
+    android:layout_height="180dp"
     android:layout_margin="6dp"
     android:background="#E8E8E8"
     app:cardCornerRadius="15dp">
@@ -12,12 +12,13 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingRight="4dp"
         app:layout_constraintEnd_toEndOf="@+id/card_image"
         app:layout_constraintStart_toEndOf="@+id/card_image">
 
         <ImageView
             android:id="@+id/card_image"
-            android:layout_width="180dp"
+            android:layout_width="150dp"
             android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -26,34 +27,39 @@
 
         <TextView
             android:id="@+id/title"
-            android:layout_width="wrap_content"
+            android:layout_width="235dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:padding="4dp"
+            android:paddingBottom="0dp"
+            android:maxHeight="245dp"
             android:text="Title"
-            android:textSize="20sp"
-            android:textColor="#000000"
-            android:fontFamily="@font/oswald"
+            android:textSize="16sp"
+            android:textColor="#FFFFFF"
+            android:fontFamily="@font/open_sans_semi_bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/card_image"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity=""
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="12dp"
-            android:padding="4dp"
-            android:text="content"
-            android:textSize="12sp"
-            android:fontFamily="@font/oswald"
+        <ScrollView
+            android:layout_width="235dp"
+            android:layout_height="115dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@id/card_image"
-            app:layout_constraintTop_toBottomOf="@id/title" />
+            app:layout_constraintTop_toBottomOf="@id/title" >
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:padding="4dp"
+                android:paddingTop="0dp"
+                android:text="content"
+                android:textSize="12sp"
+                android:fontFamily="@font/open_sans_regular"/>
+        </ScrollView>
+
 
         <TextView
             android:id="@+id/time"
@@ -62,7 +68,7 @@
             android:layout_marginStart="4dp"
             android:layout_marginBottom="4dp"
             android:padding="2dp"
-            android:fontFamily="@font/oswald"
+            android:fontFamily="@font/open_sans_light"
             android:text="23 hours ago"
             android:textSize="9sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -73,7 +79,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="2dp"
-            android:fontFamily="@font/oswald"
+            android:fontFamily="@font/open_sans_light"
             android:layout_marginBottom="2dp"
             android:textSize="9sp"
             app:layout_constraintBottom_toBottomOf="parent"

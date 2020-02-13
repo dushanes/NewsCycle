@@ -4,7 +4,7 @@ News Browsing Android App
 ## Welcome to NewsCycle! 
 Written in **Kotlin**
 
-### What has been implement:
+### What has been implemented:
 
 - Login and registration, with **Firebase**
 

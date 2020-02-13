@@ -1,6 +1,8 @@
 package com.newscycle
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -17,11 +19,11 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-class MainRecyclerViewAdapter (val context: Context) : RecyclerView.Adapter<MainRecyclerViewAdapter.ViewHolder>() {
+class MainRecyclerViewAdapter (private val context: Context) : RecyclerView.Adapter<MainRecyclerViewAdapter.ViewHolder>() {
 
-    val apiUtil: ApiUtilities by lazy { ApiUtilities }
-    val articles: ArrayList<Article> = ArrayList<Article>()
-    val cropOptions: RequestOptions = RequestOptions.centerCropTransform()
+    private val apiUtil: ApiUtilities by lazy { ApiUtilities }
+    private val articles: ArrayList<Article> = ArrayList()
+   private val cropOptions: RequestOptions = RequestOptions.centerCropTransform()
 
     init {
         refreshArticles()
@@ -42,9 +44,10 @@ class MainRecyclerViewAdapter (val context: Context) : RecyclerView.Adapter<Main
         val cur = articles[pos]
         val calendar = Calendar.getInstance()
         calendar.time = cur.pubDate
+        holder.view.desc.movementMethod = ScrollingMovementMethod()
 
         holder.view.title.text = cur.title
-        holder.view.description.text = cur.desc
+        holder.view.desc.text = cur.desc
         holder.view.time.text = getTime(cur.pubDate)
         holder.view.source.text = cur.source.name
 
@@ -58,7 +61,8 @@ class MainRecyclerViewAdapter (val context: Context) : RecyclerView.Adapter<Main
         return SimpleDateFormat("h:mm a, MMM d", Locale.ENGLISH).format(pubDate)
     }
 
-    fun refreshArticles(){
+    @SuppressLint("CheckResult")
+    private fun refreshArticles(){
         apiUtil.getTopHeadlines(BuildConfig.NEWS_KEY)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())

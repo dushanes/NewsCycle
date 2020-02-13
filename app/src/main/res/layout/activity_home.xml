@@ -78,7 +78,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/open_sans_semi_bold"
-                android:background="@drawable/button_home_feed"
+                android:background="@drawable/button_home_feed_selector"
                 android:drawableTop="@drawable/my_feed"
                 android:text="MY FEED"
                 android:textColor="@color/white" />
@@ -94,7 +94,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/open_sans_semi_bold"
-                android:background="@drawable/button_home_popular"
+                android:background="@drawable/button_home_popular_selector"
                 android:drawableTop="@drawable/popular"
                 android:text="@string/popular"
                 android:textColor="@color/white" />
@@ -110,7 +110,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/open_sans_semi_bold"
-                android:background="@drawable/button_home_category"
+                android:background="@drawable/button_home_categ_selector"
                 android:drawableTop="@drawable/category"
                 android:text="Categories"
                 android:textColor="@color/white" />

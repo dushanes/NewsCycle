@@ -9,13 +9,14 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.newscycle.fragment.RegisterFragment
 import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.android.synthetic.main.fragment_new_user.*
 
 
 class Login : AppCompatActivity(), View.OnClickListener{
     private lateinit var mAuth: FirebaseAuth
-    private val TAG: String = "Login:"
+    private val TAG: String = "Login"
     private lateinit var context: Context
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,29 +39,33 @@ class Login : AppCompatActivity(), View.OnClickListener{
     }
 
     override fun onClick(view: View) {
-        if (view == button_login){
-            fireSignIn(
-                email.text.toString(),
-                password.text.toString()
-            )
-        }else if(view == button_register){
-            val registerFragment = RegisterFragment()
-            val tx = supportFragmentManager.beginTransaction()
-                .add(R.id.content_fragment_container, registerFragment)
-                .addToBackStack(null)
-                .commit()
-            supportFragmentManager.executePendingTransactions()
-            button_confirm.setOnClickListener(this)
-        }else if(view == button_confirm){
-            val email = regi_email.text.toString()
-            val pass = regi_password.text.toString()
-            val passConfirm = regi_password_confirm.text.toString()
+        when (view) {
+            button_login -> {
+                fireSignIn(
+                    email.text.toString(),
+                    password.text.toString()
+                )
+            }
+            button_register -> {
+                val registerFragment = RegisterFragment()
+                val tx = supportFragmentManager.beginTransaction()
+                    .add(R.id.content_fragment_container, registerFragment)
+                    .addToBackStack(null)
+                    .commit()
+                supportFragmentManager.executePendingTransactions()
+                button_confirm.setOnClickListener(this)
+            }
+            button_confirm -> {
+                val email = regi_email.text.toString()
+                val pass = regi_password.text.toString()
+                val passConfirm = regi_password_confirm.text.toString()
 
-            if(pass != passConfirm){
-                Toast.makeText(context,"Passwords do not match, Try again.",Toast.LENGTH_SHORT)
-                    .show()
-            }else{
-                fireRegis(email, pass)
+                    if(pass != passConfirm){
+                        Toast.makeText(context,"Passwords do not match, Try again.",Toast.LENGTH_SHORT)
+                            .show()
+                    }else{
+                        fireRegis(email, pass)
+                    }
             }
         }
     }

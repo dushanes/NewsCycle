@@ -27,6 +27,7 @@
         <activity
             android:name=".Home"
             android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
             android:label="@string/app_name"
             android:theme="@style/Theme.Design.NoActionBar" >
             <intent-filter>

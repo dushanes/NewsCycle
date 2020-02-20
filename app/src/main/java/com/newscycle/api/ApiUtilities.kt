@@ -10,6 +10,7 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.lang.reflect.Type
+import java.net.URLEncoder
 import java.util.*
 
 object ApiUtilities: NewsApi {
@@ -34,9 +35,27 @@ object ApiUtilities: NewsApi {
         return@lazy retrofit.create(NewsApi::class.java)
     }
 
-    override fun getTopHeadlines(api_key: String, country: String): Single<Results> {
+    override fun getTopHeadlines(api_key: String, sortBy: String, page: Int, pageSize: Int,country: String): Single<Results> {
         return newsApi.getTopHeadlines(
-            BuildConfig.NEWS_KEY
+            BuildConfig.NEWS_KEY,
+            page = page
+        )
+    }
+
+    override fun getCategoryHeadlines(api_key: String, category: String, sortBy: String, page: Int, pageSize: Int, country: String): Single<Results> {
+        return newsApi.getCategoryHeadlines(
+            BuildConfig.NEWS_KEY,
+            category= category,
+            page = page
+        )
+    }
+
+    override fun searchTopic( api_key: String, q: String, pageSize: Int, page: Int): Single<Results> {
+        return newsApi.searchTopic(
+            q= URLEncoder.encode(q),
+            api_key= BuildConfig.NEWS_KEY,
+            pageSize= pageSize,
+            page= page
         )
     }
 }

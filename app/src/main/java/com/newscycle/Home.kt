@@ -1,8 +1,8 @@
 package com.newscycle
 
-import android.app.Activity
 import android.content.res.Configuration
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.view.MotionEvent
 import android.view.View
@@ -10,19 +10,22 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.core.view.ViewCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.fragment.app.FragmentActivity
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
+import com.newscycle.fragment.CategoriesFragment
+import com.newscycle.fragment.MyFeedFragment
+import com.newscycle.fragment.PopularFragment
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.home_sidebar.*
 
 
-class Home: Activity(), View.OnClickListener, View.OnTouchListener, NavigationView.OnNavigationItemSelectedListener {
-    private lateinit var recyclerViewAdapter: RecyclerView.Adapter<*>
-    private lateinit var linearLayoutManager: LinearLayoutManager
+class Home: FragmentActivity(), View.OnClickListener, View.OnTouchListener, NavigationView.OnNavigationItemSelectedListener {
     private lateinit var nav: NavigationView
     private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var drawer: DrawerLayout
+    private val firebaseUser = FirebaseAuth.getInstance().currentUser
+    private val TAG = "Home"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,8 +33,14 @@ class Home: Activity(), View.OnClickListener, View.OnTouchListener, NavigationVi
 
         categories.setOnTouchListener(this)
         popular.setOnTouchListener(this)
-        myFeed.setOnTouchListener(this)
-        setupRecyclerView()
+        my_feed_button.setOnTouchListener(this)
+        user_name.text = firebaseUser!!.displayName
+        my_feed_button.isPressed = true
+
+        supportFragmentManager.beginTransaction()
+            .add(R.id.home_content_fragment_container, MyFeedFragment(this), "MYF")
+            .addToBackStack(null)
+            .commit()
         inflateDrawer()
     }
 
@@ -49,13 +58,6 @@ class Home: Activity(), View.OnClickListener, View.OnTouchListener, NavigationVi
         drawer_button.setOnClickListener(this)
     }
 
-    private fun setupRecyclerView(){
-        linearLayoutManager = LinearLayoutManager(this)
-        recyclerViewAdapter = MainRecyclerViewAdapter(this)
-        recyclerView_Home.adapter = recyclerViewAdapter
-        recyclerView_Home.layoutManager = linearLayoutManager
-    }
-
     override fun onClick(v: View){
         when (v) {
             drawer_button -> {
@@ -65,26 +67,23 @@ class Home: Activity(), View.OnClickListener, View.OnTouchListener, NavigationVi
                     drawer.openDrawer(GravityCompat.START)
                 }
             }
-            myFeed -> {
-            }
-            categories -> {
-            }
-            popular -> {
-            }
         }
     }
 
     override fun onTouch(v: View, event: MotionEvent):Boolean{
         when (v) {
-            myFeed -> {
+            my_feed_button -> {
                 val action: Int = event.action
 
                 if (action == MotionEvent.ACTION_DOWN) {
-                    v.isPressed = !v.isPressed
+                    Log.d(TAG, "My Feed Button Touched!")
+                    v.isPressed = true
                     ViewCompat.setElevation(v, 2f)
                     popular.isPressed = false
                     categories.isPressed = false
-                    v.performClick()
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.home_content_fragment_container, MyFeedFragment(this))
+                        .commit()
                 }
                 return true
             }
@@ -92,10 +91,13 @@ class Home: Activity(), View.OnClickListener, View.OnTouchListener, NavigationVi
                 val action: Int = event.action
 
                 if (action == MotionEvent.ACTION_DOWN) {
-                    v.isPressed = !v.isPressed
-                    myFeed.isPressed = false
+                    Log.d(TAG, "Popular Button Clicked!")
+                    v.isPressed = true
+                    my_feed_button.isPressed = false
                     categories.isPressed = false
-                    v.performClick()
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.home_content_fragment_container, PopularFragment(this))
+                        .commit()
                 }
                 return true
             }
@@ -103,10 +105,13 @@ class Home: Activity(), View.OnClickListener, View.OnTouchListener, NavigationVi
                 val action: Int = event.action
 
                 if (action == MotionEvent.ACTION_DOWN) {
+                    Log.d(TAG, "Category Button Clicked!")
                     v.isPressed = true
-                    myFeed.isPressed = false
+                    my_feed_button.isPressed = false
                     popular.isPressed = false
-                    v.performClick()
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.home_content_fragment_container, CategoriesFragment(this))
+                        .commit()
                 }
                 return true
             }

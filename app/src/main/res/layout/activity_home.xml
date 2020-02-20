@@ -50,6 +50,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/user_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Name"
@@ -61,7 +62,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayout"
+        android:id="@+id/home_menu_bar_container"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_marginBottom="0dp"
@@ -74,7 +75,7 @@
             android:layout_weight="1">
 
             <Button
-                android:id="@+id/myFeed"
+                android:id="@+id/my_feed_button"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/open_sans_semi_bold"
@@ -117,11 +118,11 @@
         </LinearLayout>
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView_Home"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:fadingEdge="vertical"
-        android:orientation="vertical" />
+    <FrameLayout
+        android:id="@+id/home_content_fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
+
 </LinearLayout>

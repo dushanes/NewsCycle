@@ -6,12 +6,12 @@
     android:layout_width="390dp"
     android:layout_height="180dp"
     android:layout_margin="6dp"
-    android:background="#E8E8E8"
     app:cardCornerRadius="15dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#F7F9F9"
         android:paddingEnd="6dp"
         app:layout_constraintEnd_toEndOf="@+id/card_image"
         app:layout_constraintStart_toEndOf="@+id/card_image">
@@ -33,22 +33,42 @@
             android:paddingBottom="0dp"
             android:maxHeight="245dp"
             android:text="Title"
-            android:textSize="16sp"
-            android:textColor="#FFFFFF"
+            android:autoSizeMinTextSize="14sp"
+            android:autoSizeMaxTextSize="16sp"
+            android:autoSizeStepGranularity="0.5sp"
+            android:autoSizeTextType="uniform"
+            android:textColor="@color/black"
             android:fontFamily="@font/open_sans_semi_bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/card_image"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <View
+            android:layout_width="150dp"
+            android:layout_height="1dp"
+            android:padding="6dp"
+            android:background="#B3B6B7"
+            app:layout_constraintTop_toBottomOf="@id/title"
+            app:layout_constraintLeft_toRightOf="@id/card_image"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+
         <TextView
             android:id="@+id/desc"
             android:layout_width="235dp"
             android:layout_height="115dp"
             android:layout_marginStart="4dp"
+            android:autoSizeMaxTextSize="14sp"
+            android:autoSizeMinTextSize="12sp"
+            android:autoSizeStepGranularity="0.5sp"
+            android:autoSizeTextType="uniform"
+            android:maxLines="6"
+            android:maxHeight="115dp"
             android:padding="4dp"
             android:paddingTop="0dp"
             android:scrollbars="vertical"
+            android:textColor="@color/text_off_white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@id/card_image"
@@ -61,9 +81,10 @@
             android:layout_marginStart="4dp"
             android:layout_marginBottom="4dp"
             android:padding="2dp"
+            android:textColor="@color/text_off_white"
             android:fontFamily="@font/open_sans_light"
             android:text="23 hours ago"
-            android:textSize="9sp"
+            android:textSize="10sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/card_image" />
 
@@ -74,7 +95,8 @@
             android:padding="2dp"
             android:fontFamily="@font/open_sans_light"
             android:layout_marginBottom="2dp"
-            android:textSize="9sp"
+            android:textColor="@color/text_off_white"
+            android:textSize="10sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 

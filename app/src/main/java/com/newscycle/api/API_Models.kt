@@ -12,7 +12,7 @@ data class Results (val status: String,
 @JsonClass(generateAdapter = true)
 data class Article(val source: Source,
                    val author: String? = null,
-                   val title: String,
+                   val title: String? = null,
                    @Json(name= "description")val desc: String? = null,
                    val url: String? = null,
                    @Json(name= "urlToImage")val image: String? = null,

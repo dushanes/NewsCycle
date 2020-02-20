@@ -7,6 +7,7 @@
     <color name="colorSkyBlue">#66C3FF</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
+    <color name="text_off_white">#626567</color>
 
     <color name="black_overlay">#66000000</color>
 </resources>

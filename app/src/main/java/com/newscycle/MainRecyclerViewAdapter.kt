@@ -2,17 +2,18 @@ package com.newscycle
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.text.method.ScrollingMovementMethod
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.newscycle.api.ApiUtilities
-import com.newscycle.api.Article
+import com.newscycle.api.ArticleModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.article_card.view.*
@@ -24,10 +25,10 @@ class MainRecyclerViewAdapter (private val context: Context,
                                private val FEED_TAG: String,
                                val recView: RecyclerView,
                                val layoutManager: LinearLayoutManager,
-                               query: String) : RecyclerView.Adapter<MainRecyclerViewAdapter.ViewHolder>() {
+                               query: String) : RecyclerView.Adapter<MainRecyclerViewAdapter.ViewHolder>(){
 
     private val apiUtil: ApiUtilities by lazy { ApiUtilities }
-    private val articles: ArrayList<Article> = ArrayList()
+    private val articles: ArrayList<ArticleModel> = ArrayList()
     private val cropOptions: RequestOptions = RequestOptions.centerCropTransform()
     private var pageNum = 1
     private var totalItemCount: Int
@@ -74,12 +75,17 @@ class MainRecyclerViewAdapter (private val context: Context,
         val cur = articles[pos]
         val calendar = Calendar.getInstance()
         calendar.time = cur.pubDate
-        holder.view.desc.movementMethod = ScrollingMovementMethod()
 
         holder.view.title.text = cur.title
         holder.view.desc.text = cur.desc
         holder.view.time.text = getTime(cur.pubDate)
         holder.view.source.text = cur.source.name
+
+        holder.view.setOnClickListener {v: View? ->
+            val intent = Intent(context, Article::class.java)
+            intent.putExtra("article", articles[pos])
+            startActivity(context, intent, null)
+        }
 
         Glide.with(context)
             .load(articles[pos].image)
@@ -87,7 +93,7 @@ class MainRecyclerViewAdapter (private val context: Context,
             .into(holder.view.card_image)
     }
 
-    private fun getTime(pubDate: Date): String? {
+    fun getTime(pubDate: Date): String? {
         return SimpleDateFormat("h:mm a, MMM d", Locale.ENGLISH).format(pubDate)
     }
 
@@ -122,6 +128,4 @@ class MainRecyclerViewAdapter (private val context: Context,
             }
         }
     }
-
-
 }

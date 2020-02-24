@@ -34,7 +34,7 @@ class Home: FragmentActivity(), View.OnClickListener, View.OnTouchListener, Navi
         categories.setOnTouchListener(this)
         popular.setOnTouchListener(this)
         my_feed_button.setOnTouchListener(this)
-        user_name.text = firebaseUser!!.displayName
+        user_name.text = firebaseUser?.displayName
         my_feed_button.isPressed = true
 
         supportFragmentManager.beginTransaction()

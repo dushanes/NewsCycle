@@ -25,7 +25,7 @@ class PopularFragment (val activityContext: Context): Fragment(){
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val v = inflater.inflate(R.layout.fragment_popular, container, false)
+        val v = inflater.inflate(R.layout.fragment_recyclerview, container, false)
         setupRecyclerView(v)
         return v
     }

@@ -1,31 +1,26 @@
 package com.newscycle
 
-import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.view.MotionEvent
 import android.view.View
-import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.core.view.ViewCompat
-import androidx.drawerlayout.widget.DrawerLayout
-import androidx.fragment.app.FragmentActivity
 import com.google.android.material.navigation.NavigationView
-import com.google.firebase.auth.FirebaseAuth
 import com.newscycle.fragment.CategoriesFragment
 import com.newscycle.fragment.MyFeedFragment
 import com.newscycle.fragment.PopularFragment
+import com.newscycle.fragment.TopicFragment
 import kotlinx.android.synthetic.main.activity_home.*
-import kotlinx.android.synthetic.main.home_sidebar.*
 
+interface FragmentListener{
+    fun sendQuery(query: String)
+}
 
-class Home: FragmentActivity(), View.OnClickListener, View.OnTouchListener, NavigationView.OnNavigationItemSelectedListener {
-    private lateinit var nav: NavigationView
-    private lateinit var toggle: ActionBarDrawerToggle
-    private lateinit var drawer: DrawerLayout
-    private val firebaseUser = FirebaseAuth.getInstance().currentUser
-    private val TAG = "Home"
+class Home: AppCompatActivity(), View.OnTouchListener, NavigationView.OnNavigationItemSelectedListener, FragmentListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +29,6 @@ class Home: FragmentActivity(), View.OnClickListener, View.OnTouchListener, Navi
         categories.setOnTouchListener(this)
         popular.setOnTouchListener(this)
         my_feed_button.setOnTouchListener(this)
-        user_name.text = firebaseUser?.displayName
         my_feed_button.isPressed = true
 
         supportFragmentManager.beginTransaction()
@@ -45,44 +39,31 @@ class Home: FragmentActivity(), View.OnClickListener, View.OnTouchListener, Navi
     }
 
     private fun inflateDrawer(){
-        val v = layoutInflater.inflate(R.layout.home_sidebar, root_home, false)
-        drawer = v.findViewById(R.id.home_drawer)
-        nav = v.findViewById(R.id.nav)
-
-        toggle = ActionBarDrawerToggle(this, drawer, R.string.drawer_open, R.string.drawer_close)
-        toggle.isDrawerIndicatorEnabled = true
-        drawer.addDrawerListener(toggle)
-
-        toggle.syncState()
-        nav.setNavigationItemSelectedListener(this)
-        drawer_button.setOnClickListener(this)
-    }
-
-    override fun onClick(v: View){
-        when (v) {
-            drawer_button -> {
-                if(drawer.isDrawerOpen(GravityCompat.START)){
-                    drawer.closeDrawer(GravityCompat.START)
-                }else {
-                    drawer.openDrawer(GravityCompat.START)
-                }
-            }
+        setSupportActionBar(toolbar)
+        val actionBar: ActionBar? = supportActionBar
+        actionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+            setHomeButtonEnabled(true)
+            setHomeAsUpIndicator(R.drawable.menu)
         }
+
+        findViewById<NavigationView>(R.id.nav).setNavigationItemSelectedListener(this)
     }
 
-    override fun onTouch(v: View, event: MotionEvent):Boolean{
+    override fun onTouch(v: View, event: MotionEvent): Boolean{
         when (v) {
             my_feed_button -> {
                 val action: Int = event.action
 
                 if (action == MotionEvent.ACTION_DOWN) {
-                    Log.d(TAG, "My Feed Button Touched!")
+                    Log.d(Constants.HOME, "My Feed Button Touched!")
                     v.isPressed = true
                     ViewCompat.setElevation(v, 2f)
                     popular.isPressed = false
                     categories.isPressed = false
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.home_content_fragment_container, MyFeedFragment(this))
+                        .addToBackStack(null)
                         .commit()
                 }
                 return true
@@ -91,12 +72,13 @@ class Home: FragmentActivity(), View.OnClickListener, View.OnTouchListener, Navi
                 val action: Int = event.action
 
                 if (action == MotionEvent.ACTION_DOWN) {
-                    Log.d(TAG, "Popular Button Clicked!")
+                    Log.d(Constants.HOME, "Popular Button Clicked!")
                     v.isPressed = true
                     my_feed_button.isPressed = false
                     categories.isPressed = false
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.home_content_fragment_container, PopularFragment(this))
+                        .addToBackStack(null)
                         .commit()
                 }
                 return true
@@ -105,12 +87,13 @@ class Home: FragmentActivity(), View.OnClickListener, View.OnTouchListener, Navi
                 val action: Int = event.action
 
                 if (action == MotionEvent.ACTION_DOWN) {
-                    Log.d(TAG, "Category Button Clicked!")
+                    Log.d(Constants.HOME, "Category Button Clicked!")
                     v.isPressed = true
                     my_feed_button.isPressed = false
                     popular.isPressed = false
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.home_content_fragment_container, CategoriesFragment(this))
+                        .addToBackStack(null)
                         .commit()
                 }
                 return true
@@ -119,9 +102,18 @@ class Home: FragmentActivity(), View.OnClickListener, View.OnTouchListener, Navi
         }
     }
 
+    override fun sendQuery(query: String) {
+        if (!isFinishing && !isDestroyed) {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.home_content_fragment_container, TopicFragment(this, query))
+                .addToBackStack(null)
+                .commit()
+        }
+    }
+
 //------------------------------Navigation functions-----------------------------------------------//
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
-        //drawer.closeDrawer(GravityCompat.START)
+        TODO("Implement navigation upon item selection")
         return true
     }
 
@@ -133,18 +125,15 @@ class Home: FragmentActivity(), View.OnClickListener, View.OnTouchListener, Navi
         }
     }
 
-    override fun onConfigurationChanged(newConfig: Configuration) {
-        super.onConfigurationChanged(newConfig)
-        toggle.onConfigurationChanged(newConfig)
-    }
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
+        return when (item.itemId) {
             android.R.id.home -> {
-                onBackPressed()
-                return true
+                Log.d("Nav", "Menu button clicked")
+                home_drawer.openDrawer(GravityCompat.START)
+                true
             }
+
+            else -> super.onOptionsItemSelected(item)
         }
-        return super.onOptionsItemSelected(item)
     }
 }

@@ -1,8 +1,10 @@
 package com.newscycle
 
 object Constants {
-    public val NEWS_KEY= BuildConfig.NEWS_KEY
-    public val MY_FEED = "MY_FEED"
-    public val POP_FEED = "POP_FEED"
-    public val CAT_FEED = "CAT_FEED"
+    val NEWS_KEY= BuildConfig.NEWS_KEY
+    val MY_FEED = "MY_FEED"
+    val POP_FEED = "POP_FEED"
+    val CAT_FEED = "CAT_FEED"
+    val TOPIC_FEED = "TOPIC_FEED"
+    val HOME = "HOME"
 }

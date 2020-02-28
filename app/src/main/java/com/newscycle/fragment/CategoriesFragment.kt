@@ -6,34 +6,42 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.newscycle.Constants
-import com.newscycle.MainRecyclerViewAdapter
+import com.newscycle.FragmentListener
 import com.newscycle.R
-
+import kotlinx.android.synthetic.main.fragment_categories.*
 
 class CategoriesFragment (val activityContext: Context): Fragment(){
-    private val TAG = "Categories Fragment"
-    private lateinit var recyclerViewAdapter: MainRecyclerViewAdapter
-    private lateinit var linearLayoutManager: LinearLayoutManager
+    private val values = arrayOf("BUSINESS", "ENTERTAINMENT", "GENERAL", "HEALTH", "SCIENCE", "SPORTS", "TECHNOLOGY")
+    private lateinit var gridViewAdapter: ArrayAdapter<String>
+    lateinit var listener: FragmentListener
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val v = inflater.inflate(R.layout.fragment_categories, container, false)
-        setupRecyclerView(v)
+        setupGridView()
+        listener = activity as FragmentListener
         return v
     }
 
+    private fun setupGridView() {
+        Log.d(Constants.CAT_FEED, "Setting up recycler view")
+        gridViewAdapter = ArrayAdapter(activityContext, R.layout.category_card, R.id.category_text, values)
+        category_grid.adapter = gridViewAdapter
+        category_grid.setOnItemClickListener {
+                _: AdapterView<*>?,
+                view: View?,
+                _: Int,
+                _: Long ->
+            listener.sendQuery(view?.findViewById<TextView>(R.id.category_text)?.text.toString())
+        }
+    }
+}
 
-    private fun setupRecyclerView(v: View) {
-        Log.d(TAG, "Setting up recycler view")
-        val recView = v.findViewById<RecyclerView>(R.id.recycler_view)
-        linearLayoutManager = LinearLayoutManager(context)
-        recyclerViewAdapter = MainRecyclerViewAdapter(activityContext, Constants.CAT_FEED, recView, linearLayoutManager, "")
-        recView.layoutManager = linearLayoutManager
-        recView.adapter = recyclerViewAdapter
-    }}

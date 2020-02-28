@@ -33,27 +33,23 @@ class MainRecyclerViewAdapter (private val context: Context,
     private var pageNum = 1
     private var totalItemCount: Int
     private var lastVisibleItem: Int
-    private var loading = false
+    private var isLoading: Boolean = false
 
     init {
         refreshArticles(query)
         totalItemCount = layoutManager.itemCount
         lastVisibleItem = layoutManager.findLastVisibleItemPosition()
 
-        recView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+        recView.addOnScrollListener(object : RecyclerView.OnScrollListener() {  //TODO("Infinite scroll")
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                if(dy > 0) //check for scroll down
-                {
-                    totalItemCount = layoutManager.itemCount
-                    lastVisibleItem = layoutManager.findLastVisibleItemPosition()
-
-                    when (!loading) {
-                        true ->{
-                            if (lastVisibleItem < (totalItemCount*.66)){
-                                refreshArticles(query)
-                                loading = !loading
-                            }
-                        }
+                super.onScrolled(recyclerView, dx, dy)
+                val visibleItemCount = layoutManager.childCount
+                val totalItemCount = layoutManager.itemCount
+                val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
+                if (!isLoading) {
+                    isLoading = true
+                    if (visibleItemCount > (totalItemCount *.5) && firstVisibleItemPosition >= 0 && totalItemCount >= 50) {
+                        refreshArticles(query)
                     }
                 }
             }
@@ -81,7 +77,7 @@ class MainRecyclerViewAdapter (private val context: Context,
         holder.view.time.text = getTime(cur.pubDate)
         holder.view.source.text = cur.source.name
 
-        holder.view.setOnClickListener {v: View? ->
+        holder.view.setOnClickListener {
             val intent = Intent(context, Article::class.java)
             intent.putExtra("article", articles[pos])
             startActivity(context, intent, null)
@@ -98,20 +94,20 @@ class MainRecyclerViewAdapter (private val context: Context,
     }
 
     @SuppressLint("CheckResult")
-    private fun refreshArticles(topic: String){
+    fun refreshArticles(topic: String){
         when (FEED_TAG) {
             Constants.MY_FEED -> {
-                apiUtil.searchTopic(q= topic, api_key = BuildConfig.NEWS_KEY, page = pageNum)
+                apiUtil.getCategoryHeadlines(api_key = BuildConfig.NEWS_KEY, page = pageNum, category="general")
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({ t ->
                         articles.addAll(t.articles)
+                        Log.d(Constants.MY_FEED, "Successful response, page $pageNum returned")
                         pageNum++
-                        Log.d("My Feed Api Response", "Successful response, page $pageNum returned")
                         notifyDataSetChanged()
                     }, {error ->
                         Log.d("Api Error:", error.message)
-                    })
+                    }).also { isLoading = false } //TODO("Apart of implementing infinite scroll")
             }
             Constants.POP_FEED -> {
                 apiUtil.getTopHeadlines(BuildConfig.NEWS_KEY, page=pageNum)
@@ -121,6 +117,19 @@ class MainRecyclerViewAdapter (private val context: Context,
                         articles.addAll(t.articles)
                         pageNum++
                         Log.d("Popular Feed Api Response", "Successful response, page $pageNum returned")
+                        notifyDataSetChanged()
+                    }, {error ->
+                        Log.d("Api Error:", error.message)
+                    })
+            }
+            Constants.TOPIC_FEED -> {
+                apiUtil.getCategoryHeadlines(BuildConfig.NEWS_KEY, page=pageNum, category = topic)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe({ t ->
+                        articles.addAll(t.articles)
+                        pageNum++
+                        Log.d("Topic Feed Api Response", "Successful response, page $pageNum returned")
                         notifyDataSetChanged()
                     }, {error ->
                         Log.d("Api Error:", error.message)

@@ -8,12 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.GridView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.newscycle.Constants
 import com.newscycle.FragmentListener
 import com.newscycle.R
-import kotlinx.android.synthetic.main.fragment_categories.*
 
 class CategoriesFragment (val activityContext: Context): Fragment(){
     private val values = arrayOf("BUSINESS", "ENTERTAINMENT", "GENERAL", "HEALTH", "SCIENCE", "SPORTS", "TECHNOLOGY")
@@ -26,16 +26,17 @@ class CategoriesFragment (val activityContext: Context): Fragment(){
         savedInstanceState: Bundle?
     ): View? {
         val v = inflater.inflate(R.layout.fragment_categories, container, false)
-        setupGridView()
+        setupGridView(v)
         listener = activity as FragmentListener
         return v
     }
 
-    private fun setupGridView() {
+    private fun setupGridView(v: View) {
         Log.d(Constants.CAT_FEED, "Setting up recycler view")
+        val gridView = v.findViewById<GridView>(R.id.category_grid)
         gridViewAdapter = ArrayAdapter(activityContext, R.layout.category_card, R.id.category_text, values)
-        category_grid.adapter = gridViewAdapter
-        category_grid.setOnItemClickListener {
+        gridView.adapter = gridViewAdapter
+        gridView.setOnItemClickListener {
                 _: AdapterView<*>?,
                 view: View?,
                 _: Int,

@@ -17,7 +17,9 @@
             android:name=".Login"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
-            android:theme="@style/Theme.Design.NoActionBar" >
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Design.NoActionBar"
+            tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,7 +30,9 @@
             android:name=".Home"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
-            android:theme="@style/Theme.Design.NoActionBar" >
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Design.NoActionBar"
+            tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -39,9 +43,24 @@
             android:name=".Article"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
-            android:theme="@style/Theme.Design.NoActionBar" >
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Design.NoActionBar"
+            tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.ALTERNATIVE" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".fragment.SearchFragment"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Design.NoActionBar"
+            tools:ignore="LockedOrientationActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
 
                 <category android:name="android.intent.category.ALTERNATIVE" />
             </intent-filter>

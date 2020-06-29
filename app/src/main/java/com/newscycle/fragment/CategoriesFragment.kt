@@ -11,14 +11,15 @@ import android.widget.ArrayAdapter
 import android.widget.GridView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.newscycle.AdapterInterface
 import com.newscycle.Constants
-import com.newscycle.FragmentListener
+//import com.newscycle.FragmentListener
 import com.newscycle.R
 
 class CategoriesFragment (val activityContext: Context): Fragment(){
     private val values = arrayOf("BUSINESS", "ENTERTAINMENT", "GENERAL", "HEALTH", "SCIENCE", "SPORTS", "TECHNOLOGY")
     private lateinit var gridViewAdapter: ArrayAdapter<String>
-    lateinit var listener: FragmentListener
+    lateinit var adapterInterface: AdapterInterface
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,7 +28,7 @@ class CategoriesFragment (val activityContext: Context): Fragment(){
     ): View? {
         val v = inflater.inflate(R.layout.fragment_categories, container, false)
         setupGridView(v)
-        listener = activity as FragmentListener
+        //adapterInterface = activity as AdapterInterface
         return v
     }
 
@@ -38,10 +39,11 @@ class CategoriesFragment (val activityContext: Context): Fragment(){
         gridView.adapter = gridViewAdapter
         gridView.setOnItemClickListener {
                 _: AdapterView<*>?,
-                view: View?,
+                _: View?,
                 _: Int,
                 _: Long ->
-            listener.sendQuery(view?.findViewById<TextView>(R.id.category_text)?.text.toString())
+
+            adapterInterface.getQuery(view?.findViewById<TextView>(R.id.category_text)?.text.toString())
         }
     }
 }

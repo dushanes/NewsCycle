@@ -3,7 +3,7 @@ package com.newscycle
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class UserViewModel(firstname: String): ViewModel() {
+class UserViewModel(firstName: String): ViewModel() {
     private lateinit var firstname: MutableLiveData<String>
     private lateinit var email: MutableLiveData<String>
 

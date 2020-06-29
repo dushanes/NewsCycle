@@ -30,7 +30,6 @@ class PopularFragment (val activityContext: Context): Fragment(){
         return v
     }
 
-
     private fun setupRecyclerView(v: View) {
         Log.d(TAG, "Setting up recycler view")
         val recView = v.findViewById<RecyclerView>(R.id.recycler_view)

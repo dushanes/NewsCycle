@@ -11,7 +11,6 @@
     tools:context="com.newscycle.Home"
     tools:openDrawer="start">
 
-
     <FrameLayout
         android:id="@+id/content_fragment_container"
         android:layout_width="match_parent"
@@ -19,7 +18,7 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"/>
+            android:layout_height="65dp" />
 
         <LinearLayout
             android:id="@+id/root_home"
@@ -28,89 +27,33 @@
             android:background="@drawable/home_square"
             android:orientation="vertical">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <TextView
+                android:id="@+id/appName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/open_sans_bold"
+                android:gravity="center_horizontal"
+                android:text="@string/app_name"
+                android:textColor="#FFFFFF"
+                android:textSize="28sp"
+                android:layout_gravity="center_horizontal"/>
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tab_layout"
                 android:layout_width="match_parent"
-                android:layout_height="140dp">
+                android:layout_height="65dp"
+                app:tabTextAppearance="@style/tab_layout_style"
+                android:background="#457B9D"
+                android:layout_marginTop="16dp" />
 
-                <TextView
-                    android:id="@+id/appName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:fontFamily="@font/open_sans_bold"
-                    android:gravity="center_horizontal"
-                    android:text="@string/app_name"
-                    android:textColor="#FFFFFF"
-                    android:textSize="28sp"
-                    app:layout_constraintHorizontal_bias="0.498"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <LinearLayout
-                android:id="@+id/home_menu_bar_container"
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:layout_marginBottom="0dp"
-                android:baselineAligned="false"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-
-                    <Button
-                        android:id="@+id/my_feed_button"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/button_home_feed_selector"
-                        android:drawableTop="@drawable/my_feed"
-                        android:fontFamily="@font/open_sans_semi_bold"
-                        android:text="MY FEED"
-                        android:textColor="@color/white" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-
-                    <Button
-                        android:id="@+id/popular"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/button_home_popular_selector"
-                        android:drawableTop="@drawable/popular"
-                        android:fontFamily="@font/open_sans_semi_bold"
-                        android:text="@string/popular"
-                        android:textColor="@color/white" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-
-                    <Button
-                        android:id="@+id/categories"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/button_home_categ_selector"
-                        android:drawableTop="@drawable/category"
-                        android:fontFamily="@font/open_sans_semi_bold"
-                        android:text="Categories"
-                        android:textColor="@color/white" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <FrameLayout
-                android:id="@+id/home_content_fragment_container"
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/pager"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_gravity="center_horizontal"/>
+                android:orientation="horizontal"
+                >
+            </androidx.viewpager.widget.ViewPager>
         </LinearLayout>
     </FrameLayout>
 

@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.newscycle.fragment.RegisterFragment
@@ -18,6 +19,8 @@ class Login : AppCompatActivity(), View.OnClickListener{
     private lateinit var mAuth: FirebaseAuth
     private val TAG: String = "Login"
     private lateinit var context: Context
+    private val registerFragment = RegisterFragment()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,7 +28,10 @@ class Login : AppCompatActivity(), View.OnClickListener{
         mAuth = FirebaseAuth.getInstance()
         context = this
 
-        supportFragmentManager.beginTransaction().add(R.id.content_fragment_container,LoginFragment(), "login").commitNow()
+        supportFragmentManager.beginTransaction()
+            .add(R.id.content_fragment_container,LoginFragment(), "LOGIN")
+            .addToBackStack(null)
+            .commit()
     }
 
     override fun onResume() {
@@ -40,22 +46,24 @@ class Login : AppCompatActivity(), View.OnClickListener{
 
     override fun onClick(view: View) {
         when (view) {
-            button_login -> {
+            button_login ->
+            {
                 fireSignIn(
                     email.text.toString(),
                     password.text.toString()
                 )
             }
-            button_register -> {
-                val registerFragment = RegisterFragment()
-                val tx = supportFragmentManager.beginTransaction()
-                    .add(R.id.content_fragment_container, registerFragment)
+            button_register ->
+            {
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.content_fragment_container, registerFragment, "REG")
                     .addToBackStack(null)
                     .commit()
                 supportFragmentManager.executePendingTransactions()
                 button_confirm.setOnClickListener(this)
             }
-            button_confirm -> {
+            button_confirm ->
+            {
                 val email = regi_email.text.toString()
                 val pass = regi_password.text.toString()
                 val passConfirm = regi_password_confirm.text.toString()
@@ -70,19 +78,16 @@ class Login : AppCompatActivity(), View.OnClickListener{
         }
     }
 
-    fun updateUI(firebaseUser: FirebaseUser?){
-        portal(firebaseUser)
-    }
-
-    fun portal(firebaseUser: FirebaseUser?){
+    private fun portal(firebaseUser: FirebaseUser?){
         if(firebaseUser != null){
-            val intent: Intent = Intent(this, Home::class.java)
+            val intent = Intent(this, Home::class.java)
             startActivity(intent)
+            this.overridePendingTransition(R.anim.slide_enter_right, R.anim.slide_exit_left)
         }
         return
     }
 
-    fun fireRegis(email: String, pass: String){
+    private fun fireRegis(email: String, pass: String){
         mAuth = FirebaseAuth.getInstance()
         mAuth.createUserWithEmailAndPassword(email, pass)
             .addOnCompleteListener(
@@ -91,16 +96,16 @@ class Login : AppCompatActivity(), View.OnClickListener{
                 if (task.isSuccessful) {
                     Log.d(TAG, "createUserWithEmail:success")
                     val user = mAuth.currentUser
-                    updateUI(user!!)
+                    this.portal(user!!)
                 } else {
                     Log.w(TAG, "createUserWithEmail:failure", task.exception)
                     Toast.makeText(context, "Authentication failed.", Toast.LENGTH_SHORT).show()
-                    updateUI(null)
+                    this.portal(null)
                 }
             }
     }
 
-    fun fireSignIn(email: String, pass: String){
+    private fun fireSignIn(email: String, pass: String){
         if(email.isEmpty() || pass.isEmpty()){
             Toast.makeText(context, "Please enter your email and password", Toast.LENGTH_SHORT).show()
             return
@@ -113,14 +118,14 @@ class Login : AppCompatActivity(), View.OnClickListener{
                 if (task.isSuccessful) {
                     Log.d(TAG, "signInWithEmail:success")
                     val user = mAuth.currentUser
-                    updateUI(user)
+                    this.portal(user)
                 } else {
                     Log.w(TAG, "signInWithEmail:failure", task.exception)
                     Toast.makeText(
                         context, "Authentication failed.",
                         Toast.LENGTH_SHORT
                     ).show()
-                    updateUI(null)
+                    this.portal(null)
                 }
             }
     }

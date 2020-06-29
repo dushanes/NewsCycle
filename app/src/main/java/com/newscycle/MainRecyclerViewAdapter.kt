@@ -21,11 +21,15 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
+interface AdapterInterface {
+    fun getQuery(query: String)
+}
+
 class MainRecyclerViewAdapter (private val context: Context,
                                private val FEED_TAG: String,
                                val recView: RecyclerView,
                                val layoutManager: LinearLayoutManager,
-                               query: String) : RecyclerView.Adapter<MainRecyclerViewAdapter.ViewHolder>(){
+                               query: String) : RecyclerView.Adapter<MainRecyclerViewAdapter.ViewHolder>(), AdapterInterface{
 
     private val apiUtil: ApiUtilities by lazy { ApiUtilities }
     private val articles: ArrayList<ArticleModel> = ArrayList()
@@ -93,6 +97,23 @@ class MainRecyclerViewAdapter (private val context: Context,
         return SimpleDateFormat("h:mm a, MMM d", Locale.ENGLISH).format(pubDate)
     }
 
+    override fun getQuery(query: String): Unit{
+        clear()
+
+        apiUtil.searchTopic(BuildConfig.NEWS_KEY, page=pageNum, q = query)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ t ->
+                articles.addAll(t.articles)
+                pageNum++
+                Log.d("Search Feed Api Response", "Successful response, page $pageNum returned")
+                notifyDataSetChanged()
+            }, {error ->
+                Log.d("Api Error:", error.message)
+            })
+        notifyDataSetChanged()
+    }
+
     @SuppressLint("CheckResult")
     fun refreshArticles(topic: String){
         when (FEED_TAG) {
@@ -135,6 +156,24 @@ class MainRecyclerViewAdapter (private val context: Context,
                         Log.d("Api Error:", error.message)
                     })
             }
+            Constants.SEARCH_FEED -> {
+                apiUtil.searchTopic(BuildConfig.NEWS_KEY, page=pageNum, q = topic)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe({ t ->
+                        articles.addAll(t.articles)
+                        pageNum++
+                        Log.d("Search Feed Api Response", "Successful response, page $pageNum returned")
+                        notifyDataSetChanged()
+                    }, {error ->
+                        Log.d("Api Error:", error.message)
+                    })
+            }
         }
+    }
+
+    fun clear() {
+        articles.clear()
+        notifyDataSetChanged()
     }
 }

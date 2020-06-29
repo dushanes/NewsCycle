@@ -18,7 +18,6 @@
             android:layout_height="?attr/actionBarSize"/>
     </FrameLayout>
 
-
     <com.google.android.material.navigation.NavigationView
         android:layout_width="225dp"
         android:layout_height="match_parent"

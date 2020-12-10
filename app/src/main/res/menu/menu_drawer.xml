@@ -3,17 +3,13 @@
     <group android:id="@+id/menu_header"
         android:checkableBehavior="none">
         <item
-            android:id="@+id/action_feed"
-            android:title="MY FEED"
-            android:icon="@drawable/my_feed"/>
+            android:id="@+id/action_acc"
+            android:title="ACCOUNT"
+            android:icon="@drawable/profile"/>
+
         <item
-            android:id="@+id/action_message"
-            android:title="MESSAGES"
-            android:icon="@drawable/message"/>
-        <item
-            android:id="@+id/action_notification"
-            android:title="NOTIFICATIONS"
-            android:icon="@drawable/notification"/>
+            android:id="@+id/action_edit"
+            android:title="EDIT FEED"/>
     </group>
 
     <group android:id="@+id/menu_footer">

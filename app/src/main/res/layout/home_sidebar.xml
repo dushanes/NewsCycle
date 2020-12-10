@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:elevation="4dp"
     android:fitsSystemWindows="true"
-    android:theme="@style/ThemeOverlay.AppCompat.Dark"
+    android:theme="@style/ThemeOverlay.MaterialComponents.ActionBar"
     tools:context="com.newscycle.Home"
     tools:openDrawer="start">
 
@@ -21,7 +21,6 @@
     <com.google.android.material.navigation.NavigationView
         android:layout_width="225dp"
         android:layout_height="match_parent"
-        android:background="#161925"
         android:paddingTop="25dp"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"

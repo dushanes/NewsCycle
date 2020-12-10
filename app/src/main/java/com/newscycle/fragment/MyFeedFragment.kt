@@ -16,8 +16,8 @@ import com.newscycle.R
 
 class MyFeedFragment (val activityContext: Context): Fragment(){
     private lateinit var recyclerViewAdapter: MainRecyclerViewAdapter
-    private lateinit var linearLayoutManager: LinearLayoutManager
-    private val tempQuery = "Politics"
+    private val linearLayoutManager: LinearLayoutManager = LinearLayoutManager(context)
+    private val query = "Politics"
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,7 +33,11 @@ class MyFeedFragment (val activityContext: Context): Fragment(){
     private fun setupRecyclerView(v : View) {
         Log.d(Constants.MY_FEED, "Setting up recycler view")
         val recView = v.findViewById<RecyclerView>(R.id.recycler_view)
-        linearLayoutManager = LinearLayoutManager(context)
+
+        var tempQuery:String? = arguments?.getString("query");
+        if (tempQuery == null) {
+            tempQuery = query
+        }
         recyclerViewAdapter = MainRecyclerViewAdapter(activityContext, Constants.MY_FEED, recView, linearLayoutManager, tempQuery)
 
         Log.d(Constants.MY_FEED, "Adapter Instantiated")

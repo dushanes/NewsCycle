@@ -10,18 +10,16 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.newscycle.Constants
-import com.newscycle.Home
 import com.newscycle.MainRecyclerViewAdapter
 import com.newscycle.R
-import kotlinx.android.synthetic.main.fragment_recyclerview.*
 
-class TopicFragment constructor(activityContext: Context,
-                               topic: String,
-                               listener: Home.ViewPagerAdapter.TopicSelectListener) : Fragment(){
+class TopicFragment(
+    activityContext: Context,
+    topic: String,
+    val mTopic: String
+) : Fragment(){
     private lateinit var recyclerViewAdapter: MainRecyclerViewAdapter
     private lateinit var linearLayoutManager: LinearLayoutManager
-    val mTopic = topic
-    val mListener = listener
     val mContext = activityContext
     private val TAG = "Topic Fragment"
 
@@ -35,8 +33,6 @@ class TopicFragment constructor(activityContext: Context,
         setupRecyclerView(v)
         return v
     }
-
-
 
     private fun setupRecyclerView(v: View) {
         Log.d(TAG, "Setting up recycler view")

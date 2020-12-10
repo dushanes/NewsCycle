@@ -1,52 +1,59 @@
 package com.newscycle
 
 import android.content.Context
-import android.content.res.Resources
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
 import android.view.MenuItem
+import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentStatePagerAdapter
+import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
+import com.google.firebase.auth.FirebaseAuth
 import com.newscycle.fragment.*
 import kotlinx.android.synthetic.main.activity_home.*
-
-interface TopicSelect {
-    fun onTopicSelect(topic: String)
-}
+import kotlinx.android.synthetic.main.drawer_header.*
+import kotlinx.android.synthetic.main.fragment_categories.*
 
 class Home: AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private val NUM_PAGES = 4
-    private val tabTitles = listOf("MY FEED", "POPULAR", "TOPICS", "SEARCH")
+    private val tabTitles = listOf("MY FEED", "HEADLINES", "TOPICS", "SEARCH")
     private val icons = listOf(R.drawable.my_feed, R.drawable.popular, R.drawable.category, R.drawable.search)
+    private val mAuth: FirebaseAuth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-
-        val fm = supportFragmentManager
-        pager.adapter = ViewPagerAdapter(fm)
-        appName.setOnClickListener { pager.setCurrentItem(0, true) }
+        appNameHome.isClickable = true
+        (appNameHome as TextView).setOnClickListener {
+            pager.setCurrentItem(0, true)
+            Toast.makeText(this, "button has been clicked", Toast.LENGTH_LONG).show()
+        }
         initTabLayout()
         inflateDrawer()
     }
 
     private fun initTabLayout(){
-        for (i in 0..3){
-            tab_layout.addTab(tab_layout.newTab()
-                .setText(tabTitles[i])
-                .setIcon(icons[i]))
-        }
         tab_layout.tabGravity = TabLayout.GRAVITY_FILL
-        pager.setOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tab_layout))
-        tab_layout.setOnTabSelectedListener(object: TabLayout.OnTabSelectedListener {
+        pager.adapter = ViewPagerAdapter(supportFragmentManager)
+
+        //connect tab_layout to pager
+        TabLayoutMediator(tab_layout, pager) { tab, position ->
+            tab.text = tabTitles[position]
+            tab.setIcon(icons[position])
+        }.attach()
+
+        tab_layout.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener {
             override fun onTabReselected(tab: TabLayout.Tab?) {
                 return
             }
@@ -61,7 +68,6 @@ class Home: AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener
                 tab?.position?.let { pager.setCurrentItem(it, true) }
             }
         })
-
     }
 
     private fun inflateDrawer(){
@@ -78,17 +84,40 @@ class Home: AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener
         findViewById<NavigationView>(R.id.nav).setNavigationItemSelectedListener(this)
     }
 
+    override fun onResume() {
+        super.onResume()
+        val user = mAuth.currentUser
+        drawer_email?.text = user?.email
+        drawer_user_name?.text = user?.displayName
+    }
+
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
         return if (keyCode == KeyEvent.KEYCODE_BACK && !home_drawer.isDrawerOpen(GravityCompat.START)) {
+            if (pager.currentItem == 2){
+                if (category_grid.visibility == View.GONE){
+                    categ_recycler_view.adapter = null
+                    categ_recycler_view.visibility = View.GONE
+                    category_grid.visibility = View.VISIBLE
+                    return true
+                }
+            }
             val dialog = LogoutDialog()
             dialog.show(supportFragmentManager, "logout")
             true
         } else super.onKeyDown(keyCode, event)
     }
 
-//------------------------------Navigation functions-----------------------------------------------//
+    //------------------------------Navigation functions-----------------------------------------------//
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
-        TODO("Implement navigation upon item selection")
+        if (menuItem.title == "ACCOUNT"){
+            val intent = Intent(this, Account::class.java)
+            startActivity(intent)
+            return true
+        }else if (menuItem.title == "EDIT FEED"){
+            val intent = Intent(this, EditFeed::class.java)
+            startActivity(intent)
+            return true
+        }
         return true
     }
 
@@ -115,38 +144,18 @@ class Home: AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener
     //------------------------Inner Classes------------------------------------------------------//
 
 
-    inner class ViewPagerAdapter constructor (fragmentManager: FragmentManager):  FragmentStatePagerAdapter(fragmentManager, FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT){
-        inner class TopicSelectListener: TopicSelect {
-            override fun onTopicSelect(topic: String) {
-                fm.beginTransaction().remove(tempFragment).commit()
-
-                if(tempFragment is CategoriesFragment){
-                    tempFragment = TopicFragment(this@Home, topic, listener)
-                }else{
-                    tempFragment = CategoriesFragment(this@Home)
-                }
-                notifyDataSetChanged()
-            }
-        }
-
-        val fm = fragmentManager
-        lateinit var tempFragment : Fragment
-        val listener = TopicSelectListener()
-
-        override fun getItem(position: Int): Fragment {
+    inner class ViewPagerAdapter(fm: FragmentManager) : FragmentStateAdapter(fm, lifecycle){
+        override fun createFragment(position: Int): Fragment {
             return when(position) {
                 0 -> MyFeedFragment(this@Home)
                 1 -> PopularFragment(this@Home)
-                2 -> {
-                    tempFragment = CategoriesFragment(this@Home)
-                    return tempFragment
-                }
+                2 -> CategoriesFragment(this@Home)
                 3 -> SearchFragment(this@Home)
                 else -> MyFeedFragment(this@Home)
             }
         }
 
-        override fun getCount(): Int {
+        override fun getItemCount(): Int {
             return NUM_PAGES
         }
     }

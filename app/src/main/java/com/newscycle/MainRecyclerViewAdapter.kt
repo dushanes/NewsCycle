@@ -22,14 +22,14 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 interface AdapterInterface {
-    fun getQuery(query: String)
+    fun getQuery(query: String, sortBy: String, fromDate: String)
 }
 
 class MainRecyclerViewAdapter (private val context: Context,
                                private val FEED_TAG: String,
                                val recView: RecyclerView,
                                val layoutManager: LinearLayoutManager,
-                               query: String) : RecyclerView.Adapter<MainRecyclerViewAdapter.ViewHolder>(), AdapterInterface{
+                               val query: String) : RecyclerView.Adapter<MainRecyclerViewAdapter.ViewHolder>(), AdapterInterface{
 
     private val apiUtil: ApiUtilities by lazy { ApiUtilities }
     private val articles: ArrayList<ArticleModel> = ArrayList()
@@ -38,6 +38,8 @@ class MainRecyclerViewAdapter (private val context: Context,
     private var totalItemCount: Int
     private var lastVisibleItem: Int
     private var isLoading: Boolean = false
+    private var curSort: String = ""
+    private var curFromDate: String = ""
 
     init {
         refreshArticles(query)
@@ -47,15 +49,16 @@ class MainRecyclerViewAdapter (private val context: Context,
         recView.addOnScrollListener(object : RecyclerView.OnScrollListener() {  //TODO("Infinite scroll")
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
-                val visibleItemCount = layoutManager.childCount
+                val visibleItemCount = layoutManager.findLastVisibleItemPosition()
                 val totalItemCount = layoutManager.itemCount
                 val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
                 if (!isLoading) {
                     isLoading = true
-                    if (visibleItemCount > (totalItemCount *.5) && firstVisibleItemPosition >= 0 && totalItemCount >= 50) {
-                        refreshArticles(query)
+                    if (visibleItemCount > (totalItemCount *.5) && firstVisibleItemPosition >= 0 && totalItemCount > 49 ) {
+                        refreshArticles(query, curSort, curFromDate)
                     }
                 }
+                isLoading = false
             }
         })
     }
@@ -90,6 +93,7 @@ class MainRecyclerViewAdapter (private val context: Context,
         Glide.with(context)
             .load(articles[pos].image)
             .apply(cropOptions)
+            .thumbnail(0.5f)
             .into(holder.view.card_image)
     }
 
@@ -97,25 +101,28 @@ class MainRecyclerViewAdapter (private val context: Context,
         return SimpleDateFormat("h:mm a, MMM d", Locale.ENGLISH).format(pubDate)
     }
 
-    override fun getQuery(query: String): Unit{
+    override fun getQuery(query: String, sortBy: String, fromDate: String): Unit{
         clear()
+        pageNum = 1
+        curSort = sortBy
+        curFromDate = fromDate
 
-        apiUtil.searchTopic(BuildConfig.NEWS_KEY, page=pageNum, q = query)
+        apiUtil.searchTopic(BuildConfig.NEWS_KEY, q = query, page=pageNum, fromDate = fromDate, sortBy = sortBy)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ t ->
                 articles.addAll(t.articles)
+                Log.d(Constants.SEARCH_FEED, "Successful response, page $pageNum returned")
                 pageNum++
-                Log.d("Search Feed Api Response", "Successful response, page $pageNum returned")
                 notifyDataSetChanged()
             }, {error ->
-                Log.d("Api Error:", error.message)
+                error.message?.let { Log.d("Api Error:", it) }
             })
         notifyDataSetChanged()
     }
 
     @SuppressLint("CheckResult")
-    fun refreshArticles(topic: String){
+    fun refreshArticles(topic: String, sortBy: String = "", fromDate: String = ""){
         when (FEED_TAG) {
             Constants.MY_FEED -> {
                 apiUtil.getCategoryHeadlines(api_key = BuildConfig.NEWS_KEY, page = pageNum, category="general")
@@ -123,12 +130,12 @@ class MainRecyclerViewAdapter (private val context: Context,
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({ t ->
                         articles.addAll(t.articles)
-                        Log.d(Constants.MY_FEED, "Successful response, page $pageNum returned")
+                        Log.d(Constants.MY_FEED, "Successful response, page $pageNum returned, Total articles: ${articles.size}")
                         pageNum++
                         notifyDataSetChanged()
                     }, {error ->
-                        Log.d("Api Error:", error.message)
-                    }).also { isLoading = false } //TODO("Apart of implementing infinite scroll")
+                        Log.d("Api Error:", error.message.toString())
+                    })
             }
             Constants.POP_FEED -> {
                 apiUtil.getTopHeadlines(BuildConfig.NEWS_KEY, page=pageNum)
@@ -136,11 +143,11 @@ class MainRecyclerViewAdapter (private val context: Context,
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({ t ->
                         articles.addAll(t.articles)
+                        Log.d(Constants.POP_FEED, "Successful response, page $pageNum returned, Total articles: ${articles.size}")
                         pageNum++
-                        Log.d("Popular Feed Api Response", "Successful response, page $pageNum returned")
                         notifyDataSetChanged()
                     }, {error ->
-                        Log.d("Api Error:", error.message)
+                        error.message?.let { Log.d("Api Error:", it) }
                     })
             }
             Constants.TOPIC_FEED -> {
@@ -149,24 +156,24 @@ class MainRecyclerViewAdapter (private val context: Context,
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({ t ->
                         articles.addAll(t.articles)
+                        Log.d( Constants.TOPIC_FEED, "Successful response, page $pageNum returned, Total articles: ${articles.size}")
                         pageNum++
-                        Log.d("Topic Feed Api Response", "Successful response, page $pageNum returned")
                         notifyDataSetChanged()
                     }, {error ->
-                        Log.d("Api Error:", error.message)
+                        error.message?.let { Log.d("Api Error:", it) }
                     })
             }
             Constants.SEARCH_FEED -> {
-                apiUtil.searchTopic(BuildConfig.NEWS_KEY, page=pageNum, q = topic)
+                apiUtil.searchTopic(BuildConfig.NEWS_KEY, page=pageNum, q = topic, fromDate = fromDate,sortBy = sortBy)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({ t ->
                         articles.addAll(t.articles)
+                        Log.d(Constants.SEARCH_FEED , "Successful response, page $pageNum returned, Total articles: ${articles.size}")
                         pageNum++
-                        Log.d("Search Feed Api Response", "Successful response, page $pageNum returned")
                         notifyDataSetChanged()
                     }, {error ->
-                        Log.d("Api Error:", error.message)
+                        error.message?.let { Log.d("Api Error:", it) }
                     })
             }
         }

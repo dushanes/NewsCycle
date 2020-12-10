@@ -3,13 +3,13 @@ package com.newscycle.fragment
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.appcompat.widget.SearchView
+import android.view.*
+import android.view.inputmethod.EditorInfo
+import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.textfield.TextInputEditText
 import com.newscycle.Constants
 import com.newscycle.MainRecyclerViewAdapter
 import com.newscycle.R
@@ -21,7 +21,6 @@ class SearchFragment (val activityContext: Context): Fragment(){
     private lateinit var adapter: MainRecyclerViewAdapter
     private val TAG = "Search Fragment"
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -32,24 +31,49 @@ class SearchFragment (val activityContext: Context): Fragment(){
         return v
     }
 
-    override fun onResume() {
-        super.onResume()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val items = listOf("Relevance","Popularity", "Recent")
+        val dateItems = listOf("Today","Past Week", "Past Month")
+
+        search.requestFocus()
+        val sortByAdapter = ArrayAdapter(requireContext(), R.layout.list_item, items)
+        (sort_by_edit_text as AutoCompleteTextView).setAdapter(sortByAdapter)
+
+        val dateAdapter = ArrayAdapter(requireContext(), R.layout.list_item, dateItems)
+        (from_date_edit_text as AutoCompleteTextView).setAdapter(dateAdapter)
+
+        from_date_edit_text.onItemClickListener = AdapterView.OnItemClickListener{_: AdapterView<*>, _: View, _: Int, _: Long ->
+            search.requestFocus()
+        }
+        sort_by_edit_text.onItemClickListener = AdapterView.OnItemClickListener{_: AdapterView<*>, _: View, _: Int, _: Long ->
+            search.requestFocus()
+        }
         initSearch()
     }
 
-    fun initSearch(){
-        search.queryHint = "Search"
-        search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                if (query == null ) return false
-                adapter.getQuery(query)
-                return true
-            }
+    override fun onResume() {
+        super.onResume()
+        search.requestFocus()
 
-            override fun onQueryTextChange(newText: String?): Boolean {
-                adapter.clear()
-                return false
+    }
+
+    fun initSearch() {
+        (search as TextInputEditText).setOnEditorActionListener(TextView.OnEditorActionListener(){ _, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH ) {
+                val query = search.text.toString()
+                var sortBy:String = sort_by_edit_text.text.toString()
+                when(sortBy){
+                    "Relevance" -> sortBy = "relevancy"
+                    "Popularity" -> sortBy = "popularity"
+                    "Recent" -> sortBy = "publishedAt"
+                    else -> sortBy = "publishedAt"
+                }
+                val fromDate = from_date_edit_text.text.toString()
+                adapter.getQuery(query, sortBy, fromDate)
+                return@OnEditorActionListener true
             }
+            false
         })
     }
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/fragment_login_main_container"
     android:orientation="vertical"
@@ -33,33 +33,35 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/email"/>
 
-    <Button
-        android:id="@+id/button_login"
-        android:layout_width="90dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="28dp"
-        android:background="@drawable/button_rounded_ripple"
-        android:focusable="true"
-        android:fontFamily="@font/open_sans_semi_bold"
-        android:text="@string/login_text"
-        android:textColor="#5FCCCA"
-        android:textSize="18sp"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/button_register"
-        android:layout_width="120dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="128dp"
-        android:layout_marginTop="28dp"
-        android:background="@drawable/button_rounded_ripple"
-        android:fontFamily="@font/open_sans_semi_bold"
-        android:focusable="true"
-        android:text="@string/register_text"
-        android:textColor="#5FCCCA"
-        android:textSize="18sp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:layout_marginTop="12dp"
+            android:padding="12dp"
+            android:layout_alignParentStart="true"
+            android:text="@string/login_text"
+            android:gravity="start"
+            android:textColor="#5FCCCA"
+            android:textSize="18sp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_alignParentEnd="true"
+            android:padding="12dp"
+            android:focusable="true"
+            android:gravity="end"
+            android:text="@string/register_text"
+            android:textColor="#5FCCCA"
+            android:textSize="18sp"/>
+    </RelativeLayout>
+</LinearLayout>

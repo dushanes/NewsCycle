@@ -26,34 +26,34 @@
             android:layout_height="match_parent"
             android:background="@drawable/home_square"
             android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/appName"
+            <Button
+                android:id="@+id/appNameHome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:fontFamily="@font/open_sans_bold"
                 android:gravity="center_horizontal"
                 android:text="@string/app_name"
+                android:clickable="true"
                 android:textColor="#FFFFFF"
                 android:textSize="28sp"
-                android:layout_gravity="center_horizontal"/>
+                android:layout_gravity="center_horizontal"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                />
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tab_layout"
                 android:layout_width="match_parent"
                 android:layout_height="65dp"
                 app:tabTextAppearance="@style/tab_layout_style"
+                app:tabIndicatorHeight="4dp"
                 android:background="#457B9D"
                 android:layout_marginTop="16dp" />
 
-            <androidx.viewpager.widget.ViewPager
-                android:id="@+id/pager"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                >
-            </androidx.viewpager.widget.ViewPager>
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"/>
         </LinearLayout>
     </FrameLayout>
 

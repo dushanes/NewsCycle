@@ -49,11 +49,11 @@
                 android:background="#457B9D"
                 android:layout_marginTop="16dp" />
 
-                <androidx.viewpager2.widget.ViewPager2
-                    android:id="@+id/pager"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"/>
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"/>
         </LinearLayout>
     </FrameLayout>
 

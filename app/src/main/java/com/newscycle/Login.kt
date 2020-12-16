@@ -14,15 +14,14 @@ import com.google.firebase.ktx.Firebase
 import com.newscycle.fragment.RegisterFragment
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.fragment_login.*
-import kotlinx.android.synthetic.main.fragment_new_user.*
 
 
 class Login : AppCompatActivity(), View.OnClickListener{
-    private val mAuth: FirebaseAuth = FirebaseAuth.getInstance()
     private val TAG: String = "Login"
+    private val mAuth: FirebaseAuth = FirebaseAuth.getInstance()
+    private lateinit var database: DatabaseReference
     private val registerFragment = RegisterFragment()
     private val loginFragment = LoginFragment()
-    private lateinit var database: DatabaseReference
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,20 +63,6 @@ class Login : AppCompatActivity(), View.OnClickListener{
                     .addToBackStack("extra")
                     .commit()
                 supportFragmentManager.executePendingTransactions()
-                button_confirm.setOnClickListener(this)
-            }
-            button_confirm ->
-            {
-                val email = regi_email.text.toString()
-                val pass = regi_password.text.toString()
-                val passConfirm = regi_password_confirm.text.toString()
-
-                    if(pass != passConfirm){
-                        Toast.makeText(this,"Passwords do not match, Try again.",Toast.LENGTH_SHORT)
-                            .show()
-                    }else{
-                        fireRegis(email, pass)
-                    }
             }
             forget_password -> {
                 val email = email.text.toString()
@@ -107,31 +92,6 @@ class Login : AppCompatActivity(), View.OnClickListener{
         return
     }
 
-    private fun fireRegis(email: String, pass: String){
-        if(pass.length < 9){
-            Toast.makeText(this, "Password must be at least 8 characters", Toast.LENGTH_SHORT).show()
-
-        }
-
-        mAuth.createUserWithEmailAndPassword(email, pass)
-            .addOnCompleteListener(
-                this
-            ) { task ->
-                if (task.isSuccessful) {
-                    Log.d(TAG, "createUserWithEmail:success")
-                    val user = mAuth.currentUser
-                    if (user != null){
-                        database.child("users").child(user.uid).child("email").setValue(user.email)
-                    }
-                    this.portal(user!!)
-                } else {
-                    Log.w(TAG, "createUserWithEmail:failure", task.exception)
-                    Toast.makeText(this, "Authentication failed.", Toast.LENGTH_SHORT).show()
-                    this.portal(null)
-                }
-            }
-    }
-
     private fun fireSignIn(email: String, pass: String){
         if(email.isEmpty() || pass.isEmpty()){
             Toast.makeText(this, "Please enter your email and password", Toast.LENGTH_SHORT).show()
@@ -159,6 +119,4 @@ class Login : AppCompatActivity(), View.OnClickListener{
                 }
             }
     }
-
-
 }

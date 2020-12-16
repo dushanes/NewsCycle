@@ -1,9 +1,7 @@
 package com.newscycle
 
-import android.app.Activity
 import android.app.AlertDialog
 import android.app.Dialog
-import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment
@@ -22,6 +20,7 @@ class LogoutDialog: DialogFragment() {
                         dialog.dismiss()
                         FirebaseAuth.getInstance().signOut()
                         activity?.finish()
+                        activity?.overridePendingTransition(R.anim.slide_enter_left, R.anim.slide_exit_right)
                     })
                 .setNegativeButton(R.string.no,
                     DialogInterface.OnClickListener { dialog, _ ->

@@ -45,6 +45,7 @@ class Home: AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener
 
     private fun initTabLayout(){
         tab_layout.tabGravity = TabLayout.GRAVITY_FILL
+        pager.setPageTransformer(ZoomOutPageTransformer())
         pager.adapter = ViewPagerAdapter(supportFragmentManager)
 
         //connect tab_layout to pager
@@ -88,7 +89,6 @@ class Home: AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener
         super.onResume()
         val user = mAuth.currentUser
         drawer_email?.text = user?.email
-        drawer_user_name?.text = user?.displayName
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {

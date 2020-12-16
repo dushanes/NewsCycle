@@ -23,7 +23,7 @@
         android:paddingEnd="8dp"
         android:paddingTop="8dp"
         android:paddingBottom="0dp"
-        android:text="dummy name"
+        android:text="Dummy Name"
         android:textColor="@color/white"
         android:textSize="16sp" />
     <TextView

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/home_square">
 
@@ -14,43 +16,47 @@
         android:layout_marginTop="24dp"
         android:layout_margin="16dp"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="My News Source"
-        android:textColor="@color/white"
-        android:fontFamily="@font/raleway_bold"
-        android:textSize="18sp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"/>
-
-    <GridView
-        android:id="@+id/edit_feed_active_grid"
+    <com.google.android.material.tabs.TabLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"/>
+        android:layout_height="65dp"
+        app:tabTextAppearance="@style/tab_layout_style"
+        app:tabMode="scrollable">
 
-    <com.google.android.material.textfield.TextInputLayout
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Business" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Entertainment" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Health" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/science"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Science" />
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/sports"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sports" />
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tech"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Technology" />
+    </com.google.android.material.tabs.TabLayout>
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/pager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:padding="4dp"
-        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu">
-
-    <AutoCompleteTextView
-        android:id="@+id/edit_feed_search_select"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="4dp"
-        android:editable="false"
-        />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <ListView
-        android:id="@+id/edit_feed_search_list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent"
+        android:orientation="horizontal"/>
 
 </LinearLayout>

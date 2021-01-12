@@ -14,11 +14,11 @@ Written in **Kotlin**
 
 - Infinite Scroll
 
-- Page of top headlines, with **Retrofit** managing the call, **Moshi parsing the JSON data** (Ive also done so before using Volley on my CalorieCounter Project), and **RxJava** handling everything in the background
+- Page of Top Headlines, with **Retrofit** managing the call, **Moshi parsing the JSON data** (Ive also done so before using Volley on my CalorieCounter Project), and **RxJava** handling everything in the background
 
-- Page of news categories
+- Page of News categories to explore
 
-- age for searching articles
+- Page for searching articles
 
 - Side Bar menu opened through custom toolbar
 

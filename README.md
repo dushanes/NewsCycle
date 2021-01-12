@@ -14,7 +14,7 @@ Written in **Kotlin**
 
 - Infinite scroll
 
-- Utilized Retrofit, Moshi, and RxJava in combination to simplify making api calls and processing the JSON recieved. Aswell as used the Glide library to frame images.
+- **Utilized Retrofit, Moshi, and RxJava** in combination to simplify making api calls, and processing the JSON recieved for various circumstances. Aswell as used the Glide library to frame images.
 
 - Page of Top Headlines
 

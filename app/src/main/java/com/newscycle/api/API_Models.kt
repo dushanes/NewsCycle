@@ -65,32 +65,17 @@ data class ArticleModel(val source: Source,
 data class Source(val id: String? = null, val name: String?): Serializable
 
 @JsonClass(generateAdapter = true)
-data class SourcesModel(val id: String? = null,
-                        val name: String? = null,
-                        @Json(name= "description")val desc: String? = null,
-                        val url: String? = null,
-                        val category: String? = null,
-                        val language: String? = null,
-                        val country: String? = null) : Parcelable {
+data class SourcesModel(val id: String? = "",
+                        val name: String? = "") : Parcelable {
 
     constructor(parcel: Parcel) : this(
         id = parcel.readString(),
-        name = parcel.readString(),
-        url = parcel.readString(),
-        desc = parcel.readString(),
-        category = parcel.readString(),
-        language = parcel.readString(),
-        country = parcel.readString()
+        name = parcel.readString()
     )
 
     override fun writeToParcel(dest: Parcel?, flags: Int) {
         dest?.writeString(id)
         dest?.writeString(name)
-        dest?.writeString(url)
-        dest?.writeString(desc)
-        dest?.writeString(category)
-        dest?.writeString(language)
-        dest?.writeString(country)
     }
 
     override fun describeContents(): Int {

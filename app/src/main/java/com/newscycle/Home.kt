@@ -1,15 +1,12 @@
 package com.newscycle
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
 import android.view.MenuItem
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
@@ -26,19 +23,15 @@ import kotlinx.android.synthetic.main.drawer_header.*
 import kotlinx.android.synthetic.main.fragment_categories.*
 
 class Home: AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
-    private val NUM_PAGES = 4
-    private val tabTitles = listOf("MY FEED", "HEADLINES", "TOPICS", "SEARCH")
-    private val icons = listOf(R.drawable.my_feed, R.drawable.popular, R.drawable.category, R.drawable.search)
+    private val NUM_PAGES = 3
+    private val tabTitles = listOf("HEADLINES", "TOPICS", "SEARCH")
+    private val icons = listOf(R.drawable.popular, R.drawable.category, R.drawable.search)
     private val mAuth: FirebaseAuth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-        appNameHome.isClickable = true
-        (appNameHome as TextView).setOnClickListener {
-            pager.setCurrentItem(0, true)
-            Toast.makeText(this, "button has been clicked", Toast.LENGTH_LONG).show()
-        }
+
         initTabLayout()
         inflateDrawer()
     }
@@ -110,12 +103,8 @@ class Home: AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener
     //------------------------------Navigation functions-----------------------------------------------//
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
         if (menuItem.title == "ACCOUNT"){
-            val intent = Intent(this, Account::class.java)
-            startActivity(intent)
             return true
         }else if (menuItem.title == "EDIT FEED"){
-            val intent = Intent(this, EditFeed::class.java)
-            startActivity(intent)
             return true
         }
         return true
@@ -147,11 +136,10 @@ class Home: AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener
     inner class ViewPagerAdapter(fm: FragmentManager) : FragmentStateAdapter(fm, lifecycle){
         override fun createFragment(position: Int): Fragment {
             return when(position) {
-                0 -> MyFeedFragment(this@Home)
-                1 -> PopularFragment(this@Home)
-                2 -> CategoriesFragment(this@Home)
-                3 -> SearchFragment(this@Home)
-                else -> MyFeedFragment(this@Home)
+                0 -> PopularFragment(this@Home)
+                1 -> CategoriesFragment(this@Home)
+                2 -> SearchFragment(this@Home)
+                else -> PopularFragment(this@Home)
             }
         }
 

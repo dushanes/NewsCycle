@@ -37,10 +37,9 @@ object ApiUtilities: NewsApi {
     override fun getSources(
         api_key: String,
         category: String,
-        country: String,
         language: String
     ): Single<SourcesResults> {
-        return newsApi.getSources(category= category)
+        return newsApi.getSources(category= category, language = "en")
     }
 
     override fun getTopHeadlines(api_key: String,

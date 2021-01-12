@@ -59,7 +59,7 @@ class SearchFragment (val activityContext: Context): Fragment(){
     }
 
     fun initSearch() {
-        (search as TextInputEditText).setOnEditorActionListener(TextView.OnEditorActionListener(){ _, actionId, event ->
+        (search as TextInputEditText).setOnEditorActionListener(TextView.OnEditorActionListener { _, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH ) {
                 val query = search.text.toString()
                 var sortBy:String = sort_by_edit_text.text.toString()

@@ -6,17 +6,13 @@
             android:id="@+id/action_acc"
             android:title="ACCOUNT"
             android:icon="@drawable/profile"/>
-
-        <item
-            android:id="@+id/action_edit"
-            android:title="EDIT FEED"/>
     </group>
 
     <group android:id="@+id/menu_footer">
         <item
             android:id="@+id/action_settings"
             android:title="SETTINGS"
-            android:icon="@drawable/settings"/>
+            android:icon="@drawable/setting_white"/>
     </group>
 
 </menu>

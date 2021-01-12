@@ -28,12 +28,6 @@ class CategoriesFragment(val activityContext: Context): Fragment(){
         "SPORTS",
         "TECHNOLOGY"
     )
-    private val gridViewAdapter: ArrayAdapter<String> = ArrayAdapter(
-        activityContext,
-        R.layout.category_card,
-        R.id.category_text,
-        values
-    )
     private val linearLayoutManager: LinearLayoutManager = LinearLayoutManager(context)
     private lateinit var recyclerViewAdapter: MainRecyclerViewAdapter
     private val cropOptions: RequestOptions = RequestOptions.centerCropTransform()

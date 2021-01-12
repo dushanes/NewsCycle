@@ -9,7 +9,6 @@ interface NewsApi {
     @GET("/v2/sources")
     fun getSources(@Query("apiKey") api_key: String = BuildConfig.NEWS_KEY,
                    @Query("category") category: String,
-                    @Query("country") country: String="us",
                    @Query("language") language: String = "en")
             : Single<SourcesResults>
 

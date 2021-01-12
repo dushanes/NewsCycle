@@ -22,11 +22,11 @@ class Article : AppCompatActivity(){
             Log.d("Article", "No article object in extra")
         }
 
-        article_title.text = article?.title
-        article_content.text = article?.content
-        article_time.text = getTime(article?.pubDate)
+        article_title.text = article.title
+        article_content.text = article.content
+        article_time.text = getTime(article.pubDate)
         Glide.with(this)
-            .load(article?.image)
+            .load(article.image)
             .into(article_image)
     }
 

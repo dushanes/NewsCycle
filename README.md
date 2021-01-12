@@ -8,13 +8,15 @@ Written in **Kotlin**
 
 ### What has been implemented:
 
-- Login and new user registration, password recovery with **Firebase**
+- Login and New User Registration, Password Recovery with **Firebase**
 
 - Homepage design
 
-- Infinite Scroll
+- Infinite scroll
 
-- Page of Top Headlines, with **Retrofit** managing the call, **Moshi parsing the JSON data** (Ive also done so before using Volley on my CalorieCounter Project), and **RxJava** handling everything in the background
+- Utilized Retrofit, Moshi, and RxJava in combination to simplify making api calls and processing the JSON recieved. Aswell as used the Glide library to frame images.
+
+- Page of Top Headlines
 
 - Page of News categories to explore
 

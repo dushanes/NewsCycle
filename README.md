@@ -4,28 +4,33 @@ News Browsing Android App
 ## Welcome to NewsCycle! 
 Written in **Kotlin**
 
+**Utilized Android X**
+
+The purpose of this project is to display my general knowledge of app development up to now. I present it in hopes of gaining more experience and knowledge through employment.
+This Android App is used to browse the news, focusing on what is highest interest rather than some algorithm, users are able to scroll through Top Headlines quickly, or browse by category, and if a user is looking for something more specific users my search articles and narrow down their results.
+
 ### What has been implemented:
 
-- Login and registration, with **Firebase**
+- Login and New User Registration, Password Recovery with **Firebase**
 
 - Homepage design
 
-- Feed of top headlines, with **Retrofit** managing the call, **Moshi parsing the JSON data** (Ive also done so before using Volley on my CalorieCounter Project), and **RxJava** handling everything in the background
+- Infinite scroll
 
-- Populated CardView images using **Glide**
+- **Utilized Retrofit, Moshi, and RxJava** in combination to simplify making api calls, and processing the JSON recieved for various circumstances. Aswell as used the Glide library to frame images.
+
+- Page of Top Headlines
+
+- Page of News categories to explore
+
+- Page for searching articles
+
+- Side Bar menu opened through custom toolbar
+
+- From scratch cardviews populated with database information
 
 - **Custom CardViews**
 
 - **Custom Buttons**
 
 - **Custom Backgrounds**
-
-### Currently whats to come:
-
-- My Feed, Popular Feed, and Categories filled with appropriate content
-
-- GET Call for infinite recycler views, Swipe up to refresh (no refresh implemented)
-
-- Sidebar for more user options
-
-- Forgot password and email verfication

@@ -12,7 +12,7 @@ Written in **Kotlin**
 
 - Homepage design
 
--Infinite Scroll
+- Infinite Scroll
 
 - Page of top headlines, with **Retrofit** managing the call, **Moshi parsing the JSON data** (Ive also done so before using Volley on my CalorieCounter Project), and **RxJava** handling everything in the background
 

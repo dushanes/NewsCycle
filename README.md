@@ -4,28 +4,28 @@ News Browsing Android App
 ## Welcome to NewsCycle! 
 Written in **Kotlin**
 
+**Utilized Android X**
+
 ### What has been implemented:
 
-- Login and registration, with **Firebase**
+- Login and new user registration, password recovery with **Firebase**
 
 - Homepage design
 
-- Feed of top headlines, with **Retrofit** managing the call, **Moshi parsing the JSON data** (Ive also done so before using Volley on my CalorieCounter Project), and **RxJava** handling everything in the background
+-Infinite Scroll
 
-- Populated CardView images using **Glide**
+- Page of top headlines, with **Retrofit** managing the call, **Moshi parsing the JSON data** (Ive also done so before using Volley on my CalorieCounter Project), and **RxJava** handling everything in the background
+
+- Page of news categories
+
+- age for searching articles
+
+- Side Bar menu opened through custom toolbar
+
+- From scratch cardviews populated with database information
 
 - **Custom CardViews**
 
 - **Custom Buttons**
 
 - **Custom Backgrounds**
-
-### Currently whats to come:
-
-- My Feed, Popular Feed, and Categories filled with appropriate content
-
-- GET Call for infinite recycler views, Swipe up to refresh (no refresh implemented)
-
-- Sidebar for more user options
-
-- Forgot password and email verfication

@@ -8,23 +8,29 @@ import java.io.Serializable
 import java.util.*
 
 @JsonClass(generateAdapter = true)
-data class Results (val status: String,
-                    @Json(name= "totalResults")val len: Int,
-                    val articles: List<ArticleModel>)
+data class Results(
+    val status: String,
+    @Json(name = "totalResults") val len: Int,
+    val articles: List<ArticleModel>
+)
 
 @JsonClass(generateAdapter = true)
-data class SourcesResults (val status: String,
-                    val sources: List<SourcesModel>)
+data class SourcesResults(
+    val status: String,
+    val sources: List<SourcesModel>
+)
 
 @JsonClass(generateAdapter = true)
-data class ArticleModel(val source: Source,
-                        val author: String? = null,
-                        val title: String? = null,
-                        @Json(name= "description")val desc: String? = null,
-                        val url: String? = null,
-                        @Json(name= "urlToImage")val image: String? = null,
-                        @Json(name= "publishedAt")val pubDate: Date,
-                        val content: String? = null) : Parcelable {
+data class ArticleModel(
+    val source: Source,
+    val author: String? = null,
+    val title: String? = null,
+    @Json(name = "description") val desc: String? = null,
+    val url: String? = null,
+    @Json(name = "urlToImage") val image: String? = null,
+    @Json(name = "publishedAt") val pubDate: Date,
+    val content: String? = null
+) : Parcelable {
 
     constructor(parcel: Parcel) : this(
         source = parcel.readSerializable() as Source,
@@ -62,11 +68,13 @@ data class ArticleModel(val source: Source,
 }
 
 @JsonClass(generateAdapter = true)
-data class Source(val id: String? = null, val name: String?): Serializable
+data class Source(val id: String? = null, val name: String?) : Serializable
 
 @JsonClass(generateAdapter = true)
-data class SourcesModel(val id: String? = "",
-                        val name: String? = "") : Parcelable {
+data class SourcesModel(
+    val id: String? = "",
+    val name: String? = ""
+) : Parcelable {
 
     constructor(parcel: Parcel) : this(
         id = parcel.readString(),

@@ -1,7 +1,7 @@
 package com.newscycle
 
 object Constants {
-    val NEWS_KEY= BuildConfig.NEWS_KEY
+    val NEWS_KEY = BuildConfig.NEWS_KEY
     val MY_FEED = "MY_FEED"
     val POP_FEED = "POP_FEED"
     val CAT_FEED = "CAT_FEED"
@@ -57,9 +57,11 @@ object Constants {
         "USA Today",
         "Vice News"
     )
-    val science = arrayOf("National Geographic",
+    val science = arrayOf(
+        "National Geographic",
         "New Scientist",
-        "Next Big Future")
+        "Next Big Future"
+    )
     val sports = arrayOf(
         "BBC Sport",
         "Bleacher Report",
@@ -74,8 +76,25 @@ object Constants {
         "The Sport Bible"
     )
 
-    val business = arrayOf("Australian Financial Review","Bloomberg", "Business Insider", "Business Insider (UK)","Financial Post", "Fortune", "The Wall Street Journal")
-    val entertainment = arrayOf("Buzzfeed", "Entertainment Weekly", "IGN", "Mashable", "MTV News", "MTV News (UK)", "Polygon", "The Lad Bible")
+    val business = arrayOf(
+        "Australian Financial Review",
+        "Bloomberg",
+        "Business Insider",
+        "Business Insider (UK)",
+        "Financial Post",
+        "Fortune",
+        "The Wall Street Journal"
+    )
+    val entertainment = arrayOf(
+        "Buzzfeed",
+        "Entertainment Weekly",
+        "IGN",
+        "Mashable",
+        "MTV News",
+        "MTV News (UK)",
+        "Polygon",
+        "The Lad Bible"
+    )
     val technology = arrayOf(
         "Ars Technica",
         "Crypto Coins News",

@@ -13,12 +13,14 @@ import java.net.URLEncoder
 import java.text.SimpleDateFormat
 import java.util.*
 
-object ApiUtilities: NewsApi {
+object ApiUtilities : NewsApi {
     val newsApi: NewsApi by lazy {
-        val moshi: Moshi = Moshi.Builder().add(Date::class.java, Rfc3339DateJsonAdapter().nullSafe()).build()
-        val listArticle: Type = Types.newParameterizedType(List::class.java, ArticleModel::class.java)
-        val adapter :JsonAdapter<List<ArticleModel>> = moshi.adapter(listArticle)
-        val dateAdapter : JsonAdapter<Date> = moshi.adapter(Date::class.java)
+        val moshi: Moshi =
+            Moshi.Builder().add(Date::class.java, Rfc3339DateJsonAdapter().nullSafe()).build()
+        val listArticle: Type =
+            Types.newParameterizedType(List::class.java, ArticleModel::class.java)
+        val adapter: JsonAdapter<List<ArticleModel>> = moshi.adapter(listArticle)
+        val dateAdapter: JsonAdapter<Date> = moshi.adapter(Date::class.java)
 
         moshi.newBuilder()
             .add(listArticle, adapter)
@@ -39,74 +41,100 @@ object ApiUtilities: NewsApi {
         category: String,
         language: String
     ): Single<SourcesResults> {
-        return newsApi.getSources(category= category, language = "en")
+        return newsApi.getSources(category = category, language = "en")
     }
 
-    override fun getTopHeadlines(api_key: String,
-                                 page: Int,
-                                 pageSize: Int,
-                                 country: String): Single<Results> {
+    override fun getTopHeadlines(
+        api_key: String,
+        page: Int,
+        pageSize: Int,
+        country: String
+    ): Single<Results> {
         return newsApi.getTopHeadlines(
             page = page
         )
     }
 
-    override fun getCategoryHeadlines(api_key: String, category: String, page: Int, pageSize: Int, country: String): Single<Results> {
+    override fun getCategoryHeadlines(
+        api_key: String,
+        category: String,
+        page: Int,
+        pageSize: Int,
+        country: String
+    ): Single<Results> {
         return newsApi.getCategoryHeadlines(
-            category= category,
+            category = category,
             page = page
         )
     }
-//sortBY
-    override fun searchTopic(api_key: String, q: String, pageSize: Int, page: Int, sortBy: String, language: String): Single<Results> {
+
+    //sortBY
+    override fun searchTopic(
+        api_key: String,
+        q: String,
+        pageSize: Int,
+        page: Int,
+        sortBy: String,
+        language: String
+    ): Single<Results> {
         return newsApi.searchTopic(
-            q= URLEncoder.encode(q),
-            page= page
+            q = URLEncoder.encode(q),
+            page = page
         )
     }
+
     fun getTime1806(comp: String): String {
         val cal: Calendar = Calendar.getInstance()
         var date: Date = cal.time
-        when (comp){
+        when (comp) {
             "Today" -> {
                 cal.add(Calendar.DATE, -1)
                 date = cal.time
             }
             "Past Week" -> {
-                cal.add(Calendar.DATE, - 7)
+                cal.add(Calendar.DATE, -7)
                 date = cal.time
             }
             "Past Month" -> {
-                cal.add(Calendar.DATE, - 30)
+                cal.add(Calendar.DATE, -30)
                 date = cal.time
             }
         }
-        val formattedDate: String = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ", Locale.ENGLISH).format(date)
+        val formattedDate: String =
+            SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ", Locale.ENGLISH).format(date)
         return formattedDate
     }
 
-    override fun searchTopic( api_key: String, q: String, pageSize: Int, page: Int, fromDate: String, sortBy: String, language: String): Single<Results> {
+    override fun searchTopic(
+        api_key: String,
+        q: String,
+        pageSize: Int,
+        page: Int,
+        fromDate: String,
+        sortBy: String,
+        language: String
+    ): Single<Results> {
         if (fromDate == "" && sortBy == "") {
             return newsApi.searchTopic(
-                q= URLEncoder.encode(q),
-                page= page
+                q = URLEncoder.encode(q),
+                page = page
             )
         } else if (fromDate == "" && sortBy != "") {
             return newsApi.searchTopic(
-                q= URLEncoder.encode(q),
-                page= page,
-                sortBy= sortBy
+                q = URLEncoder.encode(q),
+                page = page,
+                sortBy = sortBy
             )
-        }else if(fromDate != "" && sortBy == ""){
+        } else if (fromDate != "" && sortBy == "") {
             return newsApi.searchTopic(
-                q= URLEncoder.encode(q),
-                page= page,
+                q = URLEncoder.encode(q),
+                page = page,
                 fromDate = getTime1806(fromDate)
             )
-        }else{
+        } else {
             return newsApi.searchTopic(
-                q= URLEncoder.encode(q),
-                page= page,
+                q = URLEncoder.encode(q),
+                page = page,
                 fromDate = getTime1806(fromDate),
                 sortBy = sortBy
             )

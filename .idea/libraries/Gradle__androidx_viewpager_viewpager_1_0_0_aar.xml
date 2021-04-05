@@ -5,9 +5,10 @@
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a19805e114bced9462e87b5fdaa7f4ab/viewpager-1.0.0/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/892bd485865b0e5a84ed4b0d98508849/viewpager-1.0.0/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a64e0724e1e3428a2b0580a3e69caf98/viewpager-1.0.0/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/853a3cbef7f54ccd9bc5a3f9369ea503/viewpager-1.0.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/853a3cbef7f54ccd9bc5a3f9369ea503/viewpager-1.0.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/853a3cbef7f54ccd9bc5a3f9369ea503/viewpager-1.0.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d14cf4c6f42a4c9aa6d35a5f327c2564/viewpager-1.0.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d14cf4c6f42a4c9aa6d35a5f327c2564/viewpager-1.0.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d14cf4c6f42a4c9aa6d35a5f327c2564/viewpager-1.0.0/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

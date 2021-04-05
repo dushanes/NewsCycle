@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.newscycle.fragment.LoginFragment"
+        android:label="LoginFragment"
+        app:startDestination="@id/action_loginFragment_to_registerFragment">
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment"
+            app:enterAnim="@anim/pop_in"
+            app:exitAnim="@anim/pop_out"
+            app:popEnterAnim="@anim/pop_in"
+            app:popExitAnim="@anim/pop_out" />
+        <action
+            android:id="@+id/action_loginFragment_to_home"
+            app:destination="@id/home"
+            app:enterAnim="@anim/slide_enter_right"
+            app:exitAnim="@anim/slide_exit_left"
+            app:popEnterAnim="@anim/slide_enter_right"
+            app:popExitAnim="@anim/slide_exit_left" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.newscycle.fragment.RegisterFragment"
+        android:label="RegisterFragment">
+        <action
+            android:id="@+id/action_registerFragment_to_home"
+            app:destination="@id/home"
+            app:enterAnim="@anim/slide_enter_right"
+            app:exitAnim="@anim/slide_exit_left" />
+    </fragment>
+    <activity
+        android:id="@+id/home"
+        android:name="com.newscycle.Home"
+        android:label="home_sidebar"
+        tools:layout="@layout/home_sidebar" />
+</navigation>

@@ -15,7 +15,7 @@ import com.newscycle.MainRecyclerViewAdapter
 import com.newscycle.R
 import kotlinx.android.synthetic.main.fragment_search.*
 
-class SearchFragment (val activityContext: Context): Fragment(){
+class SearchFragment(val activityContext: Context) : Fragment() {
     private lateinit var recyclerViewAdapter: MainRecyclerViewAdapter
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var adapter: MainRecyclerViewAdapter
@@ -33,8 +33,8 @@ class SearchFragment (val activityContext: Context): Fragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val items = listOf("Relevance","Popularity", "Recent")
-        val dateItems = listOf("Today","Past Week", "Past Month")
+        val items = listOf("Relevance", "Popularity", "Recent")
+        val dateItems = listOf("Today", "Past Week", "Past Month")
 
         search.requestFocus()
         val sortByAdapter = ArrayAdapter(requireContext(), R.layout.list_item, items)
@@ -43,12 +43,14 @@ class SearchFragment (val activityContext: Context): Fragment(){
         val dateAdapter = ArrayAdapter(requireContext(), R.layout.list_item, dateItems)
         (from_date_edit_text as AutoCompleteTextView).setAdapter(dateAdapter)
 
-        from_date_edit_text.onItemClickListener = AdapterView.OnItemClickListener{_: AdapterView<*>, _: View, _: Int, _: Long ->
-            search.requestFocus()
-        }
-        sort_by_edit_text.onItemClickListener = AdapterView.OnItemClickListener{_: AdapterView<*>, _: View, _: Int, _: Long ->
-            search.requestFocus()
-        }
+        from_date_edit_text.onItemClickListener =
+            AdapterView.OnItemClickListener { _: AdapterView<*>, _: View, _: Int, _: Long ->
+                search.requestFocus()
+            }
+        sort_by_edit_text.onItemClickListener =
+            AdapterView.OnItemClickListener { _: AdapterView<*>, _: View, _: Int, _: Long ->
+                search.requestFocus()
+            }
         initSearch()
     }
 
@@ -60,10 +62,10 @@ class SearchFragment (val activityContext: Context): Fragment(){
 
     fun initSearch() {
         (search as TextInputEditText).setOnEditorActionListener(TextView.OnEditorActionListener { _, actionId, event ->
-            if (actionId == EditorInfo.IME_ACTION_SEARCH ) {
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 val query = search.text.toString()
-                var sortBy:String = sort_by_edit_text.text.toString()
-                when(sortBy){
+                var sortBy: String = sort_by_edit_text.text.toString()
+                when (sortBy) {
                     "Relevance" -> sortBy = "relevancy"
                     "Popularity" -> sortBy = "popularity"
                     "Recent" -> sortBy = "publishedAt"
@@ -82,7 +84,13 @@ class SearchFragment (val activityContext: Context): Fragment(){
 
         val recView = v.findViewById<RecyclerView>(R.id.search_recyclerview)
         linearLayoutManager = LinearLayoutManager(context)
-        recyclerViewAdapter = MainRecyclerViewAdapter(activityContext, Constants.SEARCH_FEED, recView, linearLayoutManager, "")
+        recyclerViewAdapter = MainRecyclerViewAdapter(
+            activityContext,
+            Constants.SEARCH_FEED,
+            recView,
+            linearLayoutManager,
+            ""
+        )
         adapter = recyclerViewAdapter
         recView.layoutManager = linearLayoutManager
         recView.adapter = recyclerViewAdapter

@@ -18,7 +18,7 @@ import com.newscycle.MainRecyclerViewAdapter
 import com.newscycle.R
 import kotlinx.android.synthetic.main.fragment_categories.*
 
-class CategoriesFragment(val activityContext: Context): Fragment(){
+class CategoriesFragment(val activityContext: Context) : Fragment() {
     private val values = arrayOf(
         "BUSINESS",
         "ENTERTAINMENT",
@@ -51,12 +51,17 @@ class CategoriesFragment(val activityContext: Context): Fragment(){
         Log.d(Constants.CAT_FEED, "Setting up recycler view")
 
         category_grid.adapter = object :
-            ArrayAdapter<String?>(activityContext, R.layout.category_card, R.id.category_text, values) {
+            ArrayAdapter<String?>(
+                activityContext,
+                R.layout.category_card,
+                R.id.category_text,
+                values
+            ) {
             override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
                 val view = super.getView(position, convertView, parent)
                 var background = resources.getDrawable(R.drawable.clip_img_business)
                 Log.d("GridView", "View Created with background: $background")
-                when (position){
+                when (position) {
                     0 -> background = resources.getDrawable(R.drawable.clip_img_business, null)
                     1 -> background = resources.getDrawable(R.drawable.clip_img_entertain, null)
                     2 -> background = resources.getDrawable(R.drawable.clip_img_general, null)

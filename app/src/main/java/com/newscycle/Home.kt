@@ -22,7 +22,7 @@ import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.drawer_header.*
 import kotlinx.android.synthetic.main.fragment_categories.*
 
-class Home: AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private val NUM_PAGES = 3
     private val tabTitles = listOf("HEADLINES", "TOPICS", "SEARCH")
     private val icons = listOf(R.drawable.popular, R.drawable.category, R.drawable.search)
@@ -31,12 +31,11 @@ class Home: AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-
         initTabLayout()
         inflateDrawer()
     }
 
-    private fun initTabLayout(){
+    private fun initTabLayout() {
         tab_layout.tabGravity = TabLayout.GRAVITY_FILL
         pager.setPageTransformer(ZoomOutPageTransformer())
         pager.adapter = ViewPagerAdapter(supportFragmentManager)
@@ -47,13 +46,14 @@ class Home: AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener
             tab.setIcon(icons[position])
         }.attach()
 
-        tab_layout.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener {
+        tab_layout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabReselected(tab: TabLayout.Tab?) {
                 return
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {
-                val imm: InputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                val imm: InputMethodManager =
+                    getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
                 return
             }
@@ -64,7 +64,7 @@ class Home: AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener
         })
     }
 
-    private fun inflateDrawer(){
+    private fun inflateDrawer() {
         setSupportActionBar(toolbar)
         val actionBar: ActionBar? = supportActionBar
         actionBar?.apply {
@@ -86,8 +86,8 @@ class Home: AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
         return if (keyCode == KeyEvent.KEYCODE_BACK && !home_drawer.isDrawerOpen(GravityCompat.START)) {
-            if (pager.currentItem == 2){
-                if (category_grid.visibility == View.GONE){
+            if (pager.currentItem == 2) {
+                if (category_grid.visibility == View.GONE) {
                     categ_recycler_view.adapter = null
                     categ_recycler_view.visibility = View.GONE
                     category_grid.visibility = View.VISIBLE
@@ -102,18 +102,18 @@ class Home: AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener
 
     //------------------------------Navigation functions-----------------------------------------------//
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
-        if (menuItem.title == "ACCOUNT"){
+        if (menuItem.title == "ACCOUNT") {
             return true
-        }else if (menuItem.title == "EDIT FEED"){
+        } else if (menuItem.title == "EDIT FEED") {
             return true
         }
         return true
     }
 
     override fun onBackPressed() {
-        if(home_drawer.isDrawerOpen(GravityCompat.START)){
+        if (home_drawer.isDrawerOpen(GravityCompat.START)) {
             home_drawer.closeDrawer(GravityCompat.START)
-        }else{
+        } else {
             super.onBackPressed()
         }
     }
@@ -133,9 +133,9 @@ class Home: AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener
     //------------------------Inner Classes------------------------------------------------------//
 
 
-    inner class ViewPagerAdapter(fm: FragmentManager) : FragmentStateAdapter(fm, lifecycle){
+    inner class ViewPagerAdapter(fm: FragmentManager) : FragmentStateAdapter(fm, lifecycle) {
         override fun createFragment(position: Int): Fragment {
-            return when(position) {
+            return when (position) {
                 0 -> PopularFragment(this@Home)
                 1 -> CategoriesFragment(this@Home)
                 2 -> SearchFragment(this@Home)

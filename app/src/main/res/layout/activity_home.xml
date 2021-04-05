@@ -10,7 +10,6 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
     tools:context="com.newscycle.Home"
     tools:openDrawer="start">
-
     <FrameLayout
         android:id="@+id/content_fragment_container"
         android:layout_width="match_parent"

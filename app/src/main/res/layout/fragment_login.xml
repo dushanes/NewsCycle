@@ -1,17 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable name="loginViewModel" type="com.newscycle.viewmodel.LoginViewModel"/>
+    </data>
+<LinearLayout
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/fragment_login_main_container"
     android:orientation="vertical"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/email"
         android:layout_width="300dp"
         android:layout_height="60dp"
         android:background="@drawable/input_rounded_short"
         android:hint="@string/email_text"
+        android:text="@={loginViewModel.email}"
         android:textColorHint="#575454"
         android:inputType="textEmailAddress"
         android:padding="15dp"
@@ -19,13 +24,14 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/password"
         android:layout_width="300dp"
         android:layout_height="60dp"
         android:layout_marginTop="28dp"
         android:background="@drawable/input_rounded_short"
         android:hint="@string/password_text"
+        android:text="@={loginViewModel.pass}"
         android:textColorHint="#575454"
         android:inputType="textPassword"
         android:padding="15dp"
@@ -49,11 +55,20 @@
             android:paddingLeft="18dp"
             android:paddingRight="18dp"
             app:cornerRadius="40dp"
+            android:onClick="@{() -> loginViewModel.login(loginViewModel.email, loginViewModel.pass)}"
             android:layout_alignParentStart="true"
             android:text="@string/login_text"
             android:gravity="start"
             android:textColor="#5FCCCA"
             android:textSize="18sp" />
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/login_loading"
+            android:translationZ="-1dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_alignEnd="@id/button_login"
+            android:indeterminate="true" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_register"
@@ -68,8 +83,10 @@
             android:focusable="true"
             android:gravity="end"
             android:text="@string/register_text"
+            android:onClick="@{(v)-> loginViewModel.toRegister(v)}"
             android:textColor="#5FCCCA"
             android:textSize="18sp"
             app:cornerRadius="40dp"/>
     </RelativeLayout>
 </LinearLayout>
+</layout>

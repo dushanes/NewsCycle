@@ -17,7 +17,7 @@ class TopicFragment(
     activityContext: Context,
     topic: String,
     val mTopic: String
-) : Fragment(){
+) : Fragment() {
     private lateinit var recyclerViewAdapter: MainRecyclerViewAdapter
     private lateinit var linearLayoutManager: LinearLayoutManager
     val mContext = activityContext
@@ -38,7 +38,13 @@ class TopicFragment(
         Log.d(TAG, "Setting up recycler view")
         linearLayoutManager = LinearLayoutManager(context)
         val recView = v.findViewById<RecyclerView>(R.id.recycler_view)
-        recyclerViewAdapter = MainRecyclerViewAdapter(mContext , Constants.TOPIC_FEED, recView, linearLayoutManager, mTopic)
+        recyclerViewAdapter = MainRecyclerViewAdapter(
+            mContext,
+            Constants.TOPIC_FEED,
+            recView,
+            linearLayoutManager,
+            mTopic
+        )
         recView.layoutManager = linearLayoutManager
         recView.adapter = recyclerViewAdapter
     }

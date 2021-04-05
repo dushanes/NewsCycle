@@ -14,7 +14,7 @@ import com.newscycle.MainRecyclerViewAdapter
 import com.newscycle.R
 
 
-class PopularFragment (val activityContext: Context): Fragment(){
+class PopularFragment(val activityContext: Context) : Fragment() {
     private lateinit var recyclerViewAdapter: MainRecyclerViewAdapter
     private lateinit var linearLayoutManager: LinearLayoutManager
     private val TAG = "Popular Fragment"
@@ -34,7 +34,13 @@ class PopularFragment (val activityContext: Context): Fragment(){
         Log.d(TAG, "Setting up recycler view")
         val recView = v.findViewById<RecyclerView>(R.id.recycler_view)
         linearLayoutManager = LinearLayoutManager(context)
-        recyclerViewAdapter = MainRecyclerViewAdapter(activityContext, Constants.POP_FEED, recView, linearLayoutManager,"")
+        recyclerViewAdapter = MainRecyclerViewAdapter(
+            activityContext,
+            Constants.POP_FEED,
+            recView,
+            linearLayoutManager,
+            ""
+        )
         recView.layoutManager = linearLayoutManager
         recView.adapter = recyclerViewAdapter
     }

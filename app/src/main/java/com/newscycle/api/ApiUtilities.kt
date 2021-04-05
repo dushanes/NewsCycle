@@ -4,6 +4,7 @@ import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
 import com.squareup.moshi.adapters.Rfc3339DateJsonAdapter
+import io.reactivex.Observable
 import io.reactivex.Single
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -49,7 +50,7 @@ object ApiUtilities : NewsApi {
         page: Int,
         pageSize: Int,
         country: String
-    ): Single<Results> {
+    ): Observable<Results> {
         return newsApi.getTopHeadlines(
             page = page
         )
@@ -61,7 +62,7 @@ object ApiUtilities : NewsApi {
         page: Int,
         pageSize: Int,
         country: String
-    ): Single<Results> {
+    ): Observable<Results> {
         return newsApi.getCategoryHeadlines(
             category = category,
             page = page
@@ -69,21 +70,10 @@ object ApiUtilities : NewsApi {
     }
 
     //sortBY
-    override fun searchTopic(
-        api_key: String,
-        q: String,
-        pageSize: Int,
-        page: Int,
-        sortBy: String,
-        language: String
-    ): Single<Results> {
-        return newsApi.searchTopic(
-            q = URLEncoder.encode(q),
-            page = page
-        )
-    }
 
-    fun getTime1806(comp: String): String {
+
+    private fun getTime1806(comp: String): String {
+        if(comp.isNullOrBlank()) return  ""
         val cal: Calendar = Calendar.getInstance()
         var date: Date = cal.time
         when (comp) {
@@ -113,31 +103,12 @@ object ApiUtilities : NewsApi {
         fromDate: String,
         sortBy: String,
         language: String
-    ): Single<Results> {
-        if (fromDate == "" && sortBy == "") {
-            return newsApi.searchTopic(
-                q = URLEncoder.encode(q),
-                page = page
-            )
-        } else if (fromDate == "" && sortBy != "") {
-            return newsApi.searchTopic(
-                q = URLEncoder.encode(q),
-                page = page,
-                sortBy = sortBy
-            )
-        } else if (fromDate != "" && sortBy == "") {
-            return newsApi.searchTopic(
-                q = URLEncoder.encode(q),
-                page = page,
-                fromDate = getTime1806(fromDate)
-            )
-        } else {
-            return newsApi.searchTopic(
-                q = URLEncoder.encode(q),
-                page = page,
-                fromDate = getTime1806(fromDate),
-                sortBy = sortBy
-            )
-        }
+    ): Observable<Results> {
+        return newsApi.searchTopic(
+            q = URLEncoder.encode(q),
+            page = page,
+            fromDate = getTime1806(fromDate),
+            sortBy = sortBy
+        )
     }
 }

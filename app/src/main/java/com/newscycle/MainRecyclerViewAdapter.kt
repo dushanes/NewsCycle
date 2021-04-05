@@ -3,6 +3,7 @@ package com.newscycle
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.os.AsyncTask
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -56,6 +57,7 @@ class MainRecyclerViewAdapter(
                 val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
 
                 if (!isLoading && (visibleItemCount + 5) >= totalItemCount) {
+                    isLoading = true
                     Log.d("INF", "is loading")
                     refreshArticles(query, curSort, curFromDate)
                 }
@@ -80,7 +82,8 @@ class MainRecyclerViewAdapter(
         val calendar = Calendar.getInstance()
         calendar.time = cur.pubDate
 
-        holder.view.title.text = cur.title
+        val _title = cutSource(cur.title, '-')
+        holder.view.title.text = _title
         holder.view.desc.text = cur.desc
         holder.view.time.text = getTime(cur.pubDate)
         holder.view.source.text = cur.source.name
@@ -152,9 +155,10 @@ class MainRecyclerViewAdapter(
                     })
             }
             Constants.POP_FEED -> {
-                val ret = apiUtil.getTopHeadlines(BuildConfig.NEWS_KEY, page = pageNum)
+                apiUtil.getTopHeadlines(BuildConfig.NEWS_KEY, page = pageNum)
                     .subscribeOn(Schedulers.newThread())
                     .observeOn(AndroidSchedulers.mainThread())
+                    .doOnComplete { isLoading = false }
                     .subscribe({ t ->
                         articles.addAll(t.articles)
                         Log.d(
@@ -166,14 +170,12 @@ class MainRecyclerViewAdapter(
                     }, { error ->
                         error.message?.let { Log.d("Api Error:", it) }
                     })
-                if (ret.isDisposed) {
-                    isLoading = false
-                }
             }
             Constants.TOPIC_FEED -> {
                 apiUtil.getCategoryHeadlines(BuildConfig.NEWS_KEY, page = pageNum, category = topic)
                     .subscribeOn(Schedulers.newThread())
                     .observeOn(AndroidSchedulers.mainThread())
+                    .doOnComplete { isLoading = false }
                     .subscribe({ t ->
                         articles.addAll(t.articles)
                         Log.d(
@@ -196,6 +198,7 @@ class MainRecyclerViewAdapter(
                 )
                     .subscribeOn(Schedulers.newThread())
                     .observeOn(AndroidSchedulers.mainThread())
+                    .doOnComplete { isLoading = false }
                     .subscribe({ t ->
                         articles.addAll(t.articles)
                         Log.d(
@@ -211,8 +214,22 @@ class MainRecyclerViewAdapter(
         }
     }
 
-    fun clear() {
+    private fun clear() {
         articles.clear()
         notifyDataSetChanged()
+    }
+
+
+    private fun cutSource(title: String?, remove: Char): String {
+        if (title.isNullOrBlank()) return ""
+        val size = title.length
+        for (i in size - 1 downTo 0) {
+            val char = title[i]
+            if (char == remove) {
+                val ret = title.removeRange(i, size)
+                return ret
+            }
+        }
+        return ""
     }
 }

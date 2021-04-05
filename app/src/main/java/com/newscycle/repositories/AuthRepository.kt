@@ -13,16 +13,14 @@ import com.google.firebase.database.FirebaseDatabase
 class AuthRepository(private var application: Application) {
     private val TAG: String = "Login Regis Repo"
     private val database: DatabaseReference = FirebaseDatabase.getInstance().reference
-    private var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
+    var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     private lateinit var firebaseUser: MutableLiveData<FirebaseUser>
-    private var loggedIn: MutableLiveData<Boolean>
+    private var loggingInLiveData: MutableLiveData<Boolean> = MutableLiveData(false)
 
     init {
         firebaseUser = MutableLiveData()
-        loggedIn = MutableLiveData()
         if (firebaseAuth.currentUser != null) {
             firebaseUser.postValue(firebaseAuth.currentUser)
-            loggedIn.postValue(true)
         }
     }
 
@@ -36,7 +34,7 @@ class AuthRepository(private var application: Application) {
                 if (task.isSuccessful) {
                     Log.d(TAG, "signInWithEmail:success")
                     firebaseUser.postValue(user)
-                    loggedIn.postValue(true)
+                    loggingInLiveData.postValue(false)
                 } else {
                     Log.w(TAG, "signInWithEmail:failure", task.exception)
                     Toast.makeText(
@@ -64,7 +62,6 @@ class AuthRepository(private var application: Application) {
                 if (user != null) {
                     firebaseUser.postValue(user)
                     database.child("users").child(user.uid).child("email").setValue(user.email)
-                    loggedIn.postValue(true)
                 }
             } else {
                 Log.w(TAG, "createUserWithEmail:failure", task.exception)
@@ -88,15 +85,14 @@ class AuthRepository(private var application: Application) {
 
     fun logOut() {
         firebaseAuth.signOut()
-        loggedIn.postValue(false)
     }
 
     fun getUserLiveData(): MutableLiveData<FirebaseUser> {
         return firebaseUser
     }
 
-    fun getLoggedOutLiveData(): MutableLiveData<Boolean> {
-        return loggedIn
+    fun getLoggingInLiveData(): MutableLiveData<Boolean> {
+        return loggingInLiveData
     }
 
 }

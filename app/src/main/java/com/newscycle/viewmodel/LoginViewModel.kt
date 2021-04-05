@@ -14,7 +14,6 @@ import com.newscycle.repositories.AuthRepository
 class LoginViewModel(application: Application) : AndroidViewModel(application) {
     private lateinit var login_anim: ObjectAnimator
     private val authRepository: AuthRepository = AuthRepository(application)
-    var loggedInLiveData: MutableLiveData<Boolean> = MutableLiveData()
     var loggingInLiveData: MutableLiveData<Boolean> = MutableLiveData()
     var email: MutableLiveData<String> = MutableLiveData()
     var pass: MutableLiveData<String> = MutableLiveData()
@@ -26,8 +25,8 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
         authRepository.getUserLiveData().observeForever {
             userLiveData.postValue(it)
         }
-        authRepository.getLoggedOutLiveData().observeForever {
-            loggedInLiveData.postValue(it)
+        authRepository.getLoggingInLiveData().observeForever {
+            if (it != loggingInLiveData.value) loggingInLiveData.postValue(it)
         }
     }
 
@@ -35,7 +34,7 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
         loggingInLiveData.value = true
         if (email.isNullOrBlank() || pass.isNullOrBlank()) {
             toastMsg.value = "Please enter your email and password"
-            loggingInLiveData.value = (false)
+            loggingInLiveData.value = false
             return
         }
 
@@ -45,7 +44,6 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
             return
         }
         authRepository.onFireSignIn(email, pass)
-        loggingInLiveData.postValue(false)
     }
 
     fun toRegister(view: View) {
@@ -80,7 +78,6 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun logOut() {
-        loggedInLiveData.postValue(false)
         authRepository.logOut()
     }
 

@@ -21,9 +21,10 @@ class Article : AppCompatActivity() {
         } else {
             Log.d("Article", "No article object in extra")
         }
-
-        article_title.text = article.title
-        article_content.text = article.content
+        val title  = cutSource(article.title, '-')
+        val content = cutSource(article.content, '[')
+        article_title.text =title
+        article_content.text = content
         article_time.text = getTime(article.pubDate)
         Glide.with(this)
             .load(article.image)
@@ -33,6 +34,19 @@ class Article : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         this.finish()
+    }
+
+    fun cutSource(title: String?, remove: Char): String {
+        if(title.isNullOrBlank()) return ""
+        val size = title.length
+        for(i in size-1 downTo 0){
+            val char = title[i]
+            if(char == remove){
+                val ret = title.removeRange(i, size)
+                return ret
+            }
+        }
+        return ""
     }
 
     fun getTime(pubDate: Date?): String {

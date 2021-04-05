@@ -2,6 +2,7 @@ package com.newscycle
 
 import android.animation.ObjectAnimator
 import android.os.Bundle
+import android.util.Log
 import android.view.animation.BounceInterpolator
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -11,10 +12,11 @@ import androidx.lifecycle.ViewModelProvider
 import com.newscycle.databinding.ActivityLoginBinding
 import com.newscycle.viewmodel.LoginViewModel
 import kotlinx.android.synthetic.main.fragment_login.*
+import java.lang.NullPointerException
 
 class Login : AppCompatActivity() {
     lateinit var loginViewModel: LoginViewModel
-    lateinit var loginAnim: ObjectAnimator
+    var loginAnim: ObjectAnimator? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,12 +33,11 @@ class Login : AppCompatActivity() {
         loginViewModel.loggingInLiveData.observe(this, {
             if (it) {
                 loginAnim = createLoginLoading(true)
-                loginAnim.start()
+                loginAnim?.start()
             } else {
-                //if(loginAnim == null) return@observe
-                loginAnim.doOnEnd {
+                loginAnim?.doOnEnd {
                     loginAnim = createLoginLoading(false)
-                    loginAnim.start()
+                    loginAnim?.start()
                 }
             }
         })

@@ -26,11 +26,11 @@ class Login : AppCompatActivity() {
         binding.lifecycleOwner = this
         binding.loginViewModel = loginViewModel
 
-        loginViewModel.toastMsg.observe(this, {
+        loginViewModel.getToastMsgLiveData().observe(this, {
             Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
         })
 
-        loginViewModel.loggingInLiveData.observe(this, {
+        loginViewModel.getLoggingInLiveData().observe(this, {
             if (it) {
                 loginAnim = createLoginLoading(true)
                 loginAnim?.start()

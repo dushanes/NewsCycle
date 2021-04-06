@@ -12,14 +12,13 @@ import com.newscycle.R
 import com.newscycle.repositories.AuthRepository
 
 class LoginViewModel(application: Application) : AndroidViewModel(application) {
-    private lateinit var login_anim: ObjectAnimator
     private val authRepository: AuthRepository = AuthRepository(application)
-    var loggingInLiveData: MutableLiveData<Boolean> = MutableLiveData()
-    var email: MutableLiveData<String> = MutableLiveData()
-    var pass: MutableLiveData<String> = MutableLiveData()
-    var passConfirm: MutableLiveData<String> = MutableLiveData()
-    var userLiveData: MutableLiveData<FirebaseUser> = MutableLiveData()
-    var toastMsg: MutableLiveData<String> = MutableLiveData()
+    private val loggingInLiveData: MutableLiveData<Boolean> = MutableLiveData()
+    private val email: MutableLiveData<String> = MutableLiveData()
+    private val pass: MutableLiveData<String> = MutableLiveData()
+    private val passConfirm: MutableLiveData<String> = MutableLiveData()
+    private val userLiveData: MutableLiveData<FirebaseUser> = MutableLiveData()
+    private val toastMsg: MutableLiveData<String> = MutableLiveData()
 
     init {
         authRepository.getUserLiveData().observeForever {
@@ -75,6 +74,14 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
         } else {
             authRepository.fireRegis(email, pass)
         }
+    }
+
+    fun getToastMsgLiveData():MutableLiveData<String>{
+        return toastMsg
+    }
+
+    fun getLoggingInLiveData():MutableLiveData<Boolean>{
+        return loggingInLiveData
     }
 
     fun logOut() {

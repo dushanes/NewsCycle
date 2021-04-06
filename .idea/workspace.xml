@@ -15,49 +15,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0b7b1a91-767f-4e70-8dbe-7bfc5839c72a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/build/generated/res/google-services/debug/values/values.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/build/generated/source/buildConfig/debug/com/newscycle/BuildConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/build/generated/source/kapt/debug/androidx/databinding/DataBinderMapperImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/build/generated/source/kapt/debug/androidx/databinding/DataBindingComponent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/build/generated/source/kapt/debug/androidx/databinding/library/baseAdapters/BR.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/build/generated/source/kapt/debug/com/newscycle/BR.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/build/generated/source/kapt/debug/com/newscycle/DataBinderMapperImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/build/generated/source/kapt/debug/com/newscycle/api/ArticleModelJsonAdapter.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/build/generated/source/kapt/debug/com/newscycle/api/ResultsJsonAdapter.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/build/generated/source/kapt/debug/com/newscycle/api/SourceJsonAdapter.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/build/generated/source/kapt/debug/com/newscycle/api/SourcesModelJsonAdapter.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/build/generated/source/kapt/debug/com/newscycle/api/SourcesResultsJsonAdapter.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/build/generated/source/kapt/debug/com/newscycle/databinding/ActivityLoginBindingImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/build/generated/source/kapt/debug/com/newscycle/databinding/FragmentLoginBindingImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/build/generated/source/kapt/debug/com/newscycle/databinding/FragmentNewUserBindingImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/build/generated/source/kapt/debug/com/newscycle/generated/callback/OnClickListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/jarAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/taskHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_2_3_1_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_ktx_2_3_1_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/app/NewsCycle.app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/NewsCycle.app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/newscycle/Article.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/newscycle/Article.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/newscycle/Login.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/newscycle/Login.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/newscycle/MainRecyclerViewAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/newscycle/MainRecyclerViewAdapter.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/newscycle/api/ApiUtilities.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/newscycle/api/ApiUtilities.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/newscycle/api/NewsApi.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/newscycle/api/NewsApi.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/newscycle/repositories/AuthRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/newscycle/repositories/AuthRepository.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/newscycle/viewmodel/LoginViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/newscycle/viewmodel/LoginViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/article_card.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/article_card.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_recyclerview.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_recyclerview.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[196e1b05]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -574,11 +548,11 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2594" y="95" width="959" height="849" key="find.popup/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1617506824566" />
-    <state width="587" height="204" key="javadoc.popup.new" timestamp="1617655145046">
+    <state width="587" height="204" key="javadoc.popup.new" timestamp="1617673763262">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state width="587" height="224" key="javadoc.popup.new/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1610050662409" />
-    <state width="587" height="204" key="javadoc.popup.new/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1617655145046" />
+    <state width="587" height="204" key="javadoc.popup.new/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1617673763262" />
     <state width="587" height="224" key="javadoc.popup.new/0.0.1920.1040@0.0.1920.1040" timestamp="1617228327611" />
     <state x="2435" y="238" width="672" height="677" key="run.anything.popup" timestamp="1609958705135">
       <screen x="1920" y="0" width="1920" height="1040" />
@@ -604,7 +578,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/newscycle/viewmodel/LoginViewModel.kt</url>
-          <line>54</line>
+          <line>53</line>
           <option name="timeStamp" value="22" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-line">

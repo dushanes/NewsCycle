@@ -69,8 +69,22 @@ object ApiUtilities : NewsApi {
         )
     }
 
-    //sortBY
-
+    override fun searchTopic(
+        api_key: String,
+        q: String,
+        pageSize: Int,
+        page: Int,
+        fromDate: String,
+        sortBy: String,
+        language: String
+    ): Observable<Results> {
+        return newsApi.searchTopic(
+            q = URLEncoder.encode(q),
+            page = page,
+            fromDate = getTime1806(fromDate),
+            sortBy = sortBy
+        )
+    }
 
     private fun getTime1806(comp: String): String {
         if(comp.isNullOrBlank()) return  ""
@@ -93,22 +107,5 @@ object ApiUtilities : NewsApi {
         val formattedDate: String =
             SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ", Locale.ENGLISH).format(date)
         return formattedDate
-    }
-
-    override fun searchTopic(
-        api_key: String,
-        q: String,
-        pageSize: Int,
-        page: Int,
-        fromDate: String,
-        sortBy: String,
-        language: String
-    ): Observable<Results> {
-        return newsApi.searchTopic(
-            q = URLEncoder.encode(q),
-            page = page,
-            fromDate = getTime1806(fromDate),
-            sortBy = sortBy
-        )
     }
 }

@@ -13,12 +13,11 @@ import com.google.firebase.database.FirebaseDatabase
 class AuthRepository(private var application: Application) {
     private val TAG: String = "Login Regis Repo"
     private val database: DatabaseReference = FirebaseDatabase.getInstance().reference
-    var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
-    private lateinit var firebaseUser: MutableLiveData<FirebaseUser>
-    private var loggingInLiveData: MutableLiveData<Boolean> = MutableLiveData(false)
+    private val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
+    private val firebaseUser: MutableLiveData<FirebaseUser> = MutableLiveData()
+    private val loggingInLiveData: MutableLiveData<Boolean> = MutableLiveData(false)
 
     init {
-        firebaseUser = MutableLiveData()
         if (firebaseAuth.currentUser != null) {
             firebaseUser.postValue(firebaseAuth.currentUser)
         }

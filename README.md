@@ -1,5 +1,5 @@
 # NewsCycle
-News Browsing Android App |  Download the news-cycle.apk to check it out
+News Browsing Android App
 
 ## Welcome to NewsCycle! 
 Written in **Kotlin**

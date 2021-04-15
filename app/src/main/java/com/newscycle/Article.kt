@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
-import com.newscycle.api.ArticleModel
+import com.newscycle.data.models.ArticleModel
 import kotlinx.android.synthetic.main.activity_article.*
 import java.text.SimpleDateFormat
 import java.util.*

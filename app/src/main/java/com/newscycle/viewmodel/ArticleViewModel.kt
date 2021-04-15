@@ -5,12 +5,40 @@ import androidx.lifecycle.ViewModel
 import java.util.*
 
 class ArticleViewModel: ViewModel() {
-    var titleLiveData: MutableLiveData<String> = MutableLiveData()
-    var sourceLiveData: MutableLiveData<String> = MutableLiveData()
-    var authorLiveData: MutableLiveData<String> = MutableLiveData()
-    var descLiveData: MutableLiveData<String> = MutableLiveData()
-    var urlLiveData: MutableLiveData<String> = MutableLiveData()
-    var imageLiveData: MutableLiveData<String> = MutableLiveData()
-    var DateLiveData: MutableLiveData<Date> = MutableLiveData()
-    var contentLiveData: MutableLiveData<String> = MutableLiveData()
+    private val titleLiveData: MutableLiveData<String> = MutableLiveData()
+    private val sourceLiveData: MutableLiveData<String> = MutableLiveData()
+    private val authorLiveData: MutableLiveData<String> = MutableLiveData()
+    private val descriptionLiveData: MutableLiveData<String> = MutableLiveData()
+    private val urlLiveData: MutableLiveData<String> = MutableLiveData()
+    private val imageLiveData: MutableLiveData<String> = MutableLiveData()
+    private val dateLiveData: MutableLiveData<Date> = MutableLiveData()
+    private val contentLiveData: MutableLiveData<String> = MutableLiveData()
+
+    fun getTitleLiveData(): MutableLiveData<String>{
+        return titleLiveData
+    }
+
+    fun getSourceLiveData(): MutableLiveData<String>{
+        return sourceLiveData
+    }
+
+    fun getAuthorLiveData(): MutableLiveData<String> {
+        return authorLiveData
+    }
+
+    fun getDescriptionLiveData(): MutableLiveData<String>{
+        return descriptionLiveData
+    }
+
+    fun getImageLiveData(): MutableLiveData<String>{
+        return imageLiveData
+    }
+
+    fun getDateLiveData(): MutableLiveData<Date>{
+        return dateLiveData
+    }
+
+    fun getContentLiveData(): MutableLiveData<String>{
+        return contentLiveData
+    }
 }

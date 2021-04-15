@@ -1,6 +1,5 @@
 package com.newscycle.viewmodel
 
-import android.animation.ObjectAnimator
 import android.app.Application
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -9,16 +8,17 @@ import androidx.lifecycle.MutableLiveData
 import androidx.navigation.findNavController
 import com.google.firebase.auth.FirebaseUser
 import com.newscycle.R
-import com.newscycle.repositories.AuthRepository
+import com.newscycle.data.AuthRepository
 
 class LoginViewModel(application: Application) : AndroidViewModel(application) {
     private val authRepository: AuthRepository = AuthRepository(application)
     private val loggingInLiveData: MutableLiveData<Boolean> = MutableLiveData()
-    private val email: MutableLiveData<String> = MutableLiveData()
-    private val pass: MutableLiveData<String> = MutableLiveData()
-    private val passConfirm: MutableLiveData<String> = MutableLiveData()
     private val userLiveData: MutableLiveData<FirebaseUser> = MutableLiveData()
+    val email: MutableLiveData<String> = MutableLiveData()
+    val pass: MutableLiveData<String> = MutableLiveData()
+    val passConfirm: MutableLiveData<String> = MutableLiveData()
     private val toastMsg: MutableLiveData<String> = MutableLiveData()
+    private val errorMsg: String = "Email or Password is not valid"
 
     init {
         authRepository.getUserLiveData().observeForever {
@@ -31,17 +31,13 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
 
     fun login(email: String?, pass: String?) {
         loggingInLiveData.value = true
-        if (email.isNullOrBlank() || pass.isNullOrBlank()) {
-            toastMsg.value = "Please enter your email and password"
+
+        if (email.isNullOrBlank() || pass.isNullOrBlank()  || !isEmailValid(email)) {
+            toastMsg.postValue(errorMsg)
             loggingInLiveData.value = false
             return
         }
 
-        if (!isEmailValid((email))) {
-            toastMsg.postValue("Please enter a valid email")
-            loggingInLiveData.postValue(false)
-            return
-        }
         authRepository.onFireSignIn(email, pass)
     }
 
@@ -51,20 +47,20 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun forgotPassword(email: String?) {
-        if (email.isNullOrBlank()) {
+        if (email.isNullOrBlank() || !isEmailValid(email)) {
             toastMsg.postValue("Please enter your email and try again")
             return
         }
-        if (!isEmailValid(email)) return
         authRepository.forgotPassword(email)
         toastMsg.postValue("Email Sent")
     }
 
     fun register(email: String?, pass: String?, confirm: String?) {
         if (email.isNullOrBlank() || pass.isNullOrBlank() || confirm.isNullOrBlank()) {
-            toastMsg.postValue("Please enter a username and password.")
+            toastMsg.postValue(errorMsg)
             return
-        } else if (!isEmailValid(email)) {
+        }
+        if (!isEmailValid(email)) {
             toastMsg.postValue("Please enter a valid email.")
             return
         }
@@ -74,6 +70,10 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
         } else {
             authRepository.fireRegis(email, pass)
         }
+    }
+
+    fun getUserLiveData(): MutableLiveData<FirebaseUser> {
+        return userLiveData
     }
 
     fun getToastMsgLiveData():MutableLiveData<String>{

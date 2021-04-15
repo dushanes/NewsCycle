@@ -1,7 +1,6 @@
 package com.newscycle.fragment
 
 //import com.newscycle.FragmentListener
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,20 +13,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.newscycle.Constants
-import com.newscycle.MainRecyclerViewAdapter
+import com.newscycle.Feed
 import com.newscycle.R
+import com.newscycle.adapters.MainRecyclerViewAdapter
 import kotlinx.android.synthetic.main.fragment_categories.*
 
-class CategoriesFragment(val activityContext: Context) : Fragment() {
-    private val values = arrayOf(
-        "BUSINESS",
-        "ENTERTAINMENT",
-        "GENERAL",
-        "HEALTH",
-        "SCIENCE",
-        "SPORTS",
-        "TECHNOLOGY"
-    )
+class CategoriesFragment : Fragment() {
+
     private val linearLayoutManager: LinearLayoutManager = LinearLayoutManager(context)
     private lateinit var recyclerViewAdapter: MainRecyclerViewAdapter
     private val cropOptions: RequestOptions = RequestOptions.centerCropTransform()
@@ -48,19 +40,21 @@ class CategoriesFragment(val activityContext: Context) : Fragment() {
     }
 
     private fun setupGridView() {
-        Log.d(Constants.CAT_FEED, "Setting up recycler view")
+        Log.d("Category Menu", "Setting up recycler view")
 
         category_grid.adapter = object :
             ArrayAdapter<String?>(
-                activityContext,
+                context,
                 R.layout.category_card,
                 R.id.category_text,
-                values
+                Constants.values
             ) {
             override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
                 val view = super.getView(position, convertView, parent)
                 var background = resources.getDrawable(R.drawable.clip_img_business)
+
                 Log.d("GridView", "View Created with background: $background")
+
                 when (position) {
                     0 -> background = resources.getDrawable(R.drawable.clip_img_business, null)
                     1 -> background = resources.getDrawable(R.drawable.clip_img_entertain, null)
@@ -70,7 +64,7 @@ class CategoriesFragment(val activityContext: Context) : Fragment() {
                     5 -> background = resources.getDrawable(R.drawable.clip_img_sports, null)
                     6 -> background = resources.getDrawable(R.drawable.clip_img_tech, null)
                 }
-                Glide.with(activityContext)
+                Glide.with(context)
                     .load(background)
                     .apply(cropOptions)
                     .into(view.findViewById(R.id.categ_card_img))
@@ -87,11 +81,10 @@ class CategoriesFragment(val activityContext: Context) : Fragment() {
             Log.d("Grid item", "Button has been clicked")
             category_grid.visibility = View.GONE
             recyclerViewAdapter = MainRecyclerViewAdapter(
-                activityContext,
-                Constants.TOPIC_FEED,
+                Feed.TOPIC_FEED,
                 categ_recycler_view,
                 linearLayoutManager,
-                values[pos]
+                Constants.values[pos]
             )
             categ_recycler_view.layoutManager = linearLayoutManager
             categ_recycler_view.adapter = recyclerViewAdapter

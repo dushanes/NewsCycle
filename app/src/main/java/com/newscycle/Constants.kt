@@ -1,12 +1,21 @@
 package com.newscycle
 
+enum class Feed{
+    MY_FEED, POP_FEED, TOPIC_FEED, SEARCH_FEED;
+
+    override fun toString(): String {
+        return when(this.name){
+            "MY_FEED"-> "Main Feed"
+            "POP_FEED"-> "Popular Feed"
+            "TOPIC_FEED"-> "Topic Feed"
+            "SEARCH_FEED"-> "Search Feed"
+
+            else -> ""
+        }
+    }}
+
 object Constants {
     val NEWS_KEY = BuildConfig.NEWS_KEY
-    val MY_FEED = "MY_FEED"
-    val POP_FEED = "POP_FEED"
-    val CAT_FEED = "CAT_FEED"
-    val TOPIC_FEED = "TOPIC_FEED"
-    val SEARCH_FEED = "SEARCH_FEED"
     val HOME = "HOME"
     val SORT_RELEVANT = "relevancy"
     val SORT_RECENT = "RECENT"
@@ -14,6 +23,15 @@ object Constants {
     val DATE_TODAY = "TODAY"
     val DATE_WEEK = "WEEK"
     val DATE_MONTH = "MONTH"
+    val values = arrayOf(
+        "BUSINESS",
+        "ENTERTAINMENT",
+        "GENERAL",
+        "HEALTH",
+        "SCIENCE",
+        "SPORTS",
+        "TECHNOLOGY"
+    )
     val general = arrayOf(
         "ABC News",
         "ABC News (AU)",

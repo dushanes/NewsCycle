@@ -1,6 +1,5 @@
 package com.newscycle.fragment
 
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -10,12 +9,12 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.textfield.TextInputEditText
-import com.newscycle.Constants
-import com.newscycle.MainRecyclerViewAdapter
+import com.newscycle.Feed
 import com.newscycle.R
+import com.newscycle.adapters.MainRecyclerViewAdapter
 import kotlinx.android.synthetic.main.fragment_search.*
 
-class SearchFragment(val activityContext: Context) : Fragment() {
+class SearchFragment : Fragment() {
     private lateinit var recyclerViewAdapter: MainRecyclerViewAdapter
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var adapter: MainRecyclerViewAdapter
@@ -61,15 +60,15 @@ class SearchFragment(val activityContext: Context) : Fragment() {
     }
 
     fun initSearch() {
-        (search as TextInputEditText).setOnEditorActionListener(TextView.OnEditorActionListener { _, actionId, event ->
+        (search as TextInputEditText).setOnEditorActionListener(TextView.OnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 val query = search.text.toString()
                 var sortBy: String = sort_by_edit_text.text.toString()
-                when (sortBy) {
-                    "Relevance" -> sortBy = "relevancy"
-                    "Popularity" -> sortBy = "popularity"
-                    "Recent" -> sortBy = "publishedAt"
-                    else -> sortBy = "publishedAt"
+                sortBy = when (sortBy) {
+                    "Relevance" -> "relevancy"
+                    "Popularity" -> "popularity"
+                    "Recent" -> "publishedAt"
+                    else -> "publishedAt"
                 }
                 val fromDate = from_date_edit_text.text.toString()
                 adapter.getQuery(query, sortBy, fromDate)
@@ -85,8 +84,7 @@ class SearchFragment(val activityContext: Context) : Fragment() {
         val recView = v.findViewById<RecyclerView>(R.id.search_recyclerview)
         linearLayoutManager = LinearLayoutManager(context)
         recyclerViewAdapter = MainRecyclerViewAdapter(
-            activityContext,
-            Constants.SEARCH_FEED,
+            Feed.SEARCH_FEED,
             recView,
             linearLayoutManager,
             ""

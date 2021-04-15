@@ -2,7 +2,6 @@ package com.newscycle
 
 import android.animation.ObjectAnimator
 import android.os.Bundle
-import android.util.Log
 import android.view.animation.BounceInterpolator
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -12,7 +11,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.newscycle.databinding.ActivityLoginBinding
 import com.newscycle.viewmodel.LoginViewModel
 import kotlinx.android.synthetic.main.fragment_login.*
-import java.lang.NullPointerException
 
 class Login : AppCompatActivity() {
     lateinit var loginViewModel: LoginViewModel

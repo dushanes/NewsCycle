@@ -1,6 +1,5 @@
 package com.newscycle.fragment
 
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,18 +8,16 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.newscycle.Constants
-import com.newscycle.MainRecyclerViewAdapter
+import com.newscycle.Feed
 import com.newscycle.R
+import com.newscycle.adapters.MainRecyclerViewAdapter
 
 class TopicFragment(
-    activityContext: Context,
     topic: String,
     val mTopic: String
 ) : Fragment() {
     private lateinit var recyclerViewAdapter: MainRecyclerViewAdapter
     private lateinit var linearLayoutManager: LinearLayoutManager
-    val mContext = activityContext
     private val TAG = "Topic Fragment"
 
 
@@ -39,8 +36,7 @@ class TopicFragment(
         linearLayoutManager = LinearLayoutManager(context)
         val recView = v.findViewById<RecyclerView>(R.id.recycler_view)
         recyclerViewAdapter = MainRecyclerViewAdapter(
-            mContext,
-            Constants.TOPIC_FEED,
+            Feed.TOPIC_FEED,
             recView,
             linearLayoutManager,
             mTopic

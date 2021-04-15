@@ -26,7 +26,7 @@ class LoginFragment : Fragment() {
                     .navigate(R.id.action_loginFragment_to_home)
             }
         }
-        loginViewModel.userLiveData.observe(requireActivity(), loginObserver)
+        loginViewModel.getUserLiveData().observe(requireActivity(), loginObserver)
     }
 
     override fun onCreateView(
@@ -38,7 +38,6 @@ class LoginFragment : Fragment() {
             DataBindingUtil.inflate(layoutInflater, R.layout.fragment_login, container, false)
         binding.lifecycleOwner = this
         binding.loginViewModel = loginViewModel
-        binding.executePendingBindings()
         return binding.root
     }
 }

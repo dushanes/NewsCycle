@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.google.firebase.auth.FirebaseUser
 import com.newscycle.R
-import com.newscycle.databinding.FragmentNewUserBinding
+import com.newscycle.databinding.FragmentRegisterBinding
 import com.newscycle.viewmodel.LoginViewModel
 
 
@@ -29,8 +29,8 @@ class RegisterFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding: FragmentNewUserBinding =
-            DataBindingUtil.inflate(layoutInflater, R.layout.fragment_new_user, container, false)
+        val binding: FragmentRegisterBinding =
+            DataBindingUtil.inflate(layoutInflater, R.layout.fragment_register, container, false)
         binding.lifecycleOwner = this
         binding.loginViewModel = loginViewModel
         return binding.root
@@ -44,7 +44,7 @@ class RegisterFragment : Fragment() {
                     .navigate(R.id.action_registerFragment_to_home)
             }
         }
-        loginViewModel.userLiveData.observe(requireActivity(), loginObserver)
+        loginViewModel.getUserLiveData().observe(requireActivity(), loginObserver)
     }
 
 }

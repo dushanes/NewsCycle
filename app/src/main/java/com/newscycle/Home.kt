@@ -18,6 +18,7 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
 import com.newscycle.fragment.*
+import com.newscycle.util.ZoomOutPageTransformer
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.drawer_header.*
 import kotlinx.android.synthetic.main.fragment_categories.*
@@ -136,10 +137,10 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
     inner class ViewPagerAdapter(fm: FragmentManager) : FragmentStateAdapter(fm, lifecycle) {
         override fun createFragment(position: Int): Fragment {
             return when (position) {
-                0 -> PopularFragment(this@Home)
-                1 -> CategoriesFragment(this@Home)
-                2 -> SearchFragment(this@Home)
-                else -> PopularFragment(this@Home)
+                0 -> PopularFragment()
+                1 -> CategoriesFragment()
+                2 -> SearchFragment()
+                else -> PopularFragment()
             }
         }
 

@@ -1,5 +1,8 @@
 package com.newscycle.api
 
+import com.newscycle.data.models.ArticleModel
+import com.newscycle.data.models.Results
+import com.newscycle.data.models.SourcesResult
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
@@ -41,7 +44,7 @@ object ApiUtilities : NewsApi {
         api_key: String,
         category: String,
         language: String
-    ): Single<SourcesResults> {
+    ): Single<SourcesResult> {
         return newsApi.getSources(category = category, language = "en")
     }
 

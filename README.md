@@ -4,7 +4,10 @@ News Browsing Android App
 ## Welcome to NewsCycle! 
 Written in **Kotlin**
 
-**Utilized Android X**
+**MVVM Architecture**
+- LiveData & DataBinding
+- Retrofit, RxJava, Moshi
+- Pager3
 
 The purpose of this project is to display my general knowledge of app development up to now. I present it in hopes of gaining more experience and knowledge through employment.
 This Android App is used to browse the news, focusing on what is highest interest rather than some algorithm, users are able to scroll through Top Headlines quickly, or browse by category, and if a user is looking for something more specific users my search articles and narrow down their results.
@@ -15,8 +18,6 @@ This Android App is used to browse the news, focusing on what is highest interes
 
 - Homepage design
 
-- Infinite scroll
-
 - **Utilized Retrofit, Moshi, and RxJava** in combination to simplify making api calls, and processing the JSON recieved for various circumstances. Aswell as used the Glide library to frame images.
 
 - Page of Top Headlines
@@ -26,8 +27,6 @@ This Android App is used to browse the news, focusing on what is highest interes
 - Page for searching articles
 
 - Side Bar menu opened through custom toolbar
-
-- From scratch cardviews populated with database information
 
 - **Custom CardViews**
 

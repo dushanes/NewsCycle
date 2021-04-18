@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="article"
+            type="com.newscycle.data.models.ArticleModel" />
+        <variable
+            name="articleViewModel"
+            type="com.newscycle.viewmodel.ArticleViewModel" />
+    </data>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cardView"
@@ -24,7 +33,6 @@
             android:fontFamily="@font/open_sans_semi_bold"
             android:layout_margin="8dp"
             android:padding="4dp"
-            android:text="Title"
             android:textColor="@color/black"
             android:textAlignment="center"
             app:layout_constraintTop_toTopOf="parent"
@@ -47,6 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:textSize="14.5sp"
+            android:text="@{article.desc}"
             android:maxHeight="115dp"
             android:maxLines="6"
             android:padding="2dp"
@@ -67,7 +76,6 @@
             android:fontFamily="@font/open_sans_light"
             android:padding="2dp"
             android:layout_margin="6dp"
-            android:text="23 hours ago"
             android:textColor="@color/text_off_white"
             android:textSize="13sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -79,6 +87,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="2dp"
             android:fontFamily="@font/open_sans_light"
+            android:text="@{article.source.name}"
             android:padding="2dp"
             android:layout_margin="6dp"
             android:textColor="@color/text_off_white"
@@ -88,6 +97,7 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
+</layout>
 
 
 

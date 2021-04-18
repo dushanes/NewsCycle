@@ -41,4 +41,7 @@ class ArticleViewModel: ViewModel() {
     fun getContentLiveData(): MutableLiveData<String>{
         return contentLiveData
     }
+
+
+
 }

@@ -1,106 +1,33 @@
 package com.newscycle.data
 
-import android.annotation.SuppressLint
-import com.newscycle.BuildConfig
+import androidx.lifecycle.MutableLiveData
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.rxjava3.flowable
 import com.newscycle.Feed
 import com.newscycle.api.ApiUtilities
+import com.newscycle.data.models.ArticleModel
 import com.newscycle.data.models.Results
-import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
+import io.reactivex.rxjava3.core.Flowable
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
-class ArticleListRepository(topic: String, sortBy: String, fromDate: String, private val FEED_TAG: Feed) {
-    private val articleListLiveData: Observable<Results> = refreshArticles(topic, sortBy, fromDate)
+class ArticleListRepository(private val FEED_TAG: Feed) {
+    private val articleListLiveData: MutableLiveData<Results> = MutableLiveData()
     private val apiUtil: ApiUtilities by lazy { ApiUtilities }
-    private var pageNum = 1
-    private var isLoading: Boolean = false
-    private var curSort: String = ""
-    private var curFromDate: String = ""
 
-    @SuppressLint("CheckResult")
-    fun refreshArticles(topic: String, sortBy: String = "", fromDate: String = ""): Observable<Results> {
-        return when (FEED_TAG) {
-            Feed.MY_FEED -> {
-                apiUtil.getCategoryHeadlines(
-                    api_key = BuildConfig.NEWS_KEY,
-                    page = pageNum,
-                    category = "general"
-                )
-                    .subscribeOn(Schedulers.newThread())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .doOnNext { pageNum++ }
-                    /*.subscribe({ t ->
-                        articleListLiveData.postValue()
-                        Log.d(
-                            Constants.MY_FEED,
-                            "Successful response, page $pageNum returned, Total articles: ${articles.size}"
-                        )
-                        pageNum++
-                    }, { error ->
-                        Log.d("Api Error:", error.message.toString())
-                    })*/
-            }
-            Feed.POP_FEED -> {
-                apiUtil.getTopHeadlines(BuildConfig.NEWS_KEY, page = pageNum)
-                    .subscribeOn(Schedulers.newThread())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .doOnNext { pageNum++ }
-                    .doOnComplete { isLoading = false }
-                    /*.subscribe({ t ->
-                        articles.addAll(t.articles)
-                        Log.d(
-                            Constants.POP_FEED,
-                            "Successful response, page $pageNum returned, Total articles: ${articles.size}"
-                        )
-                        pageNum++
-                    }, { error ->
-                        error.message?.let { Log.d("Api Error:", it) }
-                    })*/
-            }
-            Feed.TOPIC_FEED -> {
-                apiUtil.getCategoryHeadlines(BuildConfig.NEWS_KEY, page = pageNum, category = topic)
-                    .subscribeOn(Schedulers.newThread())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .doOnNext { pageNum++ }
-                    .doOnComplete { isLoading = false }
-                    /*.subscribe({ t ->
-                        articles.addAll(t.articles)
-                        Log.d(
-                            Constants.TOPIC_FEED,
-                            "Successful response, page $pageNum returned, Total articles: ${articles.size}"
-                        )
-                        pageNum++
-                    }, { error ->
-                        error.message?.let { Log.d("Api Error:", it) }
-                    })*/
-            }
-            Feed.SEARCH_FEED -> {
-                apiUtil.searchTopic(
-                    BuildConfig.NEWS_KEY,
-                    page = pageNum,
-                    q = topic,
-                    fromDate = fromDate,
-                    sortBy = sortBy
-                )
-                    .subscribeOn(Schedulers.newThread())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .doOnNext { pageNum++ }
-                    .doOnComplete { isLoading = false }
-                    /*.subscribe({ t ->
-                        articles.addAll(t.articles)
-                        Log.d(
-                            Constants.SEARCH_FEED,
-                            "Successful response, page $pageNum returned, Total articles: ${articles.size}"
-                        )
-                        pageNum++
-                    }, { error ->
-                        error.message?.let { Log.d("Api Error:", it) }
-                    })*/
-            }
-        }
+    @ExperimentalCoroutinesApi
+    fun getArticles(query: String, fromDate: String, sortBy: String): Flowable<PagingData<ArticleModel>> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = 10,
+                initialLoadSize = 10
+            ),
+            pagingSourceFactory = { ArticlePagingSource(query, sortBy, fromDate, FEED_TAG) }
+        ).flowable
     }
 
-    fun getArticleListLiveData(): Observable<Results>{
+    fun getArticleListLiveData(): MutableLiveData<Results> {
         return articleListLiveData
     }
 }

@@ -3,8 +3,7 @@ package com.newscycle.api
 import com.newscycle.BuildConfig
 import com.newscycle.data.models.Results
 import com.newscycle.data.models.SourcesResult
-import io.reactivex.Observable
-import io.reactivex.Single
+import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -24,7 +23,7 @@ interface NewsApi {
         @Query("pageSize") pageSize: Int = 10,
         @Query("country") country: String = "us"
     )
-            : Observable< Results>
+            : Single< Results>
 
     @GET("/v2/top-headlines")
     fun getCategoryHeadlines(
@@ -34,17 +33,17 @@ interface NewsApi {
         @Query("pageSize") pageSize: Int = 10,
         @Query("country") country: String = "us"
     )
-            : Observable<Results>
+            : Single<Results>
 
     @GET("/v2/everything")
     fun searchTopic(
         @Query("apiKey") api_key: String = BuildConfig.NEWS_KEY,
-        @Query("q") q: String,
+        @Query("qInTitle") q: String,
         @Query("pageSize") pageSize: Int = 10,
         @Query("page") page: Int,
         @Query("from") fromDate: String,
         @Query("sortBy") sortBy: String = "PublishedAt",
         @Query("language") language: String = "en"
     )
-            : Observable<Results>
+            : Single<Results>
 }

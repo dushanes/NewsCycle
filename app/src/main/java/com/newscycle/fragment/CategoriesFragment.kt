@@ -7,90 +7,63 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
-import android.widget.ArrayAdapter
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.newscycle.Constants
 import com.newscycle.Feed
 import com.newscycle.R
-import com.newscycle.adapters.MainRecyclerViewAdapter
-import kotlinx.android.synthetic.main.fragment_categories.*
+import com.newscycle.adapters.ArticlesListPagingAdapter
+import com.newscycle.adapters.CategoryGridAdapter
+import com.newscycle.databinding.FragmentCategoriesBinding
+import com.newscycle.viewmodel.ArticleListViewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
-class CategoriesFragment : Fragment() {
+class CategoriesFragment(fm: FragmentManager) : Fragment() {
+    private val articleListViewModel: ArticleListViewModel = ArticleListViewModel(Feed.TOPIC_FEED)
+    private val articlesListPagingAdapter: ArticlesListPagingAdapter = ArticlesListPagingAdapter(fm)
+    private val linearLayoutManager: LinearLayoutManager  = LinearLayoutManager(context)
 
-    private val linearLayoutManager: LinearLayoutManager = LinearLayoutManager(context)
-    private lateinit var recyclerViewAdapter: MainRecyclerViewAdapter
-    private val cropOptions: RequestOptions = RequestOptions.centerCropTransform()
 
-
+    @ExperimentalCoroutinesApi
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val v = inflater.inflate(R.layout.fragment_categories, container, false)
-        return v
+    ): View {
+        val binding: FragmentCategoriesBinding = DataBindingUtil.inflate(layoutInflater, R.layout.fragment_categories, container, false)
+        setupGridView(binding)
+        return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        setupGridView()
-    }
-
-    private fun setupGridView() {
+    @ExperimentalCoroutinesApi
+    private fun setupGridView(binding: FragmentCategoriesBinding) {
         Log.d("Category Menu", "Setting up recycler view")
 
-        category_grid.adapter = object :
-            ArrayAdapter<String?>(
-                context,
+        binding.categoryGrid.adapter = context?.let {
+            CategoryGridAdapter(
+                it,
                 R.layout.category_card,
                 R.id.category_text,
                 Constants.values
-            ) {
-            override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-                val view = super.getView(position, convertView, parent)
-                var background = resources.getDrawable(R.drawable.clip_img_business)
-
-                Log.d("GridView", "View Created with background: $background")
-
-                when (position) {
-                    0 -> background = resources.getDrawable(R.drawable.clip_img_business, null)
-                    1 -> background = resources.getDrawable(R.drawable.clip_img_entertain, null)
-                    2 -> background = resources.getDrawable(R.drawable.clip_img_general, null)
-                    3 -> background = resources.getDrawable(R.drawable.clip_img_health, null)
-                    4 -> background = resources.getDrawable(R.drawable.clip_img_science, null)
-                    5 -> background = resources.getDrawable(R.drawable.clip_img_sports, null)
-                    6 -> background = resources.getDrawable(R.drawable.clip_img_tech, null)
-                }
-                Glide.with(context)
-                    .load(background)
-                    .apply(cropOptions)
-                    .into(view.findViewById(R.id.categ_card_img))
-                //Log.d("Radius", "" + view.findViewById<CardView>(R.id.categ_card).radius)
-
-                return view
-            }
+            )
         }
 
-        category_grid.setOnItemClickListener { _: AdapterView<*>?,
+        binding.categoryGrid.setOnItemClickListener { _: AdapterView<*>?,
                                                view: View?,
                                                pos: Int,
                                                id: Long ->
             Log.d("Grid item", "Button has been clicked")
-            category_grid.visibility = View.GONE
-            recyclerViewAdapter = MainRecyclerViewAdapter(
-                Feed.TOPIC_FEED,
-                categ_recycler_view,
-                linearLayoutManager,
-                Constants.values[pos]
-            )
-            categ_recycler_view.layoutManager = linearLayoutManager
-            categ_recycler_view.adapter = recyclerViewAdapter
-            categ_recycler_view.visibility = View.VISIBLE
-            //adapterInterface.getQuery(view?.findViewById<TextView>(R.id.category_text)?.text.toString())
+            binding.categoryGrid.visibility = View.GONE
+            binding.categoryRecyclerView.layoutManager = linearLayoutManager
+            binding.categoryRecyclerView.adapter = articlesListPagingAdapter
+            binding.categoryRecyclerView.visibility = View.VISIBLE
+            articleListViewModel.getArticles(Constants.values[pos]).subscribe{
+                articlesListPagingAdapter.submitData(lifecycle, it)
+            }
         }
     }
+
 }
 

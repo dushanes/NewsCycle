@@ -5,41 +5,43 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.newscycle.Feed
 import com.newscycle.R
-import com.newscycle.adapters.MainRecyclerViewAdapter
+import com.newscycle.adapters.ArticlesListPagingAdapter
+import com.newscycle.databinding.FragmentRecyclerviewBinding
+import com.newscycle.viewmodel.ArticleListViewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 
-class PopularFragment : Fragment() {
-    private lateinit var recyclerViewAdapter: MainRecyclerViewAdapter
-    private lateinit var linearLayoutManager: LinearLayoutManager
+class PopularFragment(fm: FragmentManager) : Fragment() {
+    private val articleListViewModel: ArticleListViewModel = ArticleListViewModel(Feed.POP_FEED)
+    private val articlesListPagingAdapter: ArticlesListPagingAdapter = ArticlesListPagingAdapter(fm)
+    private val linearLayoutManager: LinearLayoutManager  = LinearLayoutManager(context)
     private val TAG = "Popular Fragment"
 
 
+    @ExperimentalCoroutinesApi
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val v = inflater.inflate(R.layout.fragment_recyclerview, container, false)
-        setupRecyclerView(v)
-        return v
+    ): View {
+        val binding: FragmentRecyclerviewBinding = DataBindingUtil.inflate(layoutInflater, R.layout.fragment_recyclerview, container, false)
+        setupRecyclerView(binding)
+        return binding.root
     }
 
-    private fun setupRecyclerView(v: View) {
+    @ExperimentalCoroutinesApi
+    private fun setupRecyclerView(binding: FragmentRecyclerviewBinding) {
         Log.d(TAG, "Setting up recycler view")
-        val recView = v.findViewById<RecyclerView>(R.id.recycler_view)
-        linearLayoutManager = LinearLayoutManager(context)
-        recyclerViewAdapter = MainRecyclerViewAdapter(
-            Feed.POP_FEED,
-            recView,
-            linearLayoutManager,
-            ""
-        )
-        recView.layoutManager = linearLayoutManager
-        recView.adapter = recyclerViewAdapter
+        binding.recyclerView.layoutManager = linearLayoutManager
+        binding.recyclerView.adapter = articlesListPagingAdapter
+        articleListViewModel.getArticles("").subscribe{
+            articlesListPagingAdapter.submitData(lifecycle, it)
+        }
     }
 }

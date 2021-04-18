@@ -3,7 +3,6 @@ package com.newscycle
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import android.view.KeyEvent
 import android.view.MenuItem
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -17,7 +16,9 @@ import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
-import com.newscycle.fragment.*
+import com.newscycle.fragment.CategoriesFragment
+import com.newscycle.fragment.PopularFragment
+import com.newscycle.fragment.SearchFragment
 import com.newscycle.util.ZoomOutPageTransformer
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.drawer_header.*
@@ -85,22 +86,6 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
         drawer_email?.text = user?.email
     }
 
-    override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
-        return if (keyCode == KeyEvent.KEYCODE_BACK && !home_drawer.isDrawerOpen(GravityCompat.START)) {
-            if (pager.currentItem == 2) {
-                if (category_grid.visibility == View.GONE) {
-                    categ_recycler_view.adapter = null
-                    categ_recycler_view.visibility = View.GONE
-                    category_grid.visibility = View.VISIBLE
-                    return true
-                }
-            }
-            val dialog = LogoutDialog()
-            dialog.show(supportFragmentManager, "logout")
-            true
-        } else super.onKeyDown(keyCode, event)
-    }
-
     //------------------------------Navigation functions-----------------------------------------------//
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
         if (menuItem.title == "ACCOUNT") {
@@ -112,10 +97,20 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
     }
 
     override fun onBackPressed() {
-        if (home_drawer.isDrawerOpen(GravityCompat.START)) {
+        if (!home_drawer.isDrawerOpen(GravityCompat.START)) {
+            if (category_recycler_view.visibility == View.VISIBLE) {
+                category_recycler_view.adapter = null
+                category_recycler_view.visibility = View.GONE
+                category_grid.visibility = View.VISIBLE
+                return
+            }else{
+                val dialog = LogoutDialog()
+                dialog.show(supportFragmentManager, "logout")
+                return
+            }
+        }else if (home_drawer.isDrawerOpen(GravityCompat.START)) {
             home_drawer.closeDrawer(GravityCompat.START)
-        } else {
-            super.onBackPressed()
+            return
         }
     }
 
@@ -134,13 +129,13 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
     //------------------------Inner Classes------------------------------------------------------//
 
 
-    inner class ViewPagerAdapter(fm: FragmentManager) : FragmentStateAdapter(fm, lifecycle) {
+    inner class ViewPagerAdapter(val fm: FragmentManager) : FragmentStateAdapter(fm, lifecycle) {
         override fun createFragment(position: Int): Fragment {
             return when (position) {
-                0 -> PopularFragment()
-                1 -> CategoriesFragment()
-                2 -> SearchFragment()
-                else -> PopularFragment()
+                0 -> PopularFragment(fm)
+                1 -> CategoriesFragment(fm)
+                2 -> SearchFragment(fm)
+                else -> PopularFragment(fm)
             }
         }
 

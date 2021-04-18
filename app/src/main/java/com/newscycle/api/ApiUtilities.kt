@@ -7,10 +7,9 @@ import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
 import com.squareup.moshi.adapters.Rfc3339DateJsonAdapter
-import io.reactivex.Observable
-import io.reactivex.Single
+import io.reactivex.rxjava3.core.Single
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.lang.reflect.Type
 import java.net.URLEncoder
@@ -33,7 +32,7 @@ object ApiUtilities : NewsApi {
 
         val retrofit = Retrofit.Builder()
             .baseUrl("https://newsapi.org")
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .build()
 
@@ -53,7 +52,7 @@ object ApiUtilities : NewsApi {
         page: Int,
         pageSize: Int,
         country: String
-    ): Observable<Results> {
+    ): Single<Results> {
         return newsApi.getTopHeadlines(
             page = page
         )
@@ -65,7 +64,7 @@ object ApiUtilities : NewsApi {
         page: Int,
         pageSize: Int,
         country: String
-    ): Observable<Results> {
+    ): Single<Results> {
         return newsApi.getCategoryHeadlines(
             category = category,
             page = page
@@ -80,7 +79,7 @@ object ApiUtilities : NewsApi {
         fromDate: String,
         sortBy: String,
         language: String
-    ): Observable<Results> {
+    ): Single<Results> {
         return newsApi.searchTopic(
             q = URLEncoder.encode(q),
             page = page,

@@ -12,17 +12,28 @@ enum class Feed{
 
             else -> ""
         }
-    }}
+    }
+}
 
+enum class Sort{
+    SORT_RELEVANT, SORT_RECENT, SORT_POPULAR;
+
+    override fun toString(): String {
+        return when(this.name){
+            "SORT_RELEVANT"-> "Relevancy"
+            "SORT_RECENT"-> "PublishedAt"
+            "SORT_POPULAR"-> "Popularity"
+            else -> ""
+        }
+    }
+}
 object Constants {
     val NEWS_KEY = BuildConfig.NEWS_KEY
     val HOME = "HOME"
-    val SORT_RELEVANT = "relevancy"
-    val SORT_RECENT = "RECENT"
-    val SORT_POPULAR = "popularity"
     val DATE_TODAY = "TODAY"
     val DATE_WEEK = "WEEK"
     val DATE_MONTH = "MONTH"
+    val APP_TAG = "newscycle"
     val values = arrayOf(
         "BUSINESS",
         "ENTERTAINMENT",

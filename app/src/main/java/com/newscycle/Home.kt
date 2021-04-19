@@ -9,30 +9,30 @@ import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
-import com.google.firebase.auth.FirebaseAuth
+import com.newscycle.databinding.ActivityHomeBinding
 import com.newscycle.fragment.CategoriesFragment
 import com.newscycle.fragment.PopularFragment
 import com.newscycle.fragment.SearchFragment
 import com.newscycle.util.ZoomOutPageTransformer
 import kotlinx.android.synthetic.main.activity_home.*
-import kotlinx.android.synthetic.main.drawer_header.*
 import kotlinx.android.synthetic.main.fragment_categories.*
 
 class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private val NUM_PAGES = 3
     private val tabTitles = listOf("HEADLINES", "TOPICS", "SEARCH")
     private val icons = listOf(R.drawable.popular, R.drawable.category, R.drawable.search)
-    private val mAuth: FirebaseAuth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
+        val binding: ActivityHomeBinding = DataBindingUtil.setContentView(
+            this, R.layout.activity_home)
         initTabLayout()
         inflateDrawer()
     }
@@ -78,12 +78,6 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
         toolbar.z = 1.05F
 
         findViewById<NavigationView>(R.id.nav).setNavigationItemSelectedListener(this)
-    }
-
-    override fun onResume() {
-        super.onResume()
-        val user = mAuth.currentUser
-        drawer_email?.text = user?.email
     }
 
     //------------------------------Navigation functions-----------------------------------------------//

@@ -5,18 +5,17 @@ import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.ImageView
 import androidx.annotation.IdRes
 import androidx.annotation.LayoutRes
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.newscycle.R
+import com.squareup.picasso.Picasso
 
 class CategoryGridAdapter(context: Context,
                           @LayoutRes resource:Int,
                           @IdRes textViewResourceId: Int,
                           objects: Array<String>
 ): ArrayAdapter<String>(context, resource, textViewResourceId, objects) {
-    private val cropOptions: RequestOptions = RequestOptions.centerCropTransform()
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
 
@@ -34,10 +33,11 @@ class CategoryGridAdapter(context: Context,
             5 -> background = R.drawable.clip_img_sports
             6 -> background = R.drawable.clip_img_tech
         }
-        Glide.with(context)
+        Picasso.get()
             .load(background)
-            .apply(cropOptions)
-            .into(view.findViewById(R.id.categ_card_img))
+            .resize(400,400)
+            .centerCrop()
+            .into(view.findViewById<ImageView>(R.id.categ_card_img))
 
         return view
     }

@@ -4,11 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
-import com.bumptech.glide.Glide
+import androidx.lifecycle.lifecycleScope
 import com.newscycle.data.models.ArticleModel
 import com.newscycle.databinding.FragmentArticleBinding
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.fragment_article.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -24,77 +27,32 @@ class Article(private val article: ArticleModel) : DialogFragment(){
         )
         binding.article = article
         binding.articleTime.text = getFormattedTime(article.pubDate)
-        binding.articleTitle.text = removeSource(article.title, '-')
-        binding.articleContent.text = removeSource(article.content, '[')
-        //binding.articleCardView.setOnTouchListener(SwipeUpEventListener(this))
-        //binding.articleScrollview.setOnTouchListener(SwipeUpEventListener(this))
 
-        Glide.with(this)
-            .load(article.image)
-            .into(binding.articleImage)
+        lifecycleScope.launchWhenCreated {
+            binding.articleTitle.text = removeSource(article.title, '-')
+            binding.articleContent.text = removeSource(article.content, '[')
+        }
+
+        binding.buttonClose.setOnClickListener {
+            dismiss()
+        }
+
+        binding.buttonVisitArticle.setOnClickListener {
+            Toast.makeText(context, "Feature more involved than expected, coming soon...", Toast.LENGTH_SHORT).show()
+        }
         return binding.root
     }
 
-    /*
-    private var downX = 0f
-    private var downY = 0f
-    private var upX = 0f
-    private var upY = 0f
-    override fun onTouch(v: View?, event: MotionEvent?): Boolean {
-
-        if (event != null && v != null) {
-            when (event.action) {
-                MotionEvent.ACTION_DOWN -> {
-                    downX = event.x
-                    downY = event.y
-                    //action = SwipeUpEventListener.Action.None
-                    return false // allow other events like Click to be processed
-                }
-                MotionEvent.ACTION_UP -> {
-                    upX = event.x
-                    upY = event.y
-                    val deltaX = downX - upX
-                    val deltaY = downY - upY
-
-                    // horizontal swipe detection
-                    if (Math.abs(deltaX) > MIN_DISTANCE) {
-                        // left or right
-                        if (deltaX < 0) {
-                            Log.i(logTag, "Swipe Left to Right")
-                            //action = SwipeUpEventListener.Action.LR
-                            return true
-                        }
-                        if (deltaX > 0) {
-                            Log.i(logTag, "Swipe Right to Left")
-                            //a//ction = SwipeUpEventListener.Action.RL
-                            return true
-                        }
-                    } else if (Math.abs(deltaY) > MIN_DISTANCE) { // vertical swipe
-                        // detection
-                        // top or down
-                        if (deltaY < 0) {
-                            Log.i(logTag, "Swipe Top to Bottom")
-                            //action = SwipeUpEventListener.Action.TB
-                            dismiss()
-                            return true
-                        }
-                        if (deltaY > 0) {
-                            Log.i(logTag, "Swipe Bottom to Top")
-                            //action = SwipeUpEventListener.Action.BT
-                            dismiss()
-                            return true
-                        }
-                    }
-                    return true
-                }
-            }
-        }
-        return false
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        Picasso.get()
+            .load(article.image)
+            .resize(2200,1200)
+            .centerCrop()
+            .into(article_image)
     }
 
-     */
-
-    fun removeSource(title: String?, remove: Char): String {
+    private fun removeSource(title: String?, remove: Char): String {
         if(title.isNullOrBlank()) return ""
         val size = title.length
         for(i in size-1 downTo 0){
@@ -107,13 +65,8 @@ class Article(private val article: ArticleModel) : DialogFragment(){
         return ""
     }
 
-    fun getFormattedTime(pubDate: Date?): String {
+    private fun getFormattedTime(pubDate: Date?): String {
         if (pubDate == null) return ""
         return SimpleDateFormat("h:mm a, MMM d", Locale.ENGLISH).format(pubDate)
-    }
-
-    companion object {
-        private const val logTag = "SwipeDetector"
-        private const val MIN_DISTANCE = 50
     }
 }

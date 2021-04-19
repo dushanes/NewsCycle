@@ -7,31 +7,43 @@ import org.junit.Assert.*
 class LoginViewModelTest {
 
     @Test
-    fun getEmail() {
+    fun `get email, while not logged in`() {
     }
 
     @Test
-    fun getPass() {
+    fun `get password, while not logged in`() {
     }
 
     @Test
-    fun getPassConfirm() {
+    fun `login, valid credentials`() {
     }
 
     @Test
-    fun login() {
+    fun `login, invalid credentials`() {
     }
 
     @Test
-    fun toRegister() {
+    fun `login, no email credentials`() {
     }
 
     @Test
-    fun forgotPassword() {
+    fun `login, bad password credentials`() {
     }
 
     @Test
-    fun register() {
+    fun `register, valid credentials`() {
+    }
+
+    @Test
+    fun `register, invalid password length credentials`() {
+    }
+
+    @Test
+    fun `register, invalid password confirm credentials`() {
+    }
+
+    @Test
+    fun `forgot password, no email entered`() {
     }
 
     @Test

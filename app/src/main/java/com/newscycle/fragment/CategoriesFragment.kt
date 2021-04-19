@@ -51,9 +51,9 @@ class CategoriesFragment(fm: FragmentManager) : Fragment() {
         }
 
         binding.categoryGrid.setOnItemClickListener { _: AdapterView<*>?,
-                                               view: View?,
+                                               _: View?,
                                                pos: Int,
-                                               id: Long ->
+                                               _: Long ->
             Log.d("Grid item", "Button has been clicked")
             binding.categoryGrid.visibility = View.GONE
             binding.categoryRecyclerView.layoutManager = linearLayoutManager

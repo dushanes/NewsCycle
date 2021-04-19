@@ -8,6 +8,10 @@ Written in **Kotlin**
 - LiveData & DataBinding
 - Retrofit, RxJava, Moshi
 - Pager3
+- Picasso
+
+**Testing with**
+- Junit4
 
 The purpose of this project is to display my general knowledge of app development up to now. I present it in hopes of gaining more experience and knowledge through employment.
 This Android App is used to browse the news, focusing on what is highest interest rather than some algorithm, users are able to scroll through Top Headlines quickly, or browse by category, and if a user is looking for something more specific users my search articles and narrow down their results.

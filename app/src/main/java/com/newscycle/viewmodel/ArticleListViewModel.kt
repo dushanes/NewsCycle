@@ -12,13 +12,17 @@ class ArticleListViewModel(FEED_TAG: Feed): ViewModel() {
     private var articleListRepository: ArticleListRepository = ArticleListRepository(FEED_TAG)
     private var currentSearchResult: Flowable<PagingData<ArticleModel>>?  =  null
     private var currentQueryValue: String?  =  null
+    private var currentFromDateValue: String?  =  null
+    private var currentSortByValue: String?  =  null
 
     @ExperimentalCoroutinesApi
-    fun getArticles(query: String, fromDate: String="", sortBy: String=""): Flowable<PagingData<ArticleModel>> {
+    fun getArticles(query: String, fromDate: String="Past Month", sortBy: String="relevancy"): Flowable<PagingData<ArticleModel>> {
         val lastResult = currentSearchResult
-        if(query == currentQueryValue && lastResult != null){
+        if(query == currentQueryValue && lastResult != null && fromDate == currentFromDateValue && sortBy == currentSortByValue){
             return lastResult
         }
+        currentFromDateValue = fromDate
+        currentSortByValue = sortBy
         currentQueryValue = query
         val newResult: Flowable<PagingData<ArticleModel>> = articleListRepository.getArticles(query, fromDate, sortBy)
         currentSearchResult = newResult

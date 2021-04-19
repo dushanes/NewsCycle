@@ -9,7 +9,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.textfield.TextInputEditText
 import com.newscycle.Feed
 import com.newscycle.R
 import com.newscycle.adapters.ArticlesListPagingAdapter
@@ -17,7 +16,6 @@ import com.newscycle.databinding.FragmentSearchBinding
 import com.newscycle.viewmodel.ArticleListViewModel
 import kotlinx.android.synthetic.main.fragment_search.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.Job
 
 class SearchFragment(fm: FragmentManager) : Fragment() {
     private val articleListViewModel: ArticleListViewModel = ArticleListViewModel(Feed.SEARCH_FEED)

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
             name="article"
@@ -8,11 +9,10 @@
             name="articleViewModel"
             type="com.newscycle.viewmodel.ArticleViewModel" />
     </data>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<com.google.android.material.card.MaterialCardView
     android:id="@+id/cardView"
     android:layout_gravity="center_horizontal"
-    android:layout_width="365dp"
+    android:layout_width="355dp"
     android:layout_height="wrap_content"
     android:layout_margin="6dp"
     app:cardCornerRadius="15dp">
@@ -29,16 +29,15 @@
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16.5sp"
-            android:fontFamily="@font/open_sans_semi_bold"
             android:layout_margin="8dp"
+            android:fontFamily="@font/open_sans_semi_bold"
             android:padding="4dp"
-            android:textColor="@color/black"
             android:textAlignment="center"
-            app:layout_constraintTop_toTopOf="parent"
+            android:textColor="@color/black"
+            android:textSize="16.5sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/card_image"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/card_image"

@@ -30,7 +30,11 @@ class Article(private val article: ArticleModel) : DialogFragment(){
 
         lifecycleScope.launchWhenCreated {
             binding.articleTitle.text = removeSource(article.title, '-')
-            binding.articleContent.text = removeSource(article.content, '[')
+            if (article.content.isNullOrBlank()){
+                binding.articleContent.visibility = View.GONE
+            }else{
+                binding.articleContent.text = removeSource(article.content, '[')
+            }
         }
 
         binding.buttonClose.setOnClickListener {
@@ -53,7 +57,7 @@ class Article(private val article: ArticleModel) : DialogFragment(){
     }
 
     private fun removeSource(title: String?, remove: Char): String {
-        if(title.isNullOrBlank()) return ""
+        if(title.isNullOrBlank()) return "Not available"
         val size = title.length
         for(i in size-1 downTo 0){
             val char = title[i]
@@ -62,7 +66,7 @@ class Article(private val article: ArticleModel) : DialogFragment(){
                 return ret
             }
         }
-        return ""
+        return title
     }
 
     private fun getFormattedTime(pubDate: Date?): String {

@@ -14,7 +14,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 class ArticleListRepository(private val FEED_TAG: Feed) {
     private val articleListLiveData: MutableLiveData<Results> = MutableLiveData()
-    private val apiUtil: ApiUtilities by lazy { ApiUtilities }
+    //private val apiUtil: ApiUtilities by lazy { ApiUtilities }
 
     @ExperimentalCoroutinesApi
     fun getArticles(query: String, fromDate: String, sortBy: String): Flowable<PagingData<ArticleModel>> {
@@ -23,7 +23,9 @@ class ArticleListRepository(private val FEED_TAG: Feed) {
                 pageSize = 10,
                 initialLoadSize = 10
             ),
-            pagingSourceFactory = { ArticlePagingSource(query, sortBy, fromDate, FEED_TAG) }
+            pagingSourceFactory = {
+                ArticlePagingSource(query, sortBy, fromDate, FEED_TAG)
+            }
         ).flowable
     }
 

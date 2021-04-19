@@ -23,7 +23,7 @@ class ArticlePagingSource(private val query: String, private val sortBy: String,
             Feed.POP_FEED -> apiUtilities.getTopHeadlines(BuildConfig.NEWS_KEY, page = position, )
             Feed.SEARCH_FEED -> apiUtilities.searchTopic(BuildConfig.NEWS_KEY, q = query, page = position, sortBy = sortBy, fromDate = fromDate)
             Feed.TOPIC_FEED -> apiUtilities.getCategoryHeadlines(BuildConfig.NEWS_KEY, page = position, category = query)
-            Feed.MY_FEED -> apiUtilities.getTopHeadlines(BuildConfig.NEWS_KEY, page = position)
+            Feed.MY_FEED -> apiUtilities.getTopHeadlines(BuildConfig.NEWS_KEY, page = position) //Not in use
         }.map<LoadResult<Int, ArticleModel>> { result ->
             LoadResult.Page(
                 data = result.articles,

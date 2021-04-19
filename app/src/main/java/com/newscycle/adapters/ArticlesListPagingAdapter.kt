@@ -70,6 +70,6 @@ class ArticlesListPagingAdapter(val fragmentManager: FragmentManager) :
                 return title.removeRange(i, size)
             }
         }
-        return ""
+        return title
     }
 }

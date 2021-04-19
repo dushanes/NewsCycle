@@ -9,20 +9,52 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="image" />
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="sort" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0b7b1a91-767f-4e70-8dbe-7bfc5839c72a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_picasso_picasso_2_71828_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__net_bytebuddy_byte_buddy_1_10_20.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__net_bytebuddy_byte_buddy_agent_1_10_20.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_mockito_kotlin_mockito_kotlin_3_1_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_mockito_mockito_core_3_9_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_objenesis_objenesis_3_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/icon_close.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/captures/com.newscycle_2021.04.18_17.55.li" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_auto_value_auto_value_annotations_1_7_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_code_findbugs_jsr305_3_0_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_errorprone_error_prone_annotations_2_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_guava_failureaccess_1_0_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_guava_guava_30_1_android.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_guava_listenablefuture_9999_0_empty_to_avoid_conflict_with_guava.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_j2objc_j2objc_annotations_1_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_truth_truth_1_1_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__junit_junit_4_13_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_checkerframework_checker_compat_qual_2_5_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_checkerframework_checker_qual_3_9_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_mockito_mockito_inline_2_13_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_ow2_asm_asm_9_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/generated/res/google-services/debug/values/values.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/generated/source/buildConfig/debug/com/newscycle/BuildConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/generated/source/kapt/debug/androidx/databinding/DataBinderMapperImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/generated/source/kapt/debug/androidx/databinding/DataBindingComponent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/generated/source/kapt/debug/androidx/databinding/library/baseAdapters/BR.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/generated/source/kapt/debug/com/newscycle/BR.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/generated/source/kapt/debug/com/newscycle/DataBinderMapperImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/generated/source/kapt/debug/com/newscycle/data/models/ArticleModelJsonAdapter.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/generated/source/kapt/debug/com/newscycle/data/models/ResultsJsonAdapter.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/generated/source/kapt/debug/com/newscycle/data/models/SourceJsonAdapter.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/generated/source/kapt/debug/com/newscycle/data/models/SourcesModelJsonAdapter.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/generated/source/kapt/debug/com/newscycle/data/models/SourcesResultJsonAdapter.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/generated/source/kapt/debug/com/newscycle/databinding/ActivityHomeBindingImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/generated/source/kapt/debug/com/newscycle/databinding/ActivityLoginBindingImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/generated/source/kapt/debug/com/newscycle/databinding/ArticleCardBindingImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/generated/source/kapt/debug/com/newscycle/databinding/FragmentArticleBindingImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/generated/source/kapt/debug/com/newscycle/databinding/FragmentCategoriesBindingImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/generated/source/kapt/debug/com/newscycle/databinding/FragmentLoginBindingImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/generated/source/kapt/debug/com/newscycle/databinding/FragmentRecyclerviewBindingImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/generated/source/kapt/debug/com/newscycle/databinding/FragmentRegisterBindingImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/generated/source/kapt/debug/com/newscycle/databinding/FragmentSearchBindingImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/generated/source/kapt/debug/com/newscycle/generated/callback/OnClickListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kapt3/classes/debug/META-INF/proguard/moshi-com.newscycle.data.models.ArticleModel.pro" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kapt3/classes/debug/META-INF/proguard/moshi-com.newscycle.data.models.Results.pro" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kapt3/classes/debug/META-INF/proguard/moshi-com.newscycle.data.models.Source.pro" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kapt3/classes/debug/META-INF/proguard/moshi-com.newscycle.data.models.SourcesModel.pro" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/tmp/kapt3/classes/debug/META-INF/proguard/moshi-com.newscycle.data.models.SourcesResult.pro" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" afterDir="false" />
@@ -37,32 +69,24 @@
       <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_exifinterface_exifinterface_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_exifinterface_exifinterface_1_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_bumptech_glide_annotations_4_11_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_bumptech_glide_disklrucache_4_11_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_bumptech_glide_gifdecoder_4_11_0_aar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_bumptech_glide_glide_4_11_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_code_findbugs_jsr305_2_0_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__junit_junit_4_12.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules/app/NewsCycle.app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/NewsCycle.app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/newscycle/Article.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/newscycle/Article.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/newscycle/Home.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/newscycle/Home.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/newscycle/adapters/ArticlesListPagingAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/newscycle/adapters/ArticlesListPagingAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/newscycle/adapters/CategoryGridAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/newscycle/adapters/CategoryGridAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/newscycle/fragment/CategoriesFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/newscycle/fragment/CategoriesFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/newscycle/api/NewsApi.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/newscycle/api/NewsApi.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/newscycle/data/ArticleListRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/newscycle/data/ArticleListRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/newscycle/data/ArticlePagingSource.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/newscycle/data/ArticlePagingSource.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/newscycle/fragment/SearchFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/newscycle/fragment/SearchFragment.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/newscycle/viewmodel/ArticleListViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/newscycle/viewmodel/ArticleListViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_home.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/article_card.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/article_card.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_article.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_article.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_search.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_search.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/test/java/com/newscycle/viewmodel/LoginViewModelTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/com/newscycle/viewmodel/LoginViewModelTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hs_err_pid25592.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/news-cycle.apk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/replay_pid25592.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/com/newscycle/viewmodel/ArticleListViewModelTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/com/newscycle/viewmodel/ArticleListViewModelTest.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,8 +141,8 @@
     <property name="DEBUGGABLE_DEVICE" value="oneplus-gm1917-196e1b05" />
     <property name="DEBUGGABLE_PROCESS" value="com.newscycle" />
     <property name="DEBUGGER_ID" value="Java" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="196e1b05" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2021-04-19T01:21:07.424Z" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="Nexus_4_API_28" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2021-04-19T05:34:30.404Z" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -129,6 +153,7 @@
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
+    <property name="dynamic.classpath" value="true" />
     <property name="external.system.task.project.file.to.start" value="$PROJECT_DIR$" />
     <property name="ignore.virus.scanning.warn.message" value="true" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/test/java/com/newscycle/viewmodel" />
@@ -175,7 +200,27 @@
       <recent name="$PROJECT_DIR$/app/src/main/res/font" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Android App.app">
+    <configuration name="ArticleListViewModelTest" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
+      <module name="NewsCycle.app" />
+      <shortenClasspath name="MANIFEST" />
+      <useClassPathOnly />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.newscycle.viewmodel.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.newscycle.viewmodel" />
+      <option name="MAIN_CLASS_NAME" value="com.newscycle.viewmodel.ArticleListViewModelTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
       <option name="TEST_OBJECT" value="class" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
@@ -240,6 +285,11 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Android JUnit.ArticleListViewModelTest" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -490,6 +540,10 @@
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="2484" y="73" key="#ArticleListViewModelTest" timestamp="1618860855516">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2484" y="73" key="#ArticleListViewModelTest/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618860855516" />
     <state x="2296" y="258" key="#PSD" timestamp="1617433007596">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
@@ -498,10 +552,10 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2586" y="310" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618527809676" />
-    <state x="2659" y="235" key="#com.intellij.ide.util.MemberChooser" timestamp="1618792934340">
+    <state x="2659" y="235" key="#com.intellij.ide.util.MemberChooser" timestamp="1618809828864">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2659" y="235" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618792934340" />
+    <state x="2659" y="235" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618809828864" />
     <state x="2610" y="295" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1617476505092">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
@@ -538,22 +592,22 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2559" y="266" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1610227451023" />
-    <state width="1877" height="259" key="GridCell.Tab.0.bottom" timestamp="1618794592896">
+    <state width="1877" height="259" key="GridCell.Tab.0.bottom" timestamp="1618863596449">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="259" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618794592896" />
-    <state width="1877" height="259" key="GridCell.Tab.0.center" timestamp="1618794592896">
+    <state width="1877" height="259" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618863596449" />
+    <state width="1877" height="259" key="GridCell.Tab.0.center" timestamp="1618863596449">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="259" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618794592896" />
-    <state width="1877" height="259" key="GridCell.Tab.0.left" timestamp="1618794592895">
+    <state width="1877" height="259" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618863596449" />
+    <state width="1877" height="259" key="GridCell.Tab.0.left" timestamp="1618863596449">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="259" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618794592895" />
-    <state width="1877" height="259" key="GridCell.Tab.0.right" timestamp="1618794592896">
+    <state width="1877" height="259" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618863596449" />
+    <state width="1877" height="259" key="GridCell.Tab.0.right" timestamp="1618863596449">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="259" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618794592896" />
+    <state width="1877" height="259" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618863596449" />
     <state width="1877" height="265" key="GridCell.Tab.1.bottom" timestamp="1618698380283">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
@@ -574,10 +628,10 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2779" y="456" key="LayoutInspector.WindowPicker.Options.Dimensions/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618782957602" />
-    <state x="2553" y="241" key="RollbackChangesDialog" timestamp="1618790912305">
+    <state x="2553" y="241" key="RollbackChangesDialog" timestamp="1618808471101">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2553" y="241" key="RollbackChangesDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618790912305" />
+    <state x="2553" y="241" key="RollbackChangesDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618808471101" />
     <state x="2842" y="99" key="SettingsEditor" timestamp="1618526793314">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
@@ -594,10 +648,10 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2594" y="95" width="959" height="849" key="find.popup/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618528004926" />
-    <state width="587" height="204" key="javadoc.popup.new" timestamp="1618806309653">
+    <state width="587" height="204" key="javadoc.popup.new" timestamp="1618867666034">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="587" height="204" key="javadoc.popup.new/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618806309653" />
+    <state width="587" height="204" key="javadoc.popup.new/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618867666034" />
     <state width="587" height="224" key="javadoc.popup.new/0.0.1920.1040@0.0.1920.1040" timestamp="1617228327611" />
     <state x="2651" y="180" key="org.jetbrains.kotlin.idea.testIntegration.KotlinCreateTestDialog" timestamp="1618703723431">
       <screen x="1920" y="0" width="1920" height="1040" />
@@ -607,14 +661,14 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2704" y="287" key="refactoring.ChangeSignatureDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618689278450" />
-    <state x="2536" y="240" key="run.anything.popup" timestamp="1618797697405">
+    <state x="2536" y="240" key="run.anything.popup" timestamp="1618857033127">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2536" y="240" key="run.anything.popup/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618797697405" />
-    <state x="2543" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1618785900493">
+    <state x="2536" y="240" key="run.anything.popup/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618857033127" />
+    <state x="2543" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1618860521829">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2543" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618785900493" />
+    <state x="2543" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618860521829" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -638,6 +692,11 @@
           <url>file://$PROJECT_DIR$/app/src/main/java/com/newscycle/util/SwipeUpEventListener.kt</url>
           <line>36</line>
           <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/newscycle/Article.kt</url>
+          <line>31</line>
+          <option name="timeStamp" value="27" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -9,7 +9,7 @@ import io.reactivex.rxjava3.core.Flowable
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 class ArticleListViewModel(FEED_TAG: Feed): ViewModel() {
-    private var articleListRepository: ArticleListRepository = ArticleListRepository(FEED_TAG)
+    private val articleListRepository: ArticleListRepository = ArticleListRepository(FEED_TAG)
     private var currentSearchResult: Flowable<PagingData<ArticleModel>>?  =  null
     private var currentQueryValue: String?  =  null
     private var currentFromDateValue: String?  =  null

@@ -16,6 +16,8 @@
     <string name="filler_author">Author: </string>
     <string name="filler_title">Title</string>
     <string name="visit_aritcle">Visit Article</string>
+    <string name="from_date">From date:</string>
+    <string name="sort_by">Sort by:</string>
     <string name="close">Close</string>
     <string name="drawer_open">Draw Open</string>
     <string name="drawer_close">Draw Close</string>

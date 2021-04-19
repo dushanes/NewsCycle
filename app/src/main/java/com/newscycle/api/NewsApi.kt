@@ -42,7 +42,7 @@ interface NewsApi {
         @Query("pageSize") pageSize: Int = 10,
         @Query("page") page: Int,
         @Query("from") fromDate: String,
-        @Query("sortBy") sortBy: String = "PublishedAt",
+        @Query("sortBy") sortBy: String,
         @Query("language") language: String = "en"
     )
             : Single<Results>

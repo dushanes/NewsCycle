@@ -1,9 +1,11 @@
 package com.newscycle.fragment
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -24,6 +26,7 @@ class SearchFragment(fm: FragmentManager) : Fragment() {
     private val TAG = "Search Fragment"
     private var binding: FragmentSearchBinding? = null
 
+    @ExperimentalCoroutinesApi
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -31,6 +34,23 @@ class SearchFragment(fm: FragmentManager) : Fragment() {
     ): View {
         val binding: FragmentSearchBinding = DataBindingUtil.inflate(layoutInflater, R.layout.fragment_search, container, false)
         this.binding = binding
+        binding.searchContainer.setEndIconOnClickListener {
+            val query: String  = binding?.search?.text.toString()
+            var sortBy: String = binding.sortByEditText.text.toString()
+            val fromDate: String = binding?.fromDateEditText?.text.toString()
+            println("Sort by what" + sortBy)
+            sortBy = when (sortBy) {
+                "Relevance" -> "relevancy"
+                "Popularity" -> "popularity"
+                "Recent" -> "publishedAt"
+                else -> "relevancy"
+            }
+
+            println("Sort by what" + sortBy)
+            articleListViewModel.getArticles(query,fromDate, sortBy).subscribe{
+                articlesListPagingAdapter.submitData(lifecycle, it)
+            }
+        }
         setupRecyclerView(binding)
         return binding.root
     }
@@ -48,14 +68,8 @@ class SearchFragment(fm: FragmentManager) : Fragment() {
         val dateAdapter = ArrayAdapter(view.context, R.layout.list_item, dateItems)
         binding?.fromDateEditText?.setAdapter(dateAdapter)
 
-        binding?.fromDateEditText?.onItemClickListener =
-            AdapterView.OnItemClickListener { _: AdapterView<*>, _: View, _: Int, _: Long ->
-                search.requestFocus()
-            }
-        binding?.sortByEditText?.onItemClickListener =
-            AdapterView.OnItemClickListener { _: AdapterView<*>, _: View, _: Int, _: Long ->
-                search.requestFocus()
-            }
+        binding?.fromDateEditText?.onItemClickListener = returnToSearchListener
+        binding?.sortByEditText?.onItemClickListener = returnToSearchListener
         initSearch()
     }
 
@@ -77,7 +91,7 @@ class SearchFragment(fm: FragmentManager) : Fragment() {
                     "Relevance" -> "relevancy"
                     "Popularity" -> "popularity"
                     "Recent" -> "publishedAt"
-                    else -> "publishedAt"
+                    else -> "relevancy"
                 }
 
                 articleListViewModel.getArticles(query,fromDate, sortBy).subscribe{
@@ -90,8 +104,15 @@ class SearchFragment(fm: FragmentManager) : Fragment() {
     }
 
     private fun setupRecyclerView(binding: FragmentSearchBinding) {
-        Log.d(TAG, "Setting up recycler view")
+        Log.i(TAG, "Setting up recycler view")
         binding.searchRecyclerview.layoutManager = linearLayoutManager
         binding.searchRecyclerview.adapter = articlesListPagingAdapter
     }
+
+    private val returnToSearchListener  =
+        AdapterView.OnItemClickListener { _, _, _, _ ->
+            binding?.search?.requestFocus()
+            val imm = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY)
+        }
 }

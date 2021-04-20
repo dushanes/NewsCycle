@@ -23,7 +23,7 @@ class AuthRepository(private var application: Application) {
         }
     }
 
-    fun onFireSignIn(email: String, pass: String) {
+    fun onFireSignIn(email: String, pass: String){
         Log.d(TAG, "onFireSignIn: ")
         firebaseAuth.signInWithEmailAndPassword(email, pass)
             .addOnCompleteListener(
@@ -45,15 +45,6 @@ class AuthRepository(private var application: Application) {
     }
 
     fun fireRegis(email: String, pass: String) {
-        if (pass.length < 8) {
-            Toast.makeText(
-                application.applicationContext,
-                "Password must be at least 8 characters",
-                Toast.LENGTH_SHORT
-            ).show()
-            return
-        }
-
         firebaseAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener { task ->
             val user = firebaseAuth.currentUser
             if (task.isSuccessful) {

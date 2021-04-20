@@ -10,16 +10,11 @@ import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import com.newscycle.adapters.ViewPagerAdapter
 import com.newscycle.databinding.ActivityHomeBinding
-import com.newscycle.fragment.CategoriesFragment
-import com.newscycle.fragment.PopularFragment
-import com.newscycle.fragment.SearchFragment
 import com.newscycle.util.ZoomOutPageTransformer
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.fragment_categories.*
@@ -33,28 +28,31 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
         super.onCreate(savedInstanceState)
         val binding: ActivityHomeBinding = DataBindingUtil.setContentView(
             this, R.layout.activity_home)
-        initTabLayout()
+        initTabLayout(binding)
         inflateDrawer()
     }
 
-    private fun initTabLayout() {
-        tab_layout.tabGravity = TabLayout.GRAVITY_FILL
+    private fun initTabLayout(binding: ActivityHomeBinding) {
+        val pager = binding.pager
+        val tabLayout = binding.tabLayout
+
+        tabLayout.tabGravity = TabLayout.GRAVITY_FILL
         pager.setPageTransformer(ZoomOutPageTransformer())
-        pager.adapter = ViewPagerAdapter(supportFragmentManager)
+        pager.adapter = ViewPagerAdapter(supportFragmentManager, lifecycle)
 
         //connect tab_layout to pager
-        TabLayoutMediator(tab_layout, pager) { tab, position ->
+        TabLayoutMediator(tabLayout, pager) { tab, position ->
             tab.text = tabTitles[position]
             tab.setIcon(icons[position])
         }.attach()
 
-        tab_layout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabReselected(tab: TabLayout.Tab?) {
                 return
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {
-                val imm: InputMethodManager =
+                val imm =
                     getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
                 return
@@ -92,7 +90,7 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
 
     override fun onBackPressed() {
         if (!home_drawer.isDrawerOpen(GravityCompat.START)) {
-            if (category_recycler_view.visibility == View.VISIBLE) {
+            if (category_recycler_view != null && category_recycler_view.visibility == View.VISIBLE) {
                 category_recycler_view.adapter = null
                 category_recycler_view.visibility = View.GONE
                 category_grid.visibility = View.VISIBLE
@@ -120,23 +118,4 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
         }
     }
 
-    //------------------------Inner Classes------------------------------------------------------//
-
-
-    inner class ViewPagerAdapter(val fm: FragmentManager) : FragmentStateAdapter(fm, lifecycle) {
-        override fun createFragment(position: Int): Fragment {
-            return when (position) {
-                0 -> PopularFragment(fm)
-                1 -> CategoriesFragment(fm)
-                2 -> SearchFragment(fm)
-                else -> PopularFragment(fm)
-            }
-        }
-
-        override fun getItemCount(): Int {
-            return NUM_PAGES
-        }
-    }
 }
-
-

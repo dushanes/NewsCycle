@@ -22,6 +22,13 @@ class RegisterFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         loginViewModel = ViewModelProvider(requireActivity()).get(LoginViewModel::class.java)
+        val loginObserver = Observer<FirebaseUser> {
+            if (it != null) {
+                activity?.findNavController(R.id.content_fragment_container)
+                    ?.navigate(R.id.action_registerFragment_to_home)
+            }
+        }
+        loginViewModel.getUserLiveData().observe(this, loginObserver)
     }
 
     override fun onCreateView(

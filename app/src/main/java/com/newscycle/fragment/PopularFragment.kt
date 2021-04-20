@@ -40,7 +40,7 @@ class PopularFragment(fm: FragmentManager) : Fragment() {
         Log.d(TAG, "Setting up recycler view")
         binding.recyclerView.layoutManager = linearLayoutManager
         binding.recyclerView.adapter = articlesListPagingAdapter
-        articleListViewModel.getArticles("").subscribe{
+        articleListViewModel.getArticles().subscribe{
             articlesListPagingAdapter.submitData(lifecycle, it)
         }
     }

@@ -16,7 +16,7 @@ class ArticleListViewModel(FEED_TAG: Feed): ViewModel() {
     private var currentSortByValue: String?  =  null
 
     @ExperimentalCoroutinesApi
-    fun getArticles(query: String, fromDate: String="Past Month", sortBy: String="relevancy"): Flowable<PagingData<ArticleModel>> {
+    fun getArticles(query: String = "", fromDate: String="Past Month", sortBy: String="relevancy"): Flowable<PagingData<ArticleModel>> {
         val lastResult = currentSearchResult
         if(query == currentQueryValue && lastResult != null && fromDate == currentFromDateValue && sortBy == currentSortByValue){
             return lastResult

@@ -22,11 +22,11 @@ class LoginFragment : Fragment() {
         loginViewModel = ViewModelProvider(requireActivity()).get(LoginViewModel::class.java)
         val loginObserver = Observer<FirebaseUser> {
             if (it != null) {
-                requireActivity().findNavController(R.id.content_fragment_container)
-                    .navigate(R.id.action_loginFragment_to_home)
+                activity?.findNavController(R.id.content_fragment_container)
+                    ?.navigate(R.id.action_loginFragment_to_home)
             }
         }
-        loginViewModel.getUserLiveData().observe(requireActivity(), loginObserver)
+        loginViewModel.getUserLiveData().observe(this, loginObserver)
     }
 
     override fun onCreateView(

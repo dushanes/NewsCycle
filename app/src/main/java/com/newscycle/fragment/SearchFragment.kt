@@ -38,7 +38,6 @@ class SearchFragment(fm: FragmentManager) : Fragment() {
             val query: String  = binding?.search?.text.toString()
             var sortBy: String = binding.sortByEditText.text.toString()
             val fromDate: String = binding?.fromDateEditText?.text.toString()
-            println("Sort by what" + sortBy)
             sortBy = when (sortBy) {
                 "Relevance" -> "relevancy"
                 "Popularity" -> "popularity"
@@ -46,7 +45,6 @@ class SearchFragment(fm: FragmentManager) : Fragment() {
                 else -> "relevancy"
             }
 
-            println("Sort by what" + sortBy)
             articleListViewModel.getArticles(query,fromDate, sortBy).subscribe{
                 articlesListPagingAdapter.submitData(lifecycle, it)
             }

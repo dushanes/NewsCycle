@@ -1,7 +1,6 @@
 package com.newscycle.viewmodel
 
 import android.app.Application
-import android.util.Patterns
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.AndroidViewModel
@@ -10,6 +9,7 @@ import androidx.navigation.findNavController
 import com.google.firebase.auth.FirebaseUser
 import com.newscycle.R
 import com.newscycle.data.AuthRepository
+import com.newscycle.util.AuthUtil
 
 class LoginViewModel(application: Application) : AndroidViewModel(application) {
     private val authRepository: AuthRepository = AuthRepository(application)
@@ -30,16 +30,19 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun login(email: String?, pass: String?): Boolean {
+    fun login(emailInput: String?, passInput: String?): Boolean {
         loggingInLiveData.value = true
+        val email: String = emailInput ?: ""
+        val pass: String = passInput ?: ""
 
-        if (email.isNullOrBlank() || pass.isNullOrBlank()  || !isEmailValid(email)) {
-            toastMsg.postValue(errorMsg)
+        if (!AuthUtil.checkLoginCredentials(email, pass)) {
+            toastMsg.value = (errorMsg)
             loggingInLiveData.value = false
             return false
         }
 
         authRepository.onFireSignIn(email, pass)
+        loggingInLiveData.value = false
         return true
     }
 
@@ -48,8 +51,9 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
             .navigate(R.id.action_loginFragment_to_registerFragment)
     }
 
-    fun forgotPassword(email: String?): Boolean {
-        if (email.isNullOrBlank() || !isEmailValid(email)) {
+    fun forgotPassword(emailInput: String?): Boolean {
+        val email = emailInput?: ""
+        if (email.isEmpty()) {
             toastMsg.postValue("Please enter your email and try again")
             return false
         }
@@ -59,21 +63,25 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
         return true
     }
 
-    fun register(email: String?, pass: String?, confirm: String?): Boolean {
-        if (email.isNullOrBlank() || pass.isNullOrBlank() || confirm.isNullOrBlank() || pass.length < 8) {
+    fun register(emailInput: String?, passInput: String?, confirmInput: String?): Boolean {
+        loggingInLiveData.value = true
+        val email: String = emailInput ?: ""
+        val pass: String = passInput ?: ""
+        val confirm: String = confirmInput ?: ""
+
+        if (!AuthUtil.checkRegistrationCredentials(email, pass, confirm)) {
             toastMsg.postValue(errorMsg)
-            return false
-        }
-        if (!isEmailValid(email)) {
-            toastMsg.postValue("Please enter a valid email.")
+            loggingInLiveData.value = false
             return false
         }
 
-        return if (pass != confirm) {
+        return if (!AuthUtil.checkPasswordMatches(pass, confirm)) {
             toastMsg.postValue("Passwords do not match, Try again.")
+            loggingInLiveData.value = false
             false
         } else {
             authRepository.fireRegis(email, pass)
+            loggingInLiveData.value = false
             true
         }
     }
@@ -104,9 +112,5 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
 
     fun logOut() {
         authRepository.logOut()
-    }
-
-    fun isEmailValid(email: String): Boolean {
-        return Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 }

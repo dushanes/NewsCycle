@@ -6,7 +6,6 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.rxjava3.flowable
 import com.newscycle.Feed
-import com.newscycle.api.ApiUtilities
 import com.newscycle.data.models.ArticleModel
 import com.newscycle.data.models.Results
 import io.reactivex.rxjava3.core.Flowable

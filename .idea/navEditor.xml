@@ -8,68 +8,25 @@
             <LayoutPositions>
               <option name="myPositions">
                 <map>
-                  <entry key="categoriesFragment">
+                  <entry key="article">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="278" />
-                            <option name="y" value="-6" />
+                            <option name="x" value="228" />
+                            <option name="y" value="12" />
                           </Point>
                         </option>
                       </LayoutPositions>
                     </value>
                   </entry>
-                  <entry key="logoutDialog">
+                  <entry key="home2">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="286" />
-                            <option name="y" value="-360" />
-                          </Point>
-                        </option>
-                      </LayoutPositions>
-                    </value>
-                  </entry>
-                  <entry key="popularFragment">
-                    <value>
-                      <LayoutPositions>
-                        <option name="myPosition">
-                          <Point>
-                            <option name="x" value="-10" />
-                            <option name="y" value="-8" />
-                          </Point>
-                        </option>
-                        <option name="myPositions">
-                          <map>
-                            <entry key="action_popularFragment_to_categoriesFragment">
-                              <value>
-                                <LayoutPositions />
-                              </value>
-                            </entry>
-                            <entry key="action_popularFragment_to_logoutDialog">
-                              <value>
-                                <LayoutPositions />
-                              </value>
-                            </entry>
-                            <entry key="action_popularFragment_to_searchFragment">
-                              <value>
-                                <LayoutPositions />
-                              </value>
-                            </entry>
-                          </map>
-                        </option>
-                      </LayoutPositions>
-                    </value>
-                  </entry>
-                  <entry key="searchFragment">
-                    <value>
-                      <LayoutPositions>
-                        <option name="myPosition">
-                          <Point>
-                            <option name="x" value="293" />
-                            <option name="y" value="305" />
+                            <option name="x" value="40" />
+                            <option name="y" value="40" />
                           </Point>
                         </option>
                       </LayoutPositions>
@@ -85,7 +42,7 @@
             <LayoutPositions>
               <option name="myPositions">
                 <map>
-                  <entry key="home2">
+                  <entry key="home">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
@@ -108,17 +65,29 @@
                         </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="action_loginFragment_to_home2">
+                            <entry key="action_loginFragment_to_home">
                               <value>
                                 <LayoutPositions />
                               </value>
                             </entry>
-                            <entry key="action_loginFragment_to_registerFragment2">
+                            <entry key="action_loginFragment_to_registerFragment">
                               <value>
                                 <LayoutPositions />
                               </value>
                             </entry>
                           </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="popularFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="548" />
+                            <option name="y" value="-243" />
+                          </Point>
                         </option>
                       </LayoutPositions>
                     </value>
@@ -134,7 +103,7 @@
                         </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="action_registerFragment_to_home2">
+                            <entry key="action_registerFragment_to_home">
                               <value>
                                 <LayoutPositions />
                               </value>

@@ -15,46 +15,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0b7b1a91-767f-4e70-8dbe-7bfc5839c72a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_auto_value_auto_value_annotations_1_7_4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_code_findbugs_jsr305_3_0_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_errorprone_error_prone_annotations_2_5_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_guava_failureaccess_1_0_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_guava_guava_30_1_android.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_guava_listenablefuture_9999_0_empty_to_avoid_conflict_with_guava.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_j2objc_j2objc_annotations_1_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_truth_truth_1_1_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__junit_junit_4_13_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_checkerframework_checker_compat_qual_2_5_5.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_checkerframework_checker_qual_3_9_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_mockito_mockito_inline_2_13_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_ow2_asm_asm_9_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/build/generated/res/google-services/debug/values/values.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/build/generated/source/buildConfig/debug/com/newscycle/BuildConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/build/generated/source/kapt/debug/androidx/databinding/DataBinderMapperImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/build/generated/source/kapt/debug/androidx/databinding/DataBindingComponent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/build/generated/source/kapt/debug/androidx/databinding/library/baseAdapters/BR.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/build/generated/source/kapt/debug/com/newscycle/BR.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/build/generated/source/kapt/debug/com/newscycle/DataBinderMapperImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/build/generated/source/kapt/debug/com/newscycle/data/models/ArticleModelJsonAdapter.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/build/generated/source/kapt/debug/com/newscycle/data/models/ResultsJsonAdapter.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/build/generated/source/kapt/debug/com/newscycle/data/models/SourceJsonAdapter.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/build/generated/source/kapt/debug/com/newscycle/data/models/SourcesModelJsonAdapter.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/build/generated/source/kapt/debug/com/newscycle/data/models/SourcesResultJsonAdapter.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/build/generated/source/kapt/debug/com/newscycle/databinding/ActivityHomeBindingImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/build/generated/source/kapt/debug/com/newscycle/databinding/ActivityLoginBindingImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/build/generated/source/kapt/debug/com/newscycle/databinding/ArticleCardBindingImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/build/generated/source/kapt/debug/com/newscycle/databinding/FragmentArticleBindingImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/build/generated/source/kapt/debug/com/newscycle/databinding/FragmentCategoriesBindingImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/build/generated/source/kapt/debug/com/newscycle/databinding/FragmentLoginBindingImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/build/generated/source/kapt/debug/com/newscycle/databinding/FragmentRecyclerviewBindingImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/build/generated/source/kapt/debug/com/newscycle/databinding/FragmentRegisterBindingImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/build/generated/source/kapt/debug/com/newscycle/databinding/FragmentSearchBindingImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/build/generated/source/kapt/debug/com/newscycle/generated/callback/OnClickListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/build/tmp/kapt3/classes/debug/META-INF/proguard/moshi-com.newscycle.data.models.ArticleModel.pro" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/build/tmp/kapt3/classes/debug/META-INF/proguard/moshi-com.newscycle.data.models.Results.pro" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/build/tmp/kapt3/classes/debug/META-INF/proguard/moshi-com.newscycle.data.models.Source.pro" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/build/tmp/kapt3/classes/debug/META-INF/proguard/moshi-com.newscycle.data.models.SourcesModel.pro" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/build/tmp/kapt3/classes/debug/META-INF/proguard/moshi-com.newscycle.data.models.SourcesResult.pro" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/newscycle/util/AuthUtil.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/test/java/com/newscycle/util/AuthUtilTest.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" afterDir="false" />
@@ -70,23 +32,22 @@
       <change beforePath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_code_findbugs_jsr305_2_0_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__junit_junit_4_12.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules/app/NewsCycle.app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/NewsCycle.app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/navEditor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/navEditor.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/newscycle/Article.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/newscycle/Article.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/newscycle/adapters/ArticlesListPagingAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/newscycle/adapters/ArticlesListPagingAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/newscycle/api/NewsApi.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/newscycle/api/NewsApi.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/newscycle/Login.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/newscycle/Login.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/newscycle/data/ArticleListRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/newscycle/data/ArticleListRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/newscycle/data/ArticlePagingSource.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/newscycle/data/ArticlePagingSource.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/newscycle/fragment/SearchFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/newscycle/fragment/SearchFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/newscycle/viewmodel/ArticleListViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/newscycle/viewmodel/ArticleListViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/article_card.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/article_card.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_search.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_search.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/test/java/com/newscycle/viewmodel/ArticleListViewModelTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/com/newscycle/viewmodel/ArticleListViewModelTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/newscycle/data/AuthRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/newscycle/data/AuthRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/newscycle/fragment/LoginFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/newscycle/fragment/LoginFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/newscycle/fragment/RegisterFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/newscycle/fragment/RegisterFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/newscycle/viewmodel/LoginViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/newscycle/viewmodel/LoginViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_login.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_login.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_register.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_register.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/navigation/activity_nav_graph.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/navigation/activity_nav_graph.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/com/newscycle/viewmodel/ArticleListViewModelTest.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/com/newscycle/viewmodel/LoginViewModelTest.kt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,6 +81,7 @@
         <option value="navigationResourceFile" />
         <option value="resourceFile" />
         <option value="Kotlin Class" />
+        <option value="Kotlin Object" />
         <option value="JUnit4 Test Class" />
       </list>
     </option>
@@ -156,7 +118,7 @@
     <property name="dynamic.classpath" value="true" />
     <property name="external.system.task.project.file.to.start" value="$PROJECT_DIR$" />
     <property name="ignore.virus.scanning.warn.message" value="true" />
-    <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/test/java/com/newscycle/viewmodel" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/test/java/com/newscycle" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../Program Files/Git/bin/git.exe" />
     <property name="multi-representation-previewC:/Users/knightnight101/AppData/Local/Android/Sdk/sources/android-28/android/view/View.java_selected" value="Custom views" />
     <property name="multi-representation-previewC:/Users/knightnight101/AppData/Local/Android/Sdk/sources/android-28/android/widget/EditText.java_selected" value="Custom views" />
@@ -185,6 +147,7 @@
       <recent name="com.newscycle" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.newscycle.util" />
       <recent name="com.newscycle.viewmodel" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
@@ -216,6 +179,55 @@
       <option name="METHOD_NAME" value="" />
       <option name="TEST_OBJECT" value="class" />
       <option name="PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AuthUtilTest" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
+      <module name="NewsCycle.app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.newscycle.util.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.newscycle.util" />
+      <option name="MAIN_CLASS_NAME" value="com.newscycle.util.AuthUtilTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AuthUtilTest.valid login, return true" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
+      <module name="NewsCycle.app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.newscycle.util.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.newscycle.util" />
+      <option name="MAIN_CLASS_NAME" value="com.newscycle.util.AuthUtilTest" />
+      <option name="METHOD_NAME" value="valid login, return true" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LoginViewModelTest" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
+      <module name="NewsCycle.app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.newscycle.viewmodel.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.newscycle.viewmodel" />
+      <option name="MAIN_CLASS_NAME" value="com.newscycle.viewmodel.LoginViewModelTest" />
+      <option name="TEST_OBJECT" value="class" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
       <method v="2">
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
@@ -287,6 +299,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Android JUnit.AuthUtilTest" />
+        <item itemvalue="Android JUnit.AuthUtilTest.valid login, return true" />
+        <item itemvalue="Android JUnit.LoginViewModelTest" />
         <item itemvalue="Android JUnit.ArticleListViewModelTest" />
       </list>
     </recent_temporary>
@@ -548,6 +563,10 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2296" y="258" key="#PSD/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1617433007596" />
+    <state x="2012" y="92" width="1736" height="856" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog" timestamp="1618868804281">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2012" y="92" width="1736" height="856" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618868804281" />
     <state x="2586" y="310" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1618527809676">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
@@ -560,6 +579,10 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2610" y="295" key="#com.intellij.ide.util.PackageChooserDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1617476505092" />
+    <state x="2609" y="310" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1618961137247">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2609" y="310" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618961137247" />
     <state x="2610" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1617559456082">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
@@ -568,10 +591,10 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2581" y="286" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618526009921" />
-    <state x="2622" y="397" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1610486293770">
+    <state x="2622" y="397" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1618873616493">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2622" y="397" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1610486293770" />
+    <state x="2622" y="397" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618873616493" />
     <state x="2762" y="100" width="981" height="840" key="AVDManager" timestamp="1617417661171">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
@@ -592,38 +615,38 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2559" y="266" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1610227451023" />
-    <state width="1877" height="259" key="GridCell.Tab.0.bottom" timestamp="1618863596449">
+    <state width="1877" height="259" key="GridCell.Tab.0.bottom" timestamp="1618973599543">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="259" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618863596449" />
-    <state width="1877" height="259" key="GridCell.Tab.0.center" timestamp="1618863596449">
+    <state width="1877" height="259" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618973599543" />
+    <state width="1877" height="259" key="GridCell.Tab.0.center" timestamp="1618973599542">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="259" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618863596449" />
-    <state width="1877" height="259" key="GridCell.Tab.0.left" timestamp="1618863596449">
+    <state width="1877" height="259" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618973599542" />
+    <state width="1877" height="259" key="GridCell.Tab.0.left" timestamp="1618973599542">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="259" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618863596449" />
-    <state width="1877" height="259" key="GridCell.Tab.0.right" timestamp="1618863596449">
+    <state width="1877" height="259" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618973599542" />
+    <state width="1877" height="259" key="GridCell.Tab.0.right" timestamp="1618973599542">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="259" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618863596449" />
-    <state width="1877" height="265" key="GridCell.Tab.1.bottom" timestamp="1618698380283">
+    <state width="1877" height="259" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618973599542" />
+    <state width="1877" height="265" key="GridCell.Tab.1.bottom" timestamp="1618949176822">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="265" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618698380283" />
-    <state width="1877" height="265" key="GridCell.Tab.1.center" timestamp="1618698380282">
+    <state width="1877" height="265" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618949176822" />
+    <state width="1877" height="265" key="GridCell.Tab.1.center" timestamp="1618949176821">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="265" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618698380282" />
-    <state width="1877" height="265" key="GridCell.Tab.1.left" timestamp="1618698380281">
+    <state width="1877" height="265" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618949176821" />
+    <state width="1877" height="265" key="GridCell.Tab.1.left" timestamp="1618949176821">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="265" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618698380281" />
-    <state width="1877" height="265" key="GridCell.Tab.1.right" timestamp="1618698380282">
+    <state width="1877" height="265" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618949176821" />
+    <state width="1877" height="265" key="GridCell.Tab.1.right" timestamp="1618949176821">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="265" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618698380282" />
+    <state width="1877" height="265" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618949176821" />
     <state x="2779" y="456" key="LayoutInspector.WindowPicker.Options.Dimensions" timestamp="1618782957602">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
@@ -640,35 +663,35 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2472" y="248" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1610486483905" />
-    <state x="2688" y="298" key="chooseDestDirectoryDialog" timestamp="1618703723395">
+    <state x="2688" y="298" key="chooseDestDirectoryDialog" timestamp="1618946466409">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2688" y="298" key="chooseDestDirectoryDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618703723395" />
+    <state x="2688" y="298" key="chooseDestDirectoryDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618946466409" />
     <state x="2594" y="95" width="959" height="849" key="find.popup" timestamp="1618528004926">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2594" y="95" width="959" height="849" key="find.popup/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618528004926" />
-    <state width="587" height="204" key="javadoc.popup.new" timestamp="1618867666034">
+    <state width="587" height="121" key="javadoc.popup.new" timestamp="1618973732724">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="587" height="204" key="javadoc.popup.new/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618867666034" />
+    <state width="587" height="121" key="javadoc.popup.new/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618973732724" />
     <state width="587" height="224" key="javadoc.popup.new/0.0.1920.1040@0.0.1920.1040" timestamp="1617228327611" />
-    <state x="2651" y="180" key="org.jetbrains.kotlin.idea.testIntegration.KotlinCreateTestDialog" timestamp="1618703723431">
+    <state x="2651" y="180" key="org.jetbrains.kotlin.idea.testIntegration.KotlinCreateTestDialog" timestamp="1618946466514">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2651" y="180" key="org.jetbrains.kotlin.idea.testIntegration.KotlinCreateTestDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618703723431" />
-    <state x="2704" y="287" key="refactoring.ChangeSignatureDialog" timestamp="1618689278450">
+    <state x="2651" y="180" key="org.jetbrains.kotlin.idea.testIntegration.KotlinCreateTestDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618946466514" />
+    <state x="2704" y="287" key="refactoring.ChangeSignatureDialog" timestamp="1618952091016">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2704" y="287" key="refactoring.ChangeSignatureDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618689278450" />
-    <state x="2536" y="240" key="run.anything.popup" timestamp="1618857033127">
+    <state x="2704" y="287" key="refactoring.ChangeSignatureDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618952091016" />
+    <state x="2536" y="240" key="run.anything.popup" timestamp="1618871944759">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2536" y="240" key="run.anything.popup/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618857033127" />
-    <state x="2543" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1618860521829">
+    <state x="2536" y="240" key="run.anything.popup/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618871944759" />
+    <state x="2543" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1618875015796">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2543" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618860521829" />
+    <state x="2543" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618875015796" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -680,7 +703,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/newscycle/viewmodel/LoginViewModel.kt</url>
-          <line>49</line>
+          <line>55</line>
           <option name="timeStamp" value="22" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-line">
@@ -697,6 +720,14 @@
           <url>file://$PROJECT_DIR$/app/src/main/java/com/newscycle/Article.kt</url>
           <line>31</line>
           <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-function">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/newscycle/Home.kt</url>
+          <line>34</line>
+          <properties class="com.newscycle.Home" method="initTabLayout">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="28" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

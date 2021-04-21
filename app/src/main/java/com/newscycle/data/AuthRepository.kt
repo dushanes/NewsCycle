@@ -10,7 +10,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
 
-class AuthRepository(private var application: Application) {
+class AuthRepository(private val application: Application) {
     private val TAG: String = "Login Regis Repo"
     private val database: DatabaseReference = FirebaseDatabase.getInstance().reference
     private val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()

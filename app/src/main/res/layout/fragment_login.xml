@@ -3,7 +3,7 @@
     <data>
         <variable name="loginViewModel" type="com.newscycle.viewmodel.LoginViewModel"/>
     </data>
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/fragment_login_main_container"
     android:orientation="vertical"
@@ -21,6 +21,7 @@
         android:inputType="textEmailAddress"
         android:padding="15dp"
         android:textColor="@color/black"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
@@ -39,10 +40,6 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/email"/>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_login"
@@ -56,7 +53,8 @@
             android:paddingRight="18dp"
             app:cornerRadius="40dp"
             android:onClick="@{() -> loginViewModel.login(loginViewModel.emailLiveData, loginViewModel.passwordLiveData)}"
-            android:layout_alignParentStart="true"
+            app:layout_constraintTop_toBottomOf="@id/password"
+            app:layout_constraintLeft_toLeftOf="parent"
             android:text="@string/login_text"
             android:gravity="start"
             android:textColor="#5FCCCA"
@@ -66,8 +64,9 @@
             android:translationZ="-1dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_alignEnd="@id/button_login"
+            android:layout_marginTop="5dp"
+            app:layout_constraintTop_toTopOf="@id/button_login"
+            app:layout_constraintEnd_toEndOf="@id/button_login"
             android:indeterminate="true" />
 
         <com.google.android.material.button.MaterialButton
@@ -75,7 +74,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:layout_alignParentEnd="true"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/password"
             android:paddingBottom="12dp"
             android:paddingTop="12dp"
             android:paddingLeft="18dp"
@@ -87,6 +87,5 @@
             android:textColor="#5FCCCA"
             android:textSize="18sp"
             app:cornerRadius="40dp"/>
-    </RelativeLayout>
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

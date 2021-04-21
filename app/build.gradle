@@ -76,11 +76,12 @@ dependencies {
     implementation "androidx.paging:paging-runtime-ktx:$paging_version"
     implementation 'com.squareup.picasso:picasso:2.71828'
 
-    testImplementation 'org.mockito:mockito-inline:2.13.0'
     implementation 'com.google.truth:truth:1.1.2'
     testImplementation 'junit:junit:4.13.2'
     testImplementation "org.mockito:mockito-core:3.9.0"
     testImplementation "org.mockito.kotlin:mockito-kotlin:3.1.0"
+    testImplementation 'org.mockito:mockito-inline:2.13.0'
+    androidTestImplementation "org.mockito:mockito-android:3.9.0"
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 }

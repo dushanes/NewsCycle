@@ -1,5 +1,7 @@
 package com.newscycle
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +16,7 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_article.*
 import java.text.SimpleDateFormat
 import java.util.*
+
 
 class Article(private val article: ArticleModel) : DialogFragment(){
     override fun onCreateView(
@@ -42,7 +45,9 @@ class Article(private val article: ArticleModel) : DialogFragment(){
         }
 
         binding.buttonVisitArticle.setOnClickListener {
-            Toast.makeText(context, "Feature more involved than expected, coming soon...", Toast.LENGTH_SHORT).show()
+            val url = article.url
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+            startActivity(Intent.createChooser(intent, "Browse with"))
         }
         return binding.root
     }
@@ -51,7 +56,7 @@ class Article(private val article: ArticleModel) : DialogFragment(){
         super.onViewCreated(view, savedInstanceState)
         Picasso.get()
             .load(article.image)
-            .resize(2200,1200)
+            .resize(2200, 1200)
             .centerCrop()
             .into(article_image)
     }
